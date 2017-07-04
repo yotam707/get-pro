@@ -13,6 +13,13 @@
 		573AC6D11F0ACC4F00112B24 /* Get_Pro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 573AC6CF1F0ACC4F00112B24 /* Get_Pro.xcdatamodeld */; };
 		573AC6D31F0ACC4F00112B24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 573AC6D21F0ACC4F00112B24 /* Assets.xcassets */; };
 		573AC6D61F0ACC4F00112B24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 573AC6D41F0ACC4F00112B24 /* LaunchScreen.storyboard */; };
+		8EA8FF001F0C23F3009CDE6D /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFB1F0C23F3009CDE6D /* AppManager.swift */; };
+		8EA8FF011F0C23F3009CDE6D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFC1F0C23F3009CDE6D /* FirebaseManager.swift */; };
+		8EA8FF021F0C23F3009CDE6D /* GoogleApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFD1F0C23F3009CDE6D /* GoogleApiManager.swift */; };
+		8EA8FF031F0C23F3009CDE6D /* LocalStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFE1F0C23F3009CDE6D /* LocalStorageManager.swift */; };
+		8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFF1F0C23F3009CDE6D /* MockData.swift */; };
+		8EA8FF061F0C24E5009CDE6D /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FF051F0C24E5009CDE6D /* Keys.swift */; };
+		8EA8FF081F0C282F009CDE6D /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FF071F0C282F009CDE6D /* DTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		573AC6D21F0ACC4F00112B24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		573AC6D51F0ACC4F00112B24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		573AC6D71F0ACC4F00112B24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EA8FEFB1F0C23F3009CDE6D /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		8EA8FEFC1F0C23F3009CDE6D /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		8EA8FEFD1F0C23F3009CDE6D /* GoogleApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleApiManager.swift; sourceTree = "<group>"; };
+		8EA8FEFE1F0C23F3009CDE6D /* LocalStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorageManager.swift; sourceTree = "<group>"; };
+		8EA8FEFF1F0C23F3009CDE6D /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		8EA8FF051F0C24E5009CDE6D /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		8EA8FF071F0C282F009CDE6D /* DTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,11 @@
 		573AC6C71F0ACC4F00112B24 /* Get-Pro */ = {
 			isa = PBXGroup;
 			children = (
+				8EA8FEFB1F0C23F3009CDE6D /* AppManager.swift */,
+				8EA8FEFC1F0C23F3009CDE6D /* FirebaseManager.swift */,
+				8EA8FEFD1F0C23F3009CDE6D /* GoogleApiManager.swift */,
+				8EA8FEFE1F0C23F3009CDE6D /* LocalStorageManager.swift */,
+				8EA8FEFF1F0C23F3009CDE6D /* MockData.swift */,
 				573AC6C81F0ACC4F00112B24 /* AppDelegate.swift */,
 				573AC6CA1F0ACC4F00112B24 /* ViewController.swift */,
 				573AC6CC1F0ACC4F00112B24 /* Main.storyboard */,
@@ -63,6 +82,8 @@
 				573AC6D41F0ACC4F00112B24 /* LaunchScreen.storyboard */,
 				573AC6D71F0ACC4F00112B24 /* Info.plist */,
 				573AC6CF1F0ACC4F00112B24 /* Get_Pro.xcdatamodeld */,
+				8EA8FF051F0C24E5009CDE6D /* Keys.swift */,
+				8EA8FF071F0C282F009CDE6D /* DTO.swift */,
 			);
 			path = "Get-Pro";
 			sourceTree = "<group>";
@@ -141,7 +162,14 @@
 			files = (
 				573AC6CB1F0ACC4F00112B24 /* ViewController.swift in Sources */,
 				573AC6D11F0ACC4F00112B24 /* Get_Pro.xcdatamodeld in Sources */,
+				8EA8FF011F0C23F3009CDE6D /* FirebaseManager.swift in Sources */,
+				8EA8FF021F0C23F3009CDE6D /* GoogleApiManager.swift in Sources */,
 				573AC6C91F0ACC4F00112B24 /* AppDelegate.swift in Sources */,
+				8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */,
+				8EA8FF001F0C23F3009CDE6D /* AppManager.swift in Sources */,
+				8EA8FF061F0C24E5009CDE6D /* Keys.swift in Sources */,
+				8EA8FF031F0C23F3009CDE6D /* LocalStorageManager.swift in Sources */,
+				8EA8FF081F0C282F009CDE6D /* DTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +331,7 @@
 				573AC6DC1F0ACC4F00112B24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 public class AppManager{
     
@@ -28,6 +30,7 @@ public class AppManager{
         }
         return false
     }
+    
     
     static func login() -> Bool{
         
@@ -102,5 +105,30 @@ public class AppManager{
     }
     
     
+    static func getColor(colorKey: String, alpha: CGFloat = 1.0) -> UIColor{
+        
+        switch colorKey {
+        case K.Colors.disabledGray:
+            return UIColor.init(red: rgb(number: 150), green: rgb(number: 150), blue: rgb(number: 150), alpha: alpha)
+        case K.Colors.darkGray:
+            return UIColor.init(red: rgb(number: 36), green: rgb(number: 49), blue: rgb(number: 49), alpha: alpha)
+        case K.Colors.mediumGray:
+            return UIColor.init(red: rgb(number: 80), green: rgb(number: 100), blue: rgb(number: 100), alpha: alpha)
+        case K.Colors.lightGray:
+            return UIColor.init(red: rgb(number: 195), green: rgb(number: 210), blue: rgb(number: 210), alpha: alpha)
+        case K.Colors.appBlue:
+            return UIColor.init(red: rgb(number: 56), green: rgb(number: 208), blue: rgb(number: 255), alpha: alpha)
+            
+        default:
+            return UIColor.white
+        }
+        
+    }
+    
+    
+    
+    static func rgb(number:Double) -> CGFloat{
+        return CGFloat(number/255.0)
+    }
     
 }

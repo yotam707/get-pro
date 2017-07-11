@@ -178,7 +178,7 @@
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Describe your problem:" translatesAutoresizingMaskIntoConstraints="NO" id="bZ7-hr-Kd0">
-                                <rect key="frame" x="10" y="74" width="229" height="32"/>
+                                <rect key="frame" x="10" y="74" width="339" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="PGc-e0-HZJ"/>
                                 </constraints>
@@ -252,7 +252,7 @@
                             <constraint firstItem="bMb-yz-Q1c" firstAttribute="top" secondItem="86B-8e-Rwl" secondAttribute="bottom" constant="10" id="a5c-uw-lUD"/>
                             <constraint firstItem="bMb-yz-Q1c" firstAttribute="leading" secondItem="F7G-2H-xRS" secondAttribute="leading" constant="10" id="cu3-ON-TEE"/>
                             <constraint firstItem="Cfz-lb-9uW" firstAttribute="top" secondItem="bMb-yz-Q1c" secondAttribute="bottom" constant="10" id="gkg-eM-3cO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bZ7-hr-Kd0" secondAttribute="trailing" constant="120" id="iaT-fC-I1V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bZ7-hr-Kd0" secondAttribute="trailing" constant="10" id="iaT-fC-I1V"/>
                             <constraint firstItem="bZ7-hr-Kd0" firstAttribute="leading" secondItem="F7G-2H-xRS" secondAttribute="leading" constant="10" id="k3x-oG-5oF"/>
                             <constraint firstAttribute="trailing" secondItem="O9V-gv-gJk" secondAttribute="trailing" constant="10" id="nSN-X2-HMb"/>
                             <constraint firstItem="bZ7-hr-Kd0" firstAttribute="top" secondItem="uEK-0O-FG5" secondAttribute="bottom" constant="10" id="sc6-N9-TTA"/>

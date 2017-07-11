@@ -8,18 +8,28 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: BaseUIViewController {
+    @IBOutlet var orderProffesionalBtn: UIButton!
+    @IBOutlet var manageOrdersBtn: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.setViewColor(view: self.view, color: K.Colors.darkGray)
+        self.setViewColor(view: orderProffesionalBtn, color: K.Colors.darkRed)
+        self.disableEnableManageOrdersBtn()
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func disableEnableManageOrdersBtn(){
+        let isEnabled = AppManager.getMyOrders().count > 0
+        manageOrdersBtn.isEnabled = isEnabled
+        if isEnabled {
+            self.setViewColor(view: manageOrdersBtn, color: K.Colors.darkRed)
+        }
+        else {
+            self.setViewColor(view: manageOrdersBtn, color: K.Colors.disabledGray)
+        }
     }
-    
-    
+
 }

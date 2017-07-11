@@ -18,7 +18,7 @@ public class FirebaseManager{
         return [Category]()
     }
     
-    static func getProfessionals(categoryId:String) -> [Professional]{
+    static func getProfessionals(orderRequestId:String) -> [Professional]{
         return [Professional]()
     }
     
@@ -35,15 +35,15 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(userName:String, password:String) -> Bool{
+    static func register(email:String, password:String) -> Bool{
         return true
     }
     
-    static func login(userName:String, password:String) -> Bool{
+    static func login(email:String, password:String) -> Bool{
         return true
     }
     
-    static func publishOrder(order:Order){
+    static func publishOrder(orderReq:OrderRequest){
         
     }
     

@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseUIViewController {
     
     @IBOutlet weak var progressBar: UIProgressView!
     
     var lunchTimer: Timer!
 
     override func viewWillAppear(_ animated: Bool) {
+        
         lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
 
         //load data
@@ -23,7 +24,9 @@ class ViewController: UIViewController {
         let when = DispatchTime.now() + 4.5
         DispatchQueue.main.asyncAfter(deadline: when) {
             self.lunchTimer.invalidate()
-            self.progressBar.progress = 0.95
+            self.progressBar.progress = 0.99
+            
+            self.dismiss(animated: true, completion: nil)
             
             if AppManager.login() {
                 //navigate to menu
@@ -41,15 +44,6 @@ class ViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func runTimedCode() {
         if self.progressBar.progress < 0.7 {

@@ -9,7 +9,11 @@
 import UIKit
 
 class OrdersManagmentViewController: UIViewController {
-    
+
+    @IBAction func onBackButtonClick(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

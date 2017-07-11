@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: BaseUIViewController {
     
 
     @IBOutlet weak var emailTB: UITextField!
@@ -16,34 +16,24 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var registerBtn: UIButton!
     
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //check if we need to register, move to next page if not
-    }
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         registerBtn.isEnabled = false
         self.enableDisableRegisterBtn(isEnabled: false)
-        self.setColors()
-    
-        
-        // Do any additional setup after loading the view, typically from a nib.
+        self.setViewColor(view: self.view, color: K.Colors.darkGray)
     }
-    
     
     
     @IBAction func onRegisterClock(_ sender: Any) {
-        // move to menu controller
-    }
-    
-    
-    
-    
-    
-    func setColors(){
-        self.view.backgroundColor = AppManager.getColor(colorKey: K.Colors.darkGray)
+        
+        //register - need to handle Async.
+        if AppManager.register(email: emailTB.text!, password: passwordTB.text!) {
+            self.dismiss(animated: true, completion: nil)
+            
+            // move to menu controller
+            self.performSegue(withIdentifier: "menuSeg", sender: self)
+        }
     }
     
     
@@ -53,19 +43,17 @@ class RegisterViewController: UIViewController {
     }
     
     
-    
     func enableDisableRegisterBtn(isEnabled:Bool){
         
         registerBtn.isEnabled = isEnabled
         
         if isEnabled {
-            registerBtn.backgroundColor = AppManager.getColor(colorKey: K.Colors.appBlue)
+            self.setViewColor(view: registerBtn, color: K.Colors.darkRed)
         }
         else {
-            registerBtn.backgroundColor = AppManager.getColor(colorKey: K.Colors.disabledGray)
+            self.setViewColor(view: registerBtn, color: K.Colors.disabledGray)
         }
     }
-    
     
     
     func isPasswordValid(password : String) -> Bool{

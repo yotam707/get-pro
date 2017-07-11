@@ -11,8 +11,12 @@ import Foundation
 public struct K {
     
     struct Auth {
-        static let userName = "userName"
+        static let email = "email"
         static let password = "password"
+    }
+    
+    struct User {
+        static let userId = "userId"
     }
     
     struct Colors {
@@ -21,8 +25,10 @@ public struct K {
         static let darkGray = "darkGray"
         static let mediumGray = "mediumGray"
         static let lightGray = "lightGray"
-    
-        static let appBlue = "appBlue"
+
+        static let darkRed = "darkRed"
+        static let mediumRed = "mediumRed"
+        static let lightRed = "lightRed"
         
     }
 }

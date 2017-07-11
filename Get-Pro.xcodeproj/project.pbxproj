@@ -25,6 +25,10 @@
 		8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFF1F0C23F3009CDE6D /* MockData.swift */; };
 		8EA8FF061F0C24E5009CDE6D /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FF051F0C24E5009CDE6D /* Keys.swift */; };
 		8EA8FF081F0C282F009CDE6D /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FF071F0C282F009CDE6D /* DTO.swift */; };
+		8EB90EEB1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB90EEA1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift */; };
+		8EB90EED1F12067A006AD86E /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB90EEC1F12067A006AD86E /* BaseUIViewController.swift */; };
+		8ED09B341F12266B002217B5 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED09B331F12266B002217B5 /* CategoryCollectionViewCell.swift */; };
+		8ED09B361F127B95002217B5 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED09B351F127B95002217B5 /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		8EA8FEFF1F0C23F3009CDE6D /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		8EA8FF051F0C24E5009CDE6D /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		8EA8FF071F0C282F009CDE6D /* DTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
+		8EB90EEA1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
+		8EB90EEC1F12067A006AD86E /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
+		8ED09B331F12266B002217B5 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		8ED09B351F127B95002217B5 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,10 @@
 				8E25D6FC1F0E9E860052DC6B /* CategoriesViewController.swift */,
 				8E25D6FE1F0E9F380052DC6B /* ProfessionalsViewController.swift */,
 				8E25D7001F0E9F820052DC6B /* OrderConfirmationViewController.swift */,
+				8EB90EEA1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift */,
+				8EB90EEC1F12067A006AD86E /* BaseUIViewController.swift */,
+				8ED09B331F12266B002217B5 /* CategoryCollectionViewCell.swift */,
+				8ED09B351F127B95002217B5 /* Protocols.swift */,
 			);
 			path = "Get-Pro";
 			sourceTree = "<group>";
@@ -180,14 +192,18 @@
 				8EA8FF011F0C23F3009CDE6D /* FirebaseManager.swift in Sources */,
 				8E25D7011F0E9F830052DC6B /* OrderConfirmationViewController.swift in Sources */,
 				8EA8FF021F0C23F3009CDE6D /* GoogleApiManager.swift in Sources */,
+				8EB90EEB1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift in Sources */,
 				573AC6C91F0ACC4F00112B24 /* AppDelegate.swift in Sources */,
 				8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */,
 				8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */,
+				8ED09B341F12266B002217B5 /* CategoryCollectionViewCell.swift in Sources */,
 				8EA8FF001F0C23F3009CDE6D /* AppManager.swift in Sources */,
 				8EA8FF061F0C24E5009CDE6D /* Keys.swift in Sources */,
 				8E25D6FB1F0E9E440052DC6B /* OrdersManagmentViewController.swift in Sources */,
 				8EA8FF031F0C23F3009CDE6D /* LocalStorageManager.swift in Sources */,
+				8ED09B361F127B95002217B5 /* Protocols.swift in Sources */,
 				8E25D6FF1F0E9F380052DC6B /* ProfessionalsViewController.swift in Sources */,
+				8EB90EED1F12067A006AD86E /* BaseUIViewController.swift in Sources */,
 				8E25D6FD1F0E9E860052DC6B /* CategoriesViewController.swift in Sources */,
 				8EA8FF081F0C282F009CDE6D /* DTO.swift in Sources */,
 			);

@@ -20,11 +20,15 @@ public class AppManager{
     /////////////////////////////////////////////////
     //ELIRAN'S PART
     
-    static func register(userName:String, password:String) -> Bool{
-        let auth = MockData.register(userName: userName, password: password)
+    static func getUserId() -> String {
+        return LocalStorageManager.readFromStorage(key: K.User.userId)
+    }
+    
+    static func register(email:String, password:String) -> Bool{
+        let auth = MockData.register(email: email, password: password)
         if auth {
             //write regstration details to local storage
-            LocalStorageManager.writeToStorage(key: K.Auth.userName, value: userName)
+            LocalStorageManager.writeToStorage(key: K.Auth.email, value: email)
             LocalStorageManager.writeToStorage(key: K.Auth.password, value: password)
             return true
         }
@@ -34,10 +38,10 @@ public class AppManager{
     
     static func login() -> Bool{
         
-        let userName = LocalStorageManager.readFromStorage(key: K.Auth.userName)
+        let email = LocalStorageManager.readFromStorage(key: K.Auth.email)
         let password = LocalStorageManager.readFromStorage(key: K.Auth.password)
         
-        return MockData.login(userName: userName, password: password)
+        return MockData.login(email: email, password: password)
     }
 
     
@@ -46,8 +50,8 @@ public class AppManager{
     }
     
     
-    static func getProfessionals(categoryId:String) -> [Professional]{
-        return MockData.getProfessionals(categoryId:categoryId)
+    static func getProfessionals(orderRequestId:String) -> [Professional]{
+        return MockData.getProfessionals(orderRequestId:orderRequestId)
     }
     
     
@@ -61,6 +65,17 @@ public class AppManager{
     }
     
     
+    static func publishOrder(orderReq:OrderRequest){
+        
+    }
+    
+    static func confirmOrder(orderId:String){
+        
+    }
+    
+    static func rateOrder(orderId:String, rate:Int){
+        
+    }
     
     
     
@@ -111,21 +126,23 @@ public class AppManager{
         case K.Colors.disabledGray:
             return UIColor.init(red: rgb(number: 150), green: rgb(number: 150), blue: rgb(number: 150), alpha: alpha)
         case K.Colors.darkGray:
-            return UIColor.init(red: rgb(number: 36), green: rgb(number: 49), blue: rgb(number: 49), alpha: alpha)
+            return UIColor.init(red: rgb(number: 28), green: rgb(number: 58), blue: rgb(number: 85), alpha: alpha)
         case K.Colors.mediumGray:
-            return UIColor.init(red: rgb(number: 80), green: rgb(number: 100), blue: rgb(number: 100), alpha: alpha)
+            return UIColor.init(red: rgb(number: 129), green: rgb(number: 147), blue: rgb(number: 161), alpha: alpha)
         case K.Colors.lightGray:
-            return UIColor.init(red: rgb(number: 195), green: rgb(number: 210), blue: rgb(number: 210), alpha: alpha)
-        case K.Colors.appBlue:
-            return UIColor.init(red: rgb(number: 56), green: rgb(number: 208), blue: rgb(number: 255), alpha: alpha)
+            return UIColor.init(red: rgb(number: 168), green: rgb(number: 180), blue: rgb(number: 190), alpha: alpha)
+        case K.Colors.darkRed:
+            return UIColor.init(red: rgb(number: 216), green: rgb(number: 67), blue: rgb(number: 82), alpha: alpha)
+        case K.Colors.mediumRed:
+            return UIColor.init(red: rgb(number: 231), green: rgb(number: 142), blue: rgb(number: 151), alpha: alpha)
+        case K.Colors.lightRed:
+            return UIColor.init(red: rgb(number: 223), green: rgb(number: 212), blue: rgb(number: 217), alpha: alpha)
             
         default:
             return UIColor.white
         }
         
     }
-    
-    
     
     static func rgb(number:Double) -> CGFloat{
         return CGFloat(number/255.0)

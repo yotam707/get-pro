@@ -80,7 +80,7 @@ class CategoriesViewController: BaseUIViewController , UICollectionViewDataSourc
         orderRequest.categoryId = selectedCell.category.id
         orderRequest.userId = AppManager.getUserId()
         orderRequest.problemDescription = problamDescTV.text
-        orderRequest.requestDate = DispatchTime.now()
+        orderRequest.requestDate = Date()
         AppManager.publishOrder(orderReq: orderRequest)
         
         

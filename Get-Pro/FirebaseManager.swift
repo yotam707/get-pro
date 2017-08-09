@@ -7,24 +7,26 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
+
 
 public class FirebaseManager{
-    
+
+    static let databaseRef = Database.database().reference()
+    // let authHandler : Auth.self
     
     ///////////////////////////////////////////////
     //GETTERS
     
-    static func getCategories() -> [Category]{
-        return [Category]()
-    }
-    
-    static func getProfessionals(orderRequestId:String) -> [Professional]{
-        return [Professional]()
-    }
-    
-    static func getMyOrders() -> [Order]{
-        return [Order]()
-    }
+        
+//    static func getProfessionals(orderRequestId:String) -> [Professional]{
+//        return [Professional]()
+//    }
+//    
+//    static func getMyOrders() -> [Order]{
+//        return [Order]()
+//    }
     
     static func getMyOrderDetails(orderId:String) -> Order{
         return Order()
@@ -35,26 +37,30 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(email:String, password:String) -> Bool{
-        return true
+    static func register(email:String, password:String,_ completion:@escaping (_ result: Bool) -> ()){
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if user != nil {
+                    completion(true)
+                print("the user: \(String(describing: user)) was created in fire base")
+            }
+            else{
+                completion(false)
+                
+            }
+        }
     }
-    
-    static func login(email:String, password:String) -> Bool{
-        return true
-    }
-    
-    static func publishOrder(orderReq:OrderRequest){
+
+    static func login(email:String, password:String, _ completion:@escaping (_ result: Bool) -> ()){
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if user != nil{
+                completion(true)
+            }
+            else{
+            completion(false)
+            }
+        }
         
     }
-    
-    static func confirmOrder(orderId:String){
-        
-    }
-    
-    static func rateOrder(orderId:String, rate:Int){
-        
-    }
-    
     
     ///////////////////////////////////////////////
     //PRIVATE

@@ -14,8 +14,38 @@ class ViewController: BaseUIViewController {
     
     var lunchTimer: Timer!
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        
+        
+        CategoriesManager.getCategories { (categories) in
+          
+            DispatchQueue.main.async {
+                
+            }
+            
+            print(categories)
+        }
+        
+//        var res = false
+//        FirebaseManager.login(email: "yotam707@gmail.com", password: "test123", {(result) in
+//            res = result
+//        })
+//        print(res)
+//        var res = false
+//        FirebaseManager.register(email: "yotam7071@gmail.com", password: "test123",{ (result) in
+//            res = result
+//        })
+//        print("Register was: \(res)")
+//        
+//        let orderReq = OrderRequest(id: "2", userId: "2", categoryId: "1", problemDescription: "this is a test request", requestDate: Date())
+//        OrdersManager.publishOrder(orderReq: orderReq)
+//        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //FirebaseManager.initCategories(completion: getCategories())
         lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
 
         //load data

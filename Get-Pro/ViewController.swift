@@ -39,9 +39,10 @@ class ViewController: BaseUIViewController {
 //        })
 //        print("Register was: \(res)")
 //        
-//        let orderReq = OrderRequest(id: "2", userId: "2", categoryId: "1", problemDescription: "this is a test request", requestDate: Date())
-//        OrdersManager.publishOrder(orderReq: orderReq)
-//        
+        let orderReq = OrderRequest(id: "2", userId: "2", categoryId: "1", problemDescription: "this is a test request cloud functions", requestDate: Date())
+        let id = OrdersManager.publishOrder(orderReq: orderReq)
+        print(id)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

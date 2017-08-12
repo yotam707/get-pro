@@ -19,20 +19,7 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //GETTERS
     
-        
-//    static func getProfessionals(orderRequestId:String) -> [Professional]{
-//        return [Professional]()
-//    }
-//    
-//    static func getMyOrders() -> [Order]{
-//        return [Order]()
-//    }
-    
-    static func getMyOrderDetails(orderId:String) -> Order{
-        return Order()
-    }
-    
-    
+   
     
     ///////////////////////////////////////////////
     //SETTERS

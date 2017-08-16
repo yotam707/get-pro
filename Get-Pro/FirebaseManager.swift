@@ -14,6 +14,7 @@ import FirebaseAuth
 public class FirebaseManager{
 
     static let databaseRef = Database.database().reference()
+    private static let usersDatabaseRef = databaseRef.child("Users")
     // let authHandler : Auth.self
     
     ///////////////////////////////////////////////
@@ -24,9 +25,11 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(email:String, password:String,_ completion:@escaping (_ result: Bool) -> ()){
+    static func register(email:String, password:String, name: String, pushToken: String,_ completion:@escaping (_ result: Bool) -> ()){
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil {
+                let userObj = ["name": name, "pushToken": pushToken]
+                usersDatabaseRef.child((user?.uid)!).setValue(userObj)
                     completion(true)
                 print("the user: \(String(describing: user)) was created in fire base")
             }

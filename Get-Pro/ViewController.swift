@@ -29,16 +29,16 @@ class ViewController: BaseUIViewController {
         }
         
 //        var res = false
-//        FirebaseManager.login(email: "yotam707@gmail.com", password: "test123", {(result) in
+//        FirebaseManager.login(email: "yotam707@gmail.com", password: "test123",{(result) in
 //            res = result
 //        })
 //        print(res)
 //        var res = false
-//        FirebaseManager.register(email: "yotam7071@gmail.com", password: "test123",{ (result) in
+//        FirebaseManager.register(email: "yotam7071@gmail.com", password: "test123",name:"Yotam", pushToken: UserDefaults.standard.string(forKey: "ApnDeviceToken")!, { (result) in
 //            res = result
 //        })
 //        print("Register was: \(res)")
-//        
+//
         let orderReq = OrderRequest(id: "2", userId: "2", categoryId: "1", problemDescription: "this is a test request cloud functions", requestDate: Date())
         let id = OrdersManager.publishOrder(orderReq: orderReq)
         print(id)

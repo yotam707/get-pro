@@ -20,12 +20,18 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //GETTERS
     
-   
+    static func getPushToken() -> String{
+        if let refreshToken = InstanceID.instanceID().token(){
+            return refreshToken
+        }
+        return ""
+    }
     
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(email:String, password:String, name: String, pushToken: String,_ completion:@escaping (_ result: Bool) -> ()){
+    static func register(email:String, password:String, name: String,_ completion:@escaping (_ result: Bool) -> ()){
+        let pushToken = getPushToken()
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil {
                 let userObj = ["name": name, "pushToken": pushToken]

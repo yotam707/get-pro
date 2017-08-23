@@ -11,11 +11,13 @@
 		570D47121F3A295500526CA3 /* CategoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D47111F3A295500526CA3 /* CategoriesManager.swift */; };
 		570D47151F3A30A500526CA3 /* ProfessionalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D47141F3A30A500526CA3 /* ProfessionalsManager.swift */; };
 		570D47171F3A3DA800526CA3 /* OrdersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D47161F3A3DA800526CA3 /* OrdersManager.swift */; };
+		5712758D1F49D4E400AFA44D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5712758C1F49D4E400AFA44D /* TestViewController.swift */; };
 		573AC6C91F0ACC4F00112B24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573AC6C81F0ACC4F00112B24 /* AppDelegate.swift */; };
 		573AC6CB1F0ACC4F00112B24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573AC6CA1F0ACC4F00112B24 /* ViewController.swift */; };
 		573AC6CE1F0ACC4F00112B24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 573AC6CC1F0ACC4F00112B24 /* Main.storyboard */; };
 		573AC6D11F0ACC4F00112B24 /* Get_Pro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 573AC6CF1F0ACC4F00112B24 /* Get_Pro.xcdatamodeld */; };
 		573AC6D31F0ACC4F00112B24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 573AC6D21F0ACC4F00112B24 /* Assets.xcassets */; };
+		576726331F48B258003CC28A /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576726321F48B258003CC28A /* NotificationsManager.swift */; };
 		8E25D6F71F0E86860052DC6B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6F61F0E86860052DC6B /* RegisterViewController.swift */; };
 		8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6F81F0E9AEF0052DC6B /* MenuViewController.swift */; };
 		8E25D6FB1F0E9E440052DC6B /* OrdersManagmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6FA1F0E9E440052DC6B /* OrdersManagmentViewController.swift */; };
@@ -45,6 +47,7 @@
 		570D47141F3A30A500526CA3 /* ProfessionalsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsManager.swift; sourceTree = "<group>"; };
 		570D47161F3A3DA800526CA3 /* OrdersManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersManager.swift; sourceTree = "<group>"; };
 		570D47181F3B338600526CA3 /* Get-Pro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Get-Pro.entitlements"; sourceTree = "<group>"; };
+		5712758C1F49D4E400AFA44D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		573AC6C51F0ACC4F00112B24 /* Get-Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get-Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		573AC6C81F0ACC4F00112B24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		573AC6CA1F0ACC4F00112B24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		573AC6D01F0ACC4F00112B24 /* Get_Pro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Get_Pro.xcdatamodel; sourceTree = "<group>"; };
 		573AC6D21F0ACC4F00112B24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		573AC6D71F0ACC4F00112B24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		576726321F48B258003CC28A /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		8E25D6F61F0E86860052DC6B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8E25D6F81F0E9AEF0052DC6B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8E25D6FA1F0E9E440052DC6B /* OrdersManagmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersManagmentViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				8EA8FEFE1F0C23F3009CDE6D /* LocalStorageManager.swift */,
 				570D47141F3A30A500526CA3 /* ProfessionalsManager.swift */,
 				570D47161F3A3DA800526CA3 /* OrdersManager.swift */,
+				576726321F48B258003CC28A /* NotificationsManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 				570D470F1F35DB4500526CA3 /* GoogleService-Info.plist */,
 				8EA8FEFF1F0C23F3009CDE6D /* MockData.swift */,
 				573AC6C81F0ACC4F00112B24 /* AppDelegate.swift */,
+				5712758C1F49D4E400AFA44D /* TestViewController.swift */,
 				573AC6CA1F0ACC4F00112B24 /* ViewController.swift */,
 				573AC6CC1F0ACC4F00112B24 /* Main.storyboard */,
 				573AC6D21F0ACC4F00112B24 /* Assets.xcassets */,
@@ -298,6 +304,7 @@
 			files = (
 				573AC6CB1F0ACC4F00112B24 /* ViewController.swift in Sources */,
 				8E25D6F71F0E86860052DC6B /* RegisterViewController.swift in Sources */,
+				576726331F48B258003CC28A /* NotificationsManager.swift in Sources */,
 				570D47151F3A30A500526CA3 /* ProfessionalsManager.swift in Sources */,
 				573AC6D11F0ACC4F00112B24 /* Get_Pro.xcdatamodeld in Sources */,
 				8EA8FF011F0C23F3009CDE6D /* FirebaseManager.swift in Sources */,
@@ -305,6 +312,7 @@
 				8EA8FF021F0C23F3009CDE6D /* GoogleApiManager.swift in Sources */,
 				8EB90EEB1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift in Sources */,
 				573AC6C91F0ACC4F00112B24 /* AppDelegate.swift in Sources */,
+				5712758D1F49D4E400AFA44D /* TestViewController.swift in Sources */,
 				8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */,
 				8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */,
 				8ED09B341F12266B002217B5 /* CategoryCollectionViewCell.swift in Sources */,

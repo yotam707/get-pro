@@ -17,6 +17,9 @@ public class ProfessionalsManager{
     ///////////////////////////////////////////////
     //GETTERS
     
+    
+    
+    
     static func getProfessionals(orderRequestId:String, _ compleation:@escaping (_ result: [Professional]) ->()){
         professionalsRef.queryOrdered(byChild: "orderRequestId").queryEqual(toValue: orderRequestId)
             .observe(.value, with: {  (DataSnapshot) in
@@ -41,6 +44,20 @@ public class ProfessionalsManager{
                 }
                 
                 compleation(self.professionals)
+            })
+    }
+    
+    static func getProfessionalDetils(professionalId:String, _ compleation:@escaping(_ result: Professional) ->()){
+        
+        professionalsRef.queryOrdered(byChild: "id").queryEqual(toValue: professionalId)
+            .observe(.value, with: {(DataSnapshot) in
+                let pro = Professional.init()
+                if let proDic = DataSnapshot.value as? Dictionary<String, AnyObject>{
+                    pro.id = professionalId
+                    pro.name = proDic["name"] as! String
+                }
+                compleation(pro)
+            
             })
     }
 }

@@ -20,8 +20,19 @@ public class OrdersManager{
     
     
     
+    
     ///////////////////////////////////////////////
     //GETTERS
+    static func getConfirmedOrderPros(orderRequestId: String, _ compleation:@escaping(_ result:Professional)->()){
+        requestOrderApprovedRef.child(orderRequestId).observeSingleEvent(of: .childAdded, with: {(DataSnapshot) in
+            let approvedOrderDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
+            let proId = approvedOrderDic["professionalId"] as! String
+            ProfessionalsManager.getProfessionalDetils(professionalId: proId, { (pro) in
+                compleation(pro)
+            })
+        })
+    }
+
     static func getMyOrders(userId: String, _ compleation:@escaping(_ result:[Order]) -> ()){
         ordersRef.queryOrdered(byChild: "userId").queryEqual(toValue: userId)
             .observe(.value, with: {(DataSnapshot) in
@@ -48,6 +59,20 @@ public class OrdersManager{
         })
     }
     
+    static func getProfessionalOrderDetails(orderId:String, _ compleation:@escaping(_ result: OrderRequest) -> ()){
+        requestOrdersRef.child(orderId).observe(.value ,with: { (DataSnapshot) in
+                    let currentOrder = OrderRequest.init()
+                    let orderRequestDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
+                    currentOrder.categoryId = orderRequestDic["categoryId"] as! String
+                    currentOrder.problemDescription = orderRequestDic["problemDescription"] as! String
+                    currentOrder.requestDate = convertStringToDate(dateString: orderRequestDic["requestDate"] as! String)
+                    currentOrder.id = orderId
+                    currentOrder.userId = orderRequestDic["userId"] as! String
+                    compleation(currentOrder)
+        })
+        
+    }
+    
     static func getMyOrderDetails(orderId:String,  _ compleation:@escaping(_ result: Order) -> ()){
         ordersRef.queryEqual(toValue: orderId)
             .observe(.value, with: {(DataSnapshot) in
@@ -65,9 +90,9 @@ public class OrdersManager{
     //SETTERS
     
     static func publishOrder(orderReq:OrderRequest) -> String{
-        let requestOrdersRefByUser = requestOrdersRef.child("Users")
-        let requsetOrdersRefByUserId = requestOrdersRefByUser.child("\(orderReq.userId)").childByAutoId()
-        let orderRequset = ["categoryId": orderReq.categoryId, "problemDescription" : orderReq.problemDescription, "requestDate" : orderReq.requestDate.description, "ff": orderReq.userId]
+        //let requestOrdersRefByUser = requestOrdersRef.child("Users")
+        let requsetOrdersRefByUserId = requestOrdersRef.childByAutoId()//requestOrdersRefByUser.child("\(orderReq.userId)").childByAutoId()
+        let orderRequset = ["categoryId": orderReq.categoryId, "problemDescription" : orderReq.problemDescription, "requestDate" : orderReq.requestDate.description, "userId": orderReq.userId]
        requsetOrdersRefByUserId.setValue(orderRequset)
         return requsetOrdersRefByUserId.key
         
@@ -86,5 +111,15 @@ public class OrdersManager{
         requestOrderRateRefByOrderId.setValue(rateOrder)
     }
     
+    
+    ////////////////////////////////////////////////////
+    //HEPLER FUNCTIONS
+    
+    static func convertStringToDate(dateString: String)->Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss +zzzz"
+        let s = dateFormatter.date(from:dateString)
+        return s!
+    }
 
 }

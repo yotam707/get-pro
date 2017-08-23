@@ -34,7 +34,7 @@ class ViewController: BaseUIViewController {
 //        })
 //        print(res)
 //        var res = false
-//        FirebaseManager.register(email: "yotam7071@gmail.com", password: "test123",name:"Yotam", pushToken: UserDefaults.standard.string(forKey: "ApnDeviceToken")!, { (result) in
+//        FirebaseManager.register(email: "yotam7077@gmail.com", password: "test123",name:"Yotam 2", { (result) in
 //            res = result
 //        })
 //        print("Register was: \(res)")

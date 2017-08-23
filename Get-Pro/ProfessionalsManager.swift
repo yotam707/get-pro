@@ -60,4 +60,10 @@ public class ProfessionalsManager{
             
             })
     }
+    
+    ////////////////////////////////////////////////
+    //SETTERS
+    static func setProfessionalStatus(professionalId:String, status:Bool){
+        professionalsRef.child(professionalId).updateChildValues(["active": status])
+    }
 }

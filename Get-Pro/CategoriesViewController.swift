@@ -65,7 +65,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         orderRequest.categoryId = selectedCell.category.id
         orderRequest.userId = AppManager.getUserId()
         orderRequest.problemDescription = problamDescTV.text
-        orderRequest.requestDate = Date()
+        orderRequest.requestDate = DispatchTime.now()
         AppManager.publishOrder(orderReq: orderRequest)
         
         
@@ -102,7 +102,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         orderRequest.categoryId = self.categories[indexPath.row].id
         orderRequest.userId = AppManager.getUserId()
         orderRequest.problemDescription = problamDescTV.text
-        orderRequest.requestDate = DispatchTime.now()
+        orderRequest.requestDate = Date()
         AppManager.publishOrder(orderReq: orderRequest)
         
         

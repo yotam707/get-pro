@@ -327,12 +327,14 @@
 				8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */,
 				8E6FC45E1F4F4624000676F4 /* ProfessionalMenuTabBarController.swift in Sources */,
 				8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */,
+				570D47171F3A3DA800526CA3 /* OrdersManager.swift in Sources */,
 				8EA8FF001F0C23F3009CDE6D /* AppManager.swift in Sources */,
 				8EA8FF061F0C24E5009CDE6D /* Keys.swift in Sources */,
 				8E25D6FB1F0E9E440052DC6B /* OrdersManagmentViewController.swift in Sources */,
 				8EA8FF031F0C23F3009CDE6D /* LocalStorageManager.swift in Sources */,
 				8ED09B361F127B95002217B5 /* Protocols.swift in Sources */,
 				8E25D6FF1F0E9F380052DC6B /* ProfessionalsViewController.swift in Sources */,
+				570D47121F3A295500526CA3 /* CategoriesManager.swift in Sources */,
 				8E6FC45A1F3A2A90000676F4 /* TopProfessionalViewController.swift in Sources */,
 				8EB90EED1F12067A006AD86E /* BaseUIViewController.swift in Sources */,
 				8E25D6FD1F0E9E860052DC6B /* CategoriesViewController.swift in Sources */,
@@ -453,11 +455,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Get-Pro/Get-Pro.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y6P866S9VX;
 				INFOPLIST_FILE = "Get-Pro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Liveperson.Get-Pro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -468,11 +472,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Get-Pro/Get-Pro.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y6P866S9VX;
 				INFOPLIST_FILE = "Get-Pro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Liveperson.Get-Pro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

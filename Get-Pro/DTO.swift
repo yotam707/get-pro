@@ -11,8 +11,17 @@ import Foundation
 
 class User: BaseDTO{
     var id:String = ""
-    var name:String = ""
+    var password:String = ""
     var email:String = ""
+    var name: String = ""
+    init(id:String, password: String, email:String, name: String) {
+        self.id = id
+        self.password = password
+        self.email = email
+    }
+    convenience override init(){
+        self.init(id: "", password: "", email: "", name: "")
+    }
 }
 
 class Professional: BaseDTO{

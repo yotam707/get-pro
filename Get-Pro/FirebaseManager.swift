@@ -30,17 +30,34 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(email:String, password:String, loginType:String) -> Bool{
-        return true
-    }
-
-    static func login(email:String, password:String, _ completion:@escaping (_ result: Bool) -> ()){
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+    static func register(email:String, password:String, name: String, view: GetDataProtocol) {
+        let res = Response()
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil{
-                completion(true)
+                let u = User.init(id: (user?.uid)!, password: password, email: email ,name: name)
+
+                 res.entities.append(u)
+                 view.onGetDataResponse(response: res)
             }
             else{
-            completion(false)
+                res.errorTxt = "Resgiter Failed"
+                view.onGetDataResponse(response: res)
+            }
+        }
+    }
+
+    static func login(email:String, password:String,view: GetDataProtocol){
+        let res = Response()
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if user != nil{
+                let u = User.init(id: (user?.uid)!, password: password, email: email, name: "")
+                
+                res.entities.append(u)
+                view.onGetDataResponse(response: res)
+            }
+            else{
+                res.errorTxt = "login Failed"
+                view.onGetDataResponse(response: res)
             }
         }
         

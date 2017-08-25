@@ -102,6 +102,7 @@ public class OrdersManager{
         let orderRequestApprovedRefByOrderId = requestOrderApprovedRef.child("\(orderReqId)")
         let orderRequestApproved = ["professionalId": professionalId, "timestamp" : Data()] as [String : Any]
         orderRequestApprovedRefByOrderId.setValue(orderRequestApproved)
+        ProfessionalsManager.setProfessionalStatus(professionalId: professionalId, status: false)
         
     }
     
@@ -120,6 +121,13 @@ public class OrdersManager{
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss +zzzz"
         let s = dateFormatter.date(from:dateString)
         return s!
+    }
+    
+    static func convertDateToString(date: Date)->String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss +zzzz"
+        let s = dateFormatter.string(from:date as Date)
+        return s
     }
 
 }

@@ -20,6 +20,8 @@ class TestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        OrdersManager.confirmOrder(orderReqId: "-KsKKSKmt8nqGhUdQSqQ", professionalId: "jvriIZ20hXSktUGN31kiTn02Kwy1")
 
         // Do any additional setup after loading the view.
     }

@@ -111,5 +111,7 @@ class BaseDTO{
 class Response{
     var entities: [BaseDTO] = [BaseDTO]()
     var errorTxt: String = ""
+    var status: String = ""
+    var actionType: String = ""
 }
 

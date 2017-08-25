@@ -8,65 +8,59 @@
 
 import UIKit
 
-class ViewController: BaseUIViewController {
+class ViewController: BaseUIViewController, GetDataProtocol {
     
     @IBOutlet weak var progressBar: UIProgressView!
     
     var lunchTimer: Timer!
-    var isLoadedOnce = false
-
 
     override func viewWillAppear(_ animated: Bool) {
         
         //load data from server
-        //LocalStorageManager.clearKeys()
-    
-        
-        if self.isLoadedOnce {
-            self.handleLogin();
-        }
-        else{
-            lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-            //check for registration
-            let when = DispatchTime.now() //+ 4.5
-            DispatchQueue.main.asyncAfter(deadline: when) {
-                self.lunchTimer.invalidate()
-                self.progressBar.progress = 0.99
-                self.isLoadedOnce = true
-                self.handleLogin();
+        //get my orders (user & pro)
+        if AppManager.getUserId() != "" {
+            if AppManager.isUserLoggedin() {
+                //get user orders
+                //get categories
             }
+            else {
+                //get pro orders (pending & history)
+            }
+        }
+        AppManager.login(view: self)
+        
+        lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        let when = DispatchTime.now() + 10
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.lunchTimer.invalidate()
+            self.progressBar.progress = 1
         }
     }
     
-    func handleLogin(){
-        if AppManager.login() {
+    func runTimedCode() {
+        self.progressBar.progress += 0.07
+    }
+
+    func onGetDataResponse(response: Response) {
+        if response .errorTxt == "" {
             if AppManager.isUserLoggedin() {
                 //navigate to user menu
                 self.performSegue(withIdentifier: "userMenuSeg", sender: self)
-                
             }
             else {
                 //navigate to user menu
                 self.performSegue(withIdentifier: "professionalMenuSeg", sender: self)
             }
         }
-        else{
+        else {
             //navigate to register
             self.performSegue(withIdentifier: "registerSeg", sender: self)
         }
+        self.lunchTimer.invalidate()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.dismiss(animated: true, completion: nil)
     }
-
-    
-    func runTimedCode() {
-        if self.progressBar.progress < 0.7 {
-            self.progressBar.progress += 0.05
-        }
-    }
-
-
 }
 

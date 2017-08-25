@@ -10,6 +10,22 @@ import Foundation
 
 public struct K {
     
+    struct ActionTypes {
+        static let register = "register"
+        static let login = "login"
+        static let setOrderRequest = "setOrderRequest"
+        static let AcceptOrderRequest = "AcceptOrderRequest"
+        static let DeclineOrderRequest = "DeclineOrderRequest"
+        
+        static let getCategories = "getCategories"
+        static let getMyOrders_User = "getMyOrders_User"
+        static let getMyOrders_Pro = "getMyOrders_Pro"
+        static let getPendingOrders = "getPendingOrders"
+        static let getProfessionals = "getProfessionals"
+        static let getOrderDetails = "getOrderDetails"
+        
+    }
+    
     struct LoginTypes{
         static let user = "user"
         static let professional = "professional"

@@ -16,3 +16,4 @@ protocol AcceptProfessionalDelegate: class {
 protocol GetDataProtocol: class {
     func onGetDataResponse(response:Response)
 }
+

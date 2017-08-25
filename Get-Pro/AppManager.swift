@@ -24,24 +24,27 @@ public class AppManager{
         return LocalStorageManager.readFromStorage(key: K.User.userId)
     }
     
-    static func register(email:String, password:String, loginType:String) -> Bool{
-        let auth = MockData.register(email: email, password: password, loginType: loginType)
-        if auth {
-            //write regstration details to local storage
-            LocalStorageManager.writeToStorage(key: K.Auth.email, value: email)
-            LocalStorageManager.writeToStorage(key: K.Auth.password, value: password)
-            LocalStorageManager.writeToStorage(key: K.Auth.loginType, value: loginType)
-            return true
-        }
-        return false
+    static func register(email:String, password:String, name:String, loginType:String, view: GetDataProtocol){
+        FirebaseManager.register(email: email, password: password, name: name, loginType:String, view: view)
     }
     
+    static func postRegister(userId:String, email:String, password:String, loginType:String) {
+        LocalStorageManager.writeToStorage(key: K.Auth.email, value: email)
+        LocalStorageManager.writeToStorage(key: K.Auth.password, value: password)
+        LocalStorageManager.writeToStorage(key: K.Auth.loginType, value: loginType)
+        LocalStorageManager.writeToStorage(key: K.User.userId, value: userId)
+    }
     
-    static func login() -> Bool{
-        
+    static func login(view: GetDataProtocol){
         let email = LocalStorageManager.readFromStorage(key: K.Auth.email)
         let password = LocalStorageManager.readFromStorage(key: K.Auth.password)
-        return MockData.login(email: email, password: password)
+        if (email != "" && password != "") {
+           FirebaseManager.login(email: email, password: password, view: view)
+        }
+        else {
+            //call to view protocol with login error
+        }
+        
     }
 
     static func isUserLoggedin() -> Bool{
@@ -49,19 +52,44 @@ public class AppManager{
         return loginType == K.LoginTypes.user
     }
     
-    static func getCategories(){
+    static func initApp(view: GetDataProtocol, userType:String){
+        if userType == K.LoginTypes.user {
+            getCategories(view: view)
+            
+        }
+        else {
+            getPendingOrders(view: view)
+        }
+        getMyOrders(view: view, userType: userType)
+    }
+    static func getCategories(view: GetDataProtocol){
         
     }
     
     
-    static func getProfessionals(orderRequestId:String) -> [Professional]{
-        return MockData.getProfessionals(orderRequestId:orderRequestId)
+    static func getProfessionals(orderRequestId:String){
+        //return MockData.getProfessionals(orderRequestId:orderRequestId)
     }
     
     
-    static func getMyOrders() -> [Order]{
-        return MockData.getMyOrders()
+    static func getMyOrders(view: GetDataProtocol, userType:String){
+        //return MockData.getMyOrders()
     }
+    
+    static func getPendingOrders(view: GetDataProtocol){
+        //return MockData.getMyOrders()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     static func getMyOrderDetails(orderId:String) -> Order{

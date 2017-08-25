@@ -25,7 +25,7 @@ public class AppManager{
     }
     
     static func register(email:String, password:String, name:String, loginType:String, view: GetDataProtocol){
-        FirebaseManager.register(email: email, password: password, name: name, loginType:String, view: view)
+        FirebaseManager.register(email: email, password: password, name: name, loginType: loginType, view: view)
     }
     
     static func postRegister(userId:String, email:String, password:String, loginType:String) {

@@ -30,12 +30,12 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(email:String, password:String, name: String, view: GetDataProtocol) {
+    static func register(email:String, password:String, name: String, loginType: String, view: GetDataProtocol) {
         let res = Response()
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil{
                 let u = User.init(id: (user?.uid)!, password: password, email: email ,name: name)
-                registerUserInFbDb(user: u)
+                registerUserInFbDb(user: u, loginType: loginType)
                 res.entities.append(u)
                 view.onGetDataResponse(response: res)
                 let changeRequest = user?.createProfileChangeRequest()
@@ -70,9 +70,9 @@ public class FirebaseManager{
         
     }
     
-    static func registerUserInFbDb(user: User){
+    static func registerUserInFbDb(user: User, loginType :String){
         let usersDatabaseRefById = usersDatabaseRef.child("\(user.id)")
-        let userObj = ["name" : user.name, "email" : user.email]
+        let userObj = ["name" : user.name, "email" : user.email, "userType" : loginType]
         usersDatabaseRefById.setValue(userObj)
     }
     

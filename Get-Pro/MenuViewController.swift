@@ -22,14 +22,14 @@ class MenuViewController: BaseUIViewController {
     }
     
     func disableEnableManageOrdersBtn(){
-        let isEnabled = AppManager.getMyOrders().count > 0
-        manageOrdersBtn.isEnabled = isEnabled
-        if isEnabled {
-            self.setViewColor(view: manageOrdersBtn, color: K.Colors.darkRed)
-        }
-        else {
-            self.setViewColor(view: manageOrdersBtn, color: K.Colors.disabledGray)
-        }
+        //let isEnabled = AppManager.getMyOrders().count > 0
+        //manageOrdersBtn.isEnabled = isEnabled
+//        if isEnabled {
+//            self.setViewColor(view: manageOrdersBtn, color: K.Colors.darkRed)
+//        }
+//        else {
+//            self.setViewColor(view: manageOrdersBtn, color: K.Colors.disabledGray)
+//        }
     }
 
 }

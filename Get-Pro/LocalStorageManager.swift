@@ -16,11 +16,11 @@ public class LocalStorageManager{
         self.storage.set(value, forKey: key)
     }
     
-    static func readFromStorage(key:String) -> String{
+    static func readFromStorage(key:String) -> String {
         if let result = self.storage.string(forKey: key) {
             return result
         }
-        return "-1"
+        return ""
     }
     
     static func clearKeys(){

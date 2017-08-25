@@ -11,10 +11,12 @@ import UIKit
 class ViewController: BaseUIViewController, GetDataProtocol {
     
     @IBOutlet weak var progressBar: UIProgressView!
-    
-    var lunchTimer: Timer!
 
     override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        //LocalStorageManager.clearKeys()
         
         //load data from server
         //get my orders (user & pro)
@@ -28,39 +30,45 @@ class ViewController: BaseUIViewController, GetDataProtocol {
             }
         }
         AppManager.login(view: self)
-        
-//        lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-//        let when = DispatchTime.now() + 10
-//        DispatchQueue.main.asyncAfter(deadline: when) {
-//            self.lunchTimer.invalidate()
-//            self.progressBar.progress = 1
-//        }
     }
     
-    func runTimedCode() {
-        self.progressBar.progress += 0.07
-    }
 
     func onGetDataResponse(response: Response) {
-        if response.status {
-            if AppManager.isUserLoggedin() {
-                //navigate to user menu
-                self.performSegue(withIdentifier: "userMenuSeg", sender: self)
+        
+        switch response.actionType {
+        case K.ActionTypes.getCategories:
+            break;
+        case K.ActionTypes.getMyOrders_User:
+            break;
+        case K.ActionTypes.getMyOrders_Pro:
+            break;
+        case K.ActionTypes.getMyOrders_Pro:
+            break;
+        default:
+            //login action type
+            var segName = ""
+            if response.status {
+                if AppManager.isUserLoggedin() {
+                    //navigate to user menu
+                    segName = "userMenuSeg"
+                }
+                else {
+                    //navigate to user menu
+                    segName = "professionalMenuSeg"
+                }
             }
             else {
-                //navigate to user menu
-                self.performSegue(withIdentifier: "professionalMenuSeg", sender: self)
+                //navigate to register
+                segName = "registerSeg"
             }
+            
+            DispatchQueue.main.async(){
+                self.performSegue(withIdentifier: segName, sender: self)
+            }
+
         }
-        else {
-            //navigate to register
-            self.performSegue(withIdentifier: "registerSeg", sender: self)
-        }
-        //self.lunchTimer.invalidate()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    
 }
 

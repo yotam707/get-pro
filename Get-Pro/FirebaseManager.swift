@@ -44,7 +44,8 @@ public class FirebaseManager{
                     if let error = error {
                         print("error in profile change request \(error)")
                     } else {
-                         print("success in profile change request")                    }
+                         print("success in profile change request")
+                    }
                 })
             }
             else{

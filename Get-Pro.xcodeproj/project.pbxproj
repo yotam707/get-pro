@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570D47101F35DB4500526CA3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 570D470F1F35DB4500526CA3 /* GoogleService-Info.plist */; };
+		570D47121F3A295500526CA3 /* CategoriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D47111F3A295500526CA3 /* CategoriesManager.swift */; };
+		570D47151F3A30A500526CA3 /* ProfessionalsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D47141F3A30A500526CA3 /* ProfessionalsManager.swift */; };
+		570D47171F3A3DA800526CA3 /* OrdersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D47161F3A3DA800526CA3 /* OrdersManager.swift */; };
+		5712758D1F49D4E400AFA44D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5712758C1F49D4E400AFA44D /* TestViewController.swift */; };
 		573AC6C91F0ACC4F00112B24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573AC6C81F0ACC4F00112B24 /* AppDelegate.swift */; };
 		573AC6CB1F0ACC4F00112B24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573AC6CA1F0ACC4F00112B24 /* ViewController.swift */; };
 		573AC6CE1F0ACC4F00112B24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 573AC6CC1F0ACC4F00112B24 /* Main.storyboard */; };
 		573AC6D11F0ACC4F00112B24 /* Get_Pro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 573AC6CF1F0ACC4F00112B24 /* Get_Pro.xcdatamodeld */; };
 		573AC6D31F0ACC4F00112B24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 573AC6D21F0ACC4F00112B24 /* Assets.xcassets */; };
+		576726331F48B258003CC28A /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576726321F48B258003CC28A /* NotificationsManager.swift */; };
 		8E25D6F71F0E86860052DC6B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6F61F0E86860052DC6B /* RegisterViewController.swift */; };
 		8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6F81F0E9AEF0052DC6B /* MenuViewController.swift */; };
 		8E25D6FB1F0E9E440052DC6B /* OrdersManagmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6FA1F0E9E440052DC6B /* OrdersManagmentViewController.swift */; };
@@ -32,9 +38,19 @@
 		8EB90EEB1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB90EEA1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift */; };
 		8EB90EED1F12067A006AD86E /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB90EEC1F12067A006AD86E /* BaseUIViewController.swift */; };
 		8ED09B361F127B95002217B5 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED09B351F127B95002217B5 /* Protocols.swift */; };
+		CF8569C88BEB14B4123EAE0C /* Pods_Get_Pro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FE7A36A3D1016E2A49E751 /* Pods_Get_Pro.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EC622FA596ACBDBAC7DA4CA /* Pods-Get-Pro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Get-Pro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Get-Pro/Pods-Get-Pro.debug.xcconfig"; sourceTree = "<group>"; };
+		21FE7A36A3D1016E2A49E751 /* Pods_Get_Pro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Get_Pro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A6F0949DEE3E847B8DC7C0E /* Pods-Get-Pro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Get-Pro.release.xcconfig"; path = "Pods/Target Support Files/Pods-Get-Pro/Pods-Get-Pro.release.xcconfig"; sourceTree = "<group>"; };
+		570D470F1F35DB4500526CA3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		570D47111F3A295500526CA3 /* CategoriesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesManager.swift; sourceTree = "<group>"; };
+		570D47141F3A30A500526CA3 /* ProfessionalsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsManager.swift; sourceTree = "<group>"; };
+		570D47161F3A3DA800526CA3 /* OrdersManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersManager.swift; sourceTree = "<group>"; };
+		570D47181F3B338600526CA3 /* Get-Pro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Get-Pro.entitlements"; sourceTree = "<group>"; };
+		5712758C1F49D4E400AFA44D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		573AC6C51F0ACC4F00112B24 /* Get-Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get-Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		573AC6C81F0ACC4F00112B24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		573AC6CA1F0ACC4F00112B24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +58,7 @@
 		573AC6D01F0ACC4F00112B24 /* Get_Pro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Get_Pro.xcdatamodel; sourceTree = "<group>"; };
 		573AC6D21F0ACC4F00112B24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		573AC6D71F0ACC4F00112B24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		576726321F48B258003CC28A /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		8E25D6F61F0E86860052DC6B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8E25D6F81F0E9AEF0052DC6B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8E25D6FA1F0E9E440052DC6B /* OrdersManagmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersManagmentViewController.swift; sourceTree = "<group>"; };
@@ -69,17 +86,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF8569C88BEB14B4123EAE0C /* Pods_Get_Pro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570D47131F3A307A00526CA3 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8EA8FEFC1F0C23F3009CDE6D /* FirebaseManager.swift */,
+				8EA8FEFB1F0C23F3009CDE6D /* AppManager.swift */,
+				570D47111F3A295500526CA3 /* CategoriesManager.swift */,
+				8EA8FEFD1F0C23F3009CDE6D /* GoogleApiManager.swift */,
+				8EA8FEFE1F0C23F3009CDE6D /* LocalStorageManager.swift */,
+				570D47141F3A30A500526CA3 /* ProfessionalsManager.swift */,
+				570D47161F3A3DA800526CA3 /* OrdersManager.swift */,
+				576726321F48B258003CC28A /* NotificationsManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		573AC6BC1F0ACC4F00112B24 = {
 			isa = PBXGroup;
 			children = (
 				573AC6C71F0ACC4F00112B24 /* Get-Pro */,
 				573AC6C61F0ACC4F00112B24 /* Products */,
+				8D04AE4A3C88CD2069E4DCE2 /* Pods */,
+				9B3A01222CB321AE5F72C250 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,12 +129,12 @@
 		573AC6C71F0ACC4F00112B24 /* Get-Pro */ = {
 			isa = PBXGroup;
 			children = (
-				8EA8FEFB1F0C23F3009CDE6D /* AppManager.swift */,
-				8EA8FEFC1F0C23F3009CDE6D /* FirebaseManager.swift */,
-				8EA8FEFD1F0C23F3009CDE6D /* GoogleApiManager.swift */,
-				8EA8FEFE1F0C23F3009CDE6D /* LocalStorageManager.swift */,
+				570D47181F3B338600526CA3 /* Get-Pro.entitlements */,
+				570D47131F3A307A00526CA3 /* Managers */,
+				570D470F1F35DB4500526CA3 /* GoogleService-Info.plist */,
 				8EA8FEFF1F0C23F3009CDE6D /* MockData.swift */,
 				573AC6C81F0ACC4F00112B24 /* AppDelegate.swift */,
+				5712758C1F49D4E400AFA44D /* TestViewController.swift */,
 				573AC6CA1F0ACC4F00112B24 /* ViewController.swift */,
 				573AC6CC1F0ACC4F00112B24 /* Main.storyboard */,
 				573AC6D21F0ACC4F00112B24 /* Assets.xcassets */,
@@ -124,6 +159,23 @@
 			path = "Get-Pro";
 			sourceTree = "<group>";
 		};
+		8D04AE4A3C88CD2069E4DCE2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0EC622FA596ACBDBAC7DA4CA /* Pods-Get-Pro.debug.xcconfig */,
+				4A6F0949DEE3E847B8DC7C0E /* Pods-Get-Pro.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9B3A01222CB321AE5F72C250 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21FE7A36A3D1016E2A49E751 /* Pods_Get_Pro.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,9 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 573AC6DA1F0ACC4F00112B24 /* Build configuration list for PBXNativeTarget "Get-Pro" */;
 			buildPhases = (
+				AF5ECC1EF786749FD49DAA60 /* [CP] Check Pods Manifest.lock */,
 				573AC6C11F0ACC4F00112B24 /* Sources */,
 				573AC6C21F0ACC4F00112B24 /* Frameworks */,
 				573AC6C31F0ACC4F00112B24 /* Resources */,
+				8CFFA1B482D0E9D76725B824 /* [CP] Embed Pods Frameworks */,
+				87ED6D6DA04E2EC598292BC2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -156,7 +211,19 @@
 				TargetAttributes = {
 					573AC6C41F0ACC4F00112B24 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Y6P866S9VX;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -185,10 +252,59 @@
 			files = (
 				573AC6D31F0ACC4F00112B24 /* Assets.xcassets in Resources */,
 				573AC6CE1F0ACC4F00112B24 /* Main.storyboard in Resources */,
+				570D47101F35DB4500526CA3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87ED6D6DA04E2EC598292BC2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Get-Pro/Pods-Get-Pro-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CFFA1B482D0E9D76725B824 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Get-Pro/Pods-Get-Pro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF5ECC1EF786749FD49DAA60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		573AC6C11F0ACC4F00112B24 /* Sources */ = {
@@ -197,6 +313,8 @@
 			files = (
 				573AC6CB1F0ACC4F00112B24 /* ViewController.swift in Sources */,
 				8E25D6F71F0E86860052DC6B /* RegisterViewController.swift in Sources */,
+				576726331F48B258003CC28A /* NotificationsManager.swift in Sources */,
+				570D47151F3A30A500526CA3 /* ProfessionalsManager.swift in Sources */,
 				573AC6D11F0ACC4F00112B24 /* Get_Pro.xcdatamodeld in Sources */,
 				8E6FC45C1F4C4751000676F4 /* UserOrdersUITableViewCell.swift in Sources */,
 				8EA8FF011F0C23F3009CDE6D /* FirebaseManager.swift in Sources */,
@@ -205,6 +323,7 @@
 				8E6FC4601F4F5E64000676F4 /* CategoryUITableViewCell.swift in Sources */,
 				8EB90EEB1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift in Sources */,
 				573AC6C91F0ACC4F00112B24 /* AppDelegate.swift in Sources */,
+				5712758D1F49D4E400AFA44D /* TestViewController.swift in Sources */,
 				8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */,
 				8E6FC45E1F4F4624000676F4 /* ProfessionalMenuTabBarController.swift in Sources */,
 				8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */,
@@ -330,8 +449,11 @@
 		};
 		573AC6DB1F0ACC4F00112B24 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EC622FA596ACBDBAC7DA4CA /* Pods-Get-Pro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Get-Pro/Get-Pro.entitlements";
+				DEVELOPMENT_TEAM = Y6P866S9VX;
 				INFOPLIST_FILE = "Get-Pro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Liveperson.Get-Pro";
@@ -342,8 +464,11 @@
 		};
 		573AC6DC1F0ACC4F00112B24 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A6F0949DEE3E847B8DC7C0E /* Pods-Get-Pro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Get-Pro/Get-Pro.entitlements";
+				DEVELOPMENT_TEAM = Y6P866S9VX;
 				INFOPLIST_FILE = "Get-Pro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Liveperson.Get-Pro";

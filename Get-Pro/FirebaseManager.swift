@@ -7,30 +7,25 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
+
 
 public class FirebaseManager{
-    
+
+    static let databaseRef = Database.database().reference()
+    private static let usersDatabaseRef = databaseRef.child("Users")
+    // let authHandler : Auth.self
     
     ///////////////////////////////////////////////
     //GETTERS
     
-    static func getCategories() -> [Category]{
-        return [Category]()
+    static func getPushToken() -> String{
+        if let refreshToken = InstanceID.instanceID().token(){
+            return refreshToken
+        }
+        return ""
     }
-    
-    static func getProfessionals(orderRequestId:String) -> [Professional]{
-        return [Professional]()
-    }
-    
-    static func getMyOrders() -> [Order]{
-        return [Order]()
-    }
-    
-    static func getMyOrderDetails(orderId:String) -> Order{
-        return Order()
-    }
-    
-    
     
     ///////////////////////////////////////////////
     //SETTERS
@@ -38,23 +33,18 @@ public class FirebaseManager{
     static func register(email:String, password:String, loginType:String) -> Bool{
         return true
     }
-    
-    static func login(email:String, password:String) -> Bool{
-        return true
-    }
-    
-    static func publishOrder(orderReq:OrderRequest){
+
+    static func login(email:String, password:String, _ completion:@escaping (_ result: Bool) -> ()){
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if user != nil{
+                completion(true)
+            }
+            else{
+            completion(false)
+            }
+        }
         
     }
-    
-    static func confirmOrder(orderId:String){
-        
-    }
-    
-    static func rateOrder(orderId:String, rate:Int){
-        
-    }
-    
     
     ///////////////////////////////////////////////
     //PRIVATE

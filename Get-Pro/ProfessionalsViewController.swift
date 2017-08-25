@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, AcceptProfessionalDelegate {
     
     
     @IBOutlet weak var professionalsTV: UITableView!
@@ -53,6 +53,8 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         self.setViewColor(view: cell, color: K.Colors.darkGray)
         
         // Adding the right informations
+        cell.professional = pro
+        cell.acceptProfessionalClickDelegate = self
         cell.professionalNameLbl.text = pro.name
         
         //let url = NSURL(string: pro.imageUrl) //postPhoto URL
@@ -63,12 +65,18 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         
         cell.avatarImageImgV.image = UIImage(named: "avatar.png")
         
-        cell.avatarImageImgV.layer.cornerRadius = 50
+        cell.avatarImageImgV.layer.cornerRadius = 40
         cell.avatarImageImgV.layer.borderColor = UIColor.white.cgColor
         cell.avatarImageImgV.layer.borderWidth = 3
         
         // Returning the cell
         return cell
+    }
+    
+    func onProfessionalAcceptBtnClick(potentialOrderRequestId: String)
+    {
+        // move to top order confirmation controller
+        self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
     }
     
 }

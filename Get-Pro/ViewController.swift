@@ -13,30 +13,46 @@ class ViewController: BaseUIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     
     var lunchTimer: Timer!
+    var isLoadedOnce = false
+
 
     override func viewWillAppear(_ animated: Bool) {
         
-        lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-
-        //load data
+        //load data from server
+        //LocalStorageManager.clearKeys()
+    
         
-        //check for registration
-        let when = DispatchTime.now() + 4.5
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.lunchTimer.invalidate()
-            self.progressBar.progress = 0.99
-            
-            self.dismiss(animated: true, completion: nil)
-            
-            if AppManager.login() {
-                //navigate to menu
-                self.performSegue(withIdentifier: "menuSeg", sender: self)
-
+        if self.isLoadedOnce {
+            self.handleLogin();
+        }
+        else{
+            lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+            //check for registration
+            let when = DispatchTime.now() //+ 4.5
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.lunchTimer.invalidate()
+                self.progressBar.progress = 0.99
+                self.isLoadedOnce = true
+                self.handleLogin();
             }
-            else{
-                //navigate to register
-                self.performSegue(withIdentifier: "registerSeg", sender: self)
+        }
+    }
+    
+    func handleLogin(){
+        if AppManager.login() {
+            if AppManager.isUserLoggedin() {
+                //navigate to user menu
+                self.performSegue(withIdentifier: "userMenuSeg", sender: self)
+                
             }
+            else {
+                //navigate to user menu
+                self.performSegue(withIdentifier: "professionalMenuSeg", sender: self)
+            }
+        }
+        else{
+            //navigate to register
+            self.performSegue(withIdentifier: "registerSeg", sender: self)
         }
     }
     

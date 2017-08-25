@@ -18,7 +18,7 @@ class MenuViewController: BaseUIViewController {
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: orderProffesionalBtn, color: K.Colors.darkRed)
         self.disableEnableManageOrdersBtn()
-        
+        self.setAsRootView(view: self)
     }
     
     func disableEnableManageOrdersBtn(){

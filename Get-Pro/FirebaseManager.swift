@@ -35,7 +35,7 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(email:String, password:String) -> Bool{
+    static func register(email:String, password:String, loginType:String) -> Bool{
         return true
     }
     

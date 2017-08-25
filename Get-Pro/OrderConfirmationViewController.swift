@@ -10,6 +10,9 @@ import UIKit
 
 class OrderConfirmationViewController: UIViewController {
     
+    @IBAction func onBackButtonClick(_ sender: Any) {
+        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

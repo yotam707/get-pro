@@ -115,12 +115,12 @@ public class MockData{
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(email:String, password:String) -> Bool{
+    static func register(email:String, password:String, loginType:String) -> Bool{
         return true
     }
     
     static func login(email:String, password:String) -> Bool{
-        return true
+        return email == "123" && password == "123"
     }
     
     static func publishOrder(orderReq:OrderRequest){

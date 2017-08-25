@@ -10,5 +10,9 @@ import Foundation
 import UIKit
 
 protocol AcceptProfessionalDelegate: class {
-    func onProfessionalAcceptBtnClick()
+    func onProfessionalAcceptBtnClick(potentialOrderRequestId: String)
+}
+
+protocol GetCategoriesDelegate: class {
+    func onGetCategoriesResponse() -> [Category]
 }

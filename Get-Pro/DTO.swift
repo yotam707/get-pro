@@ -43,4 +43,19 @@ class OrderRequest{
     var requestDate:DispatchTime = DispatchTime.now()
 }
 
+class PotentialOrderRequest{
+    var id:String = ""
+    var orderRequestId:String = ""
+    var professionalId:String = ""
+}
+
+class BaseDTO{
+    
+}
+
+
+class Response{
+    var entities: [BaseDTO] = [BaseDTO]()
+    var errorTxt: String = ""
+}
 

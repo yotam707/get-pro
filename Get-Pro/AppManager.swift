@@ -24,12 +24,13 @@ public class AppManager{
         return LocalStorageManager.readFromStorage(key: K.User.userId)
     }
     
-    static func register(email:String, password:String) -> Bool{
-        let auth = MockData.register(email: email, password: password)
+    static func register(email:String, password:String, loginType:String) -> Bool{
+        let auth = MockData.register(email: email, password: password, loginType: loginType)
         if auth {
             //write regstration details to local storage
             LocalStorageManager.writeToStorage(key: K.Auth.email, value: email)
             LocalStorageManager.writeToStorage(key: K.Auth.password, value: password)
+            LocalStorageManager.writeToStorage(key: K.Auth.loginType, value: loginType)
             return true
         }
         return false
@@ -40,10 +41,13 @@ public class AppManager{
         
         let email = LocalStorageManager.readFromStorage(key: K.Auth.email)
         let password = LocalStorageManager.readFromStorage(key: K.Auth.password)
-        
         return MockData.login(email: email, password: password)
     }
 
+    static func isUserLoggedin() -> Bool{
+        let loginType = LocalStorageManager.readFromStorage(key: K.Auth.loginType)
+        return loginType == K.LoginTypes.user
+    }
     
     static func getCategories() -> [Category]{
         return MockData.getCategories()

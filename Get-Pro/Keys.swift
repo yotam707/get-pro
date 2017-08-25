@@ -10,9 +10,15 @@ import Foundation
 
 public struct K {
     
+    struct LoginTypes{
+        static let user = "user"
+        static let professional = "professional"
+    }
+    
     struct Auth {
         static let email = "email"
         static let password = "password"
+        static let loginType = "loginType"
     }
     
     struct User {
@@ -31,7 +37,6 @@ public struct K {
         static let lightRed = "lightRed"
         
     }
-    
 }
 
 

@@ -10,13 +10,23 @@ import Foundation
 
 public class LocalStorageManager{
 
+    static var storage = UserDefaults.standard
     
     static func writeToStorage(key:String, value:String){
-        
+        self.storage.set(value, forKey: key)
     }
     
     static func readFromStorage(key:String) -> String{
-        return ""
+        if let result = self.storage.string(forKey: key) {
+            return result
+        }
+        return "-1"
+    }
+    
+    static func clearKeys(){
+        for key in Array(storage.dictionaryRepresentation().keys) {
+            storage.removeObject(forKey: key)
+        }
     }
     
     ///////////////////////////////////////

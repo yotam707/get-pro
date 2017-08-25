@@ -23,4 +23,9 @@ class BaseUIViewController: UIViewController {
         view.backgroundColor = AppManager.getColor(colorKey: color)
     }
     
+    func setAsRootView(view:UIViewController){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = view
+    }
+    
 }

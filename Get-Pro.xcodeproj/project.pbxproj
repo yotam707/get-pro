@@ -24,6 +24,10 @@
 		8E25D6FD1F0E9E860052DC6B /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6FC1F0E9E860052DC6B /* CategoriesViewController.swift */; };
 		8E25D6FF1F0E9F380052DC6B /* ProfessionalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6FE1F0E9F380052DC6B /* ProfessionalsViewController.swift */; };
 		8E25D7011F0E9F830052DC6B /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D7001F0E9F820052DC6B /* OrderConfirmationViewController.swift */; };
+		8E6FC45A1F3A2A90000676F4 /* TopProfessionalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FC4591F3A2A90000676F4 /* TopProfessionalViewController.swift */; };
+		8E6FC45C1F4C4751000676F4 /* UserOrdersUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FC45B1F4C4751000676F4 /* UserOrdersUITableViewCell.swift */; };
+		8E6FC45E1F4F4624000676F4 /* ProfessionalMenuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FC45D1F4F4624000676F4 /* ProfessionalMenuTabBarController.swift */; };
+		8E6FC4601F4F5E64000676F4 /* CategoryUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6FC45F1F4F5E64000676F4 /* CategoryUITableViewCell.swift */; };
 		8EA8FF001F0C23F3009CDE6D /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFB1F0C23F3009CDE6D /* AppManager.swift */; };
 		8EA8FF011F0C23F3009CDE6D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFC1F0C23F3009CDE6D /* FirebaseManager.swift */; };
 		8EA8FF021F0C23F3009CDE6D /* GoogleApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FEFD1F0C23F3009CDE6D /* GoogleApiManager.swift */; };
@@ -33,7 +37,6 @@
 		8EA8FF081F0C282F009CDE6D /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA8FF071F0C282F009CDE6D /* DTO.swift */; };
 		8EB90EEB1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB90EEA1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift */; };
 		8EB90EED1F12067A006AD86E /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB90EEC1F12067A006AD86E /* BaseUIViewController.swift */; };
-		8ED09B341F12266B002217B5 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED09B331F12266B002217B5 /* CategoryCollectionViewCell.swift */; };
 		8ED09B361F127B95002217B5 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED09B351F127B95002217B5 /* Protocols.swift */; };
 		CF8569C88BEB14B4123EAE0C /* Pods_Get_Pro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FE7A36A3D1016E2A49E751 /* Pods_Get_Pro.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +65,10 @@
 		8E25D6FC1F0E9E860052DC6B /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		8E25D6FE1F0E9F380052DC6B /* ProfessionalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalsViewController.swift; sourceTree = "<group>"; };
 		8E25D7001F0E9F820052DC6B /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
+		8E6FC4591F3A2A90000676F4 /* TopProfessionalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopProfessionalViewController.swift; sourceTree = "<group>"; };
+		8E6FC45B1F4C4751000676F4 /* UserOrdersUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOrdersUITableViewCell.swift; sourceTree = "<group>"; };
+		8E6FC45D1F4F4624000676F4 /* ProfessionalMenuTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalMenuTabBarController.swift; sourceTree = "<group>"; };
+		8E6FC45F1F4F5E64000676F4 /* CategoryUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryUITableViewCell.swift; sourceTree = "<group>"; };
 		8EA8FEFB1F0C23F3009CDE6D /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		8EA8FEFC1F0C23F3009CDE6D /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8EA8FEFD1F0C23F3009CDE6D /* GoogleApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleApiManager.swift; sourceTree = "<group>"; };
@@ -71,7 +78,6 @@
 		8EA8FF071F0C282F009CDE6D /* DTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		8EB90EEA1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalTableViewCell.swift; sourceTree = "<group>"; };
 		8EB90EEC1F12067A006AD86E /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
-		8ED09B331F12266B002217B5 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8ED09B351F127B95002217B5 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,8 +150,11 @@
 				8E25D7001F0E9F820052DC6B /* OrderConfirmationViewController.swift */,
 				8EB90EEA1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift */,
 				8EB90EEC1F12067A006AD86E /* BaseUIViewController.swift */,
-				8ED09B331F12266B002217B5 /* CategoryCollectionViewCell.swift */,
 				8ED09B351F127B95002217B5 /* Protocols.swift */,
+				8E6FC4591F3A2A90000676F4 /* TopProfessionalViewController.swift */,
+				8E6FC45B1F4C4751000676F4 /* UserOrdersUITableViewCell.swift */,
+				8E6FC45D1F4F4624000676F4 /* ProfessionalMenuTabBarController.swift */,
+				8E6FC45F1F4F5E64000676F4 /* CategoryUITableViewCell.swift */,
 			);
 			path = "Get-Pro";
 			sourceTree = "<group>";
@@ -307,15 +316,17 @@
 				576726331F48B258003CC28A /* NotificationsManager.swift in Sources */,
 				570D47151F3A30A500526CA3 /* ProfessionalsManager.swift in Sources */,
 				573AC6D11F0ACC4F00112B24 /* Get_Pro.xcdatamodeld in Sources */,
+				8E6FC45C1F4C4751000676F4 /* UserOrdersUITableViewCell.swift in Sources */,
 				8EA8FF011F0C23F3009CDE6D /* FirebaseManager.swift in Sources */,
 				8E25D7011F0E9F830052DC6B /* OrderConfirmationViewController.swift in Sources */,
 				8EA8FF021F0C23F3009CDE6D /* GoogleApiManager.swift in Sources */,
+				8E6FC4601F4F5E64000676F4 /* CategoryUITableViewCell.swift in Sources */,
 				8EB90EEB1F0FD3A7006AD86E /* ProfessionalTableViewCell.swift in Sources */,
 				573AC6C91F0ACC4F00112B24 /* AppDelegate.swift in Sources */,
 				5712758D1F49D4E400AFA44D /* TestViewController.swift in Sources */,
 				8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */,
+				8E6FC45E1F4F4624000676F4 /* ProfessionalMenuTabBarController.swift in Sources */,
 				8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */,
-				8ED09B341F12266B002217B5 /* CategoryCollectionViewCell.swift in Sources */,
 				570D47171F3A3DA800526CA3 /* OrdersManager.swift in Sources */,
 				8EA8FF001F0C23F3009CDE6D /* AppManager.swift in Sources */,
 				8EA8FF061F0C24E5009CDE6D /* Keys.swift in Sources */,
@@ -324,6 +335,7 @@
 				8ED09B361F127B95002217B5 /* Protocols.swift in Sources */,
 				8E25D6FF1F0E9F380052DC6B /* ProfessionalsViewController.swift in Sources */,
 				570D47121F3A295500526CA3 /* CategoriesManager.swift in Sources */,
+				8E6FC45A1F3A2A90000676F4 /* TopProfessionalViewController.swift in Sources */,
 				8EB90EED1F12067A006AD86E /* BaseUIViewController.swift in Sources */,
 				8E25D6FD1F0E9E860052DC6B /* CategoriesViewController.swift in Sources */,
 				8EA8FF081F0C282F009CDE6D /* DTO.swift in Sources */,
@@ -443,11 +455,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Get-Pro/Get-Pro.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y6P866S9VX;
 				INFOPLIST_FILE = "Get-Pro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Liveperson.Get-Pro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -458,11 +472,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Get-Pro/Get-Pro.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y6P866S9VX;
 				INFOPLIST_FILE = "Get-Pro/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Liveperson.Get-Pro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

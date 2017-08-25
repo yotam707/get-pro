@@ -30,20 +30,8 @@ public class FirebaseManager{
     ///////////////////////////////////////////////
     //SETTERS
     
-    static func register(email:String, password:String, name: String,_ completion:@escaping (_ result: Bool) -> ()){
-        let pushToken = getPushToken()
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            if user != nil {
-                let userObj = ["name": name, "pushToken": pushToken]
-                usersDatabaseRef.child((user?.uid)!).setValue(userObj)
-                    completion(true)
-                print("the user: \(String(describing: user)) was created in fire base")
-            }
-            else{
-                completion(false)
-                
-            }
-        }
+    static func register(email:String, password:String, loginType:String) -> Bool{
+        return true
     }
 
     static func login(email:String, password:String, _ completion:@escaping (_ result: Bool) -> ()){

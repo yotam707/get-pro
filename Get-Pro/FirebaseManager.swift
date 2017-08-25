@@ -35,9 +35,17 @@ public class FirebaseManager{
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil{
                 let u = User.init(id: (user?.uid)!, password: password, email: email ,name: name)
-
-                 res.entities.append(u)
-                 view.onGetDataResponse(response: res)
+                registerUserInFbDb(user: u)
+                res.entities.append(u)
+                view.onGetDataResponse(response: res)
+                let changeRequest = user?.createProfileChangeRequest()
+                changeRequest?.displayName = name
+                changeRequest?.commitChanges(completion: { error in
+                    if let error = error {
+                        print("error in profile change request \(error)")
+                    } else {
+                         print("success in profile change request")                    }
+                })
             }
             else{
                 res.errorTxt = "Resgiter Failed"
@@ -50,8 +58,7 @@ public class FirebaseManager{
         let res = Response()
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if user != nil{
-                let u = User.init(id: (user?.uid)!, password: password, email: email, name: "")
-                
+                let u = User.init(id: (user?.uid)!, password: password, email: email, name: (user?.displayName)!)
                 res.entities.append(u)
                 view.onGetDataResponse(response: res)
             }
@@ -61,6 +68,21 @@ public class FirebaseManager{
             }
         }
         
+    }
+    
+    static func registerUserInFbDb(user: User){
+        let usersDatabaseRefById = usersDatabaseRef.child("\(user.id)")
+        let userObj = ["name" : user.name, "email" : user.email]
+        usersDatabaseRefById.setValue(userObj)
+    }
+    
+    static func getUserNameById(uid: String,  _ compleation:@escaping(_ result: String) -> ()){
+        usersDatabaseRef.child("\(uid)")
+            .observe(.value, with: {(DataSnapshot) in
+                let userDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
+                compleation(userDic["name"] as! String)
+        })
+
     }
     
     ///////////////////////////////////////////////

@@ -49,6 +49,7 @@ public class FirebaseManager{
             }
             else{
                 res.errorTxt = "Resgiter Failed"
+                res.status = false
                 view.onGetDataResponse(response: res)
             }
         }
@@ -64,6 +65,7 @@ public class FirebaseManager{
             }
             else{
                 res.errorTxt = "login Failed"
+                res.status = false
                 view.onGetDataResponse(response: res)
             }
         }

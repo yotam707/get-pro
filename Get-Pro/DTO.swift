@@ -9,13 +9,13 @@
 import Foundation
 
 
-class User{
+class User: BaseDTO{
     var id:String = ""
     var name:String = ""
     var email:String = ""
 }
 
-class Professional{
+class Professional: BaseDTO{
     var id:String = ""
     var name:String = ""
     var phone:String = ""
@@ -32,12 +32,12 @@ class Professional{
         self.isTopProfessional = isTopProfessional
     }
     
-    convenience init(){
+    convenience override init(){
         self.init(id: "", name: "", phone: "", imageUrl: "", rating: 0, isTopProfessional: false)
     }
 }
 
-class Category{
+class Category: BaseDTO{
     var id:String = ""
     var name:String = ""
     
@@ -46,12 +46,12 @@ class Category{
         self.name = name
     }
     
-    convenience init(){
+    convenience override init(){
         self.init(id: "", name:"")
     }
 }
 
-class Order{
+class Order : BaseDTO{
     var orderRequestId:String = ""
     var professionalId:String = ""
     var acceptedDate:Date = Date()
@@ -64,12 +64,12 @@ class Order{
         self.completedDate = completedDate
     }
     
-    convenience init(){
+    convenience override init(){
         self.init(orderRequestId: "", professionalId: "", acceptedDate: Date(), completedDate: Date())
     }
 }
 
-class OrderRequest{
+class OrderRequest : BaseDTO{
     var id:String = ""
     var userId:String = ""
     var categoryId:String = ""
@@ -84,19 +84,18 @@ class OrderRequest{
         self.requestDate = requestDate
     }
     
-    convenience init(){
+    convenience override init(){
         self.init(id: "", userId: "", categoryId: "", problemDescription: "", requestDate: Date())
     }
 }
 
-class PotentialOrderRequest{
+class PotentialOrderRequest: BaseDTO{
     var id:String = ""
     var orderRequestId:String = ""
     var professionalId:String = ""
 }
 
 class BaseDTO{
-    
 }
 
 

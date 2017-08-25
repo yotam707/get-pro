@@ -73,7 +73,7 @@ public class OrdersManager{
         
     }
     
-    static func getMyOrderDetails(orderId:String,  _ compleation:@escaping(_ result: Order) -> ()){
+    static func getMyOrderDetails(orderId:String, _ compleation:@escaping(_ result: Order) -> ()){
         ordersRef.queryEqual(toValue: orderId)
             .observe(.value, with: {(DataSnapshot) in
                 let currentOrder = Order.init()
@@ -84,6 +84,20 @@ public class OrdersManager{
                 currentOrder.completedDate = orderDic["completedDate"] as! Date
                 compleation(currentOrder)
             })
+    }
+    
+    
+    //example!!!
+    static func getMyOrderDetails2(orderId:String, view: GetDataProtocol){
+        requestOrdersRef.child(orderId)
+            .observe(.value, with: {(DataSnapshot) in
+                let or = OrderRequest.init()
+                let orderReqDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
+                or.problemDescription = orderReqDic["problemDescription"] as! String
+                let res = Response()
+                res.entities.append(or)
+                view.onGetDataResponse(response: res)
+        })
     }
     
     ///////////////////////////////////////////////////

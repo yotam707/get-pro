@@ -31,7 +31,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.categories = AppManager.getCategories()
+        //self.categories = AppManager.getCategories()
         self.categoriesTV.delegate = self
         self.categoriesTV.dataSource = self
  

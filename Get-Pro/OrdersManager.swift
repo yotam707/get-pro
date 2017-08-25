@@ -91,7 +91,7 @@ public class OrdersManager{
     
     static func publishOrder(orderReq:OrderRequest) -> String{
         //let requestOrdersRefByUser = requestOrdersRef.child("Users")
-        let requsetOrdersRefByUserId = requestOrdersRef.childByAutoId()//requestOrdersRefByUser.child("\(orderReq.userId)").childByAutoId()
+        let requsetOrdersRefByUserId = requestOrdersRef.childByAutoId()
         let orderRequset = ["categoryId": orderReq.categoryId, "problemDescription" : orderReq.problemDescription, "requestDate" : orderReq.requestDate.description, "userId": orderReq.userId]
        requsetOrdersRefByUserId.setValue(orderRequset)
         return requsetOrdersRefByUserId.key
@@ -100,8 +100,9 @@ public class OrdersManager{
     
     static func confirmOrder(orderReqId:String, professionalId: String){
         let orderRequestApprovedRefByOrderId = requestOrderApprovedRef.child("\(orderReqId)")
-        let orderRequestApproved = ["professionalId": professionalId, "timestamp" : Data()] as [String : Any]
+        let orderRequestApproved = ["professionalId": professionalId, "timestamp" : convertDateToString(date: Date())]
         orderRequestApprovedRefByOrderId.setValue(orderRequestApproved)
+        ProfessionalsManager.setProfessionalStatus(professionalId: professionalId, status: false)
         
     }
     
@@ -120,6 +121,13 @@ public class OrdersManager{
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss +zzzz"
         let s = dateFormatter.date(from:dateString)
         return s!
+    }
+    
+    static func convertDateToString(date: Date)->String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss +zzzz"
+        let s = dateFormatter.string(from:date as Date)
+        return s
     }
 
 }

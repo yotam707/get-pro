@@ -8,42 +8,35 @@
 
 import UIKit
 
-class RegisterViewController: BaseUIViewController {
+class RegisterViewController: BaseUIViewController, GetDataProtocol {
     
 
     @IBOutlet weak var emailTB: UITextField!
     @IBOutlet weak var passwordTB: UITextField!
     @IBOutlet weak var registerBtn: UIButton!
-    
     @IBOutlet weak var registerAsProBtn: UIButton!
+    var selectedloginType: String = ""
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         registerBtn.isEnabled = false
         registerAsProBtn.isEnabled = false
+        selectedloginType = ""
         self.enableDisableRegisterBtn(isEnabled: false)
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
     }
     
     
     @IBAction func onRegisterClick(_ sender: Any) {
-        //register - need to handle Async.
-        if AppManager.register(email: emailTB.text!, password: passwordTB.text!, loginType: K.LoginTypes.user) {
-            
-            // move to menu controller
-            self.performSegue(withIdentifier: "r_UserMenuSeg", sender: self)
-        }
+        AppManager.register(email: emailTB.text!, password: passwordTB.text!, name: "Bob", loginType: K.LoginTypes.user, view: self)
+        self.selectedloginType = K.LoginTypes.user
     }
     
     
     @IBAction func onRegisterAsProClick(_ sender: Any) {
-        //register - need to handle Async.
-        if AppManager.register(email: emailTB.text!, password: passwordTB.text!, loginType: K.LoginTypes.professional) {
-            
-            // move to menu controller
-            self.performSegue(withIdentifier: "r_ProfessionalMenuSeg", sender: self)
-        }
+        AppManager.register(email: emailTB.text!, password: passwordTB.text!, name: "Bobi", loginType: K.LoginTypes.professional, view: self)
+        self.selectedloginType = K.LoginTypes.professional
     }
     
     
@@ -70,9 +63,8 @@ class RegisterViewController: BaseUIViewController {
     func isEmailValid(email:String) -> Bool{
         /* from http://emailregex.com/
         */
-        //let emailTest = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
-        //return emailTest.evaluate(with: email)
-        return email != ""
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
+        return emailTest.evaluate(with: email)
     }
     
     
@@ -86,9 +78,22 @@ class RegisterViewController: BaseUIViewController {
          5 - One Lowercase letter in password.
          */
         
-        //let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$")
-        //return passwordTest.evaluate(with: password)
-        return password != ""
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{6,}$")
+        return passwordTest.evaluate(with: password)
+    }
+    
+    func onGetDataResponse(response: Response) {
+        if response.status {
+            let user = (response.entities as! [User])[0]
+            AppManager.postRegister(userId: user.id, email: user.email, password: user.password, loginType: selectedloginType)
+            
+            if self.selectedloginType == K.LoginTypes.user {
+                self.performSegue(withIdentifier: "r_UserMenuSeg", sender: self)
+            }
+            else {
+                self.performSegue(withIdentifier: "r_ProfessionalMenuSeg", sender: self)
+            }
+        }
     }
     
 }

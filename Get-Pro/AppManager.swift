@@ -46,6 +46,7 @@ public class AppManager{
             let res = Response()
             res.status = false
             res.errorTxt = "User not exist"
+            view.onGetDataResponse(response: res)
         }
         
     }

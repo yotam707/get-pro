@@ -20,7 +20,7 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         
         self.professionalsTV.dataSource = self
         self.professionalsTV.delegate = self
-        self.professionals = AppManager.getProfessionals(orderRequestId: self.orderRequestId)
+        //self.professionals = AppManager.getProfessionals(orderRequestId: self.orderRequestId)
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: self.professionalsTV, color: K.Colors.darkGray)
         

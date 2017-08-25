@@ -13,6 +13,6 @@ protocol AcceptProfessionalDelegate: class {
     func onProfessionalAcceptBtnClick(potentialOrderRequestId: String)
 }
 
-protocol GetCategoriesDelegate: class {
-    func onGetCategoriesResponse() -> [Category]
+protocol GetDataProtocol: class {
+    func onGetDataResponse(response:Response)
 }

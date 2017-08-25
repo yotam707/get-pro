@@ -49,8 +49,8 @@ public class AppManager{
         return loginType == K.LoginTypes.user
     }
     
-    static func getCategories() -> [Category]{
-        return MockData.getCategories()
+    static func getCategories(){
+        
     }
     
     

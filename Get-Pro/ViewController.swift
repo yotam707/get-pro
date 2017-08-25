@@ -29,12 +29,12 @@ class ViewController: BaseUIViewController, GetDataProtocol {
         }
         AppManager.login(view: self)
         
-        lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-        let when = DispatchTime.now() + 10
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.lunchTimer.invalidate()
-            self.progressBar.progress = 1
-        }
+//        lunchTimer = Timer.scheduledTimer(timeInterval: 1.1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+//        let when = DispatchTime.now() + 10
+//        DispatchQueue.main.asyncAfter(deadline: when) {
+//            self.lunchTimer.invalidate()
+//            self.progressBar.progress = 1
+//        }
     }
     
     func runTimedCode() {
@@ -42,7 +42,7 @@ class ViewController: BaseUIViewController, GetDataProtocol {
     }
 
     func onGetDataResponse(response: Response) {
-        if response .errorTxt == "" {
+        if response.status {
             if AppManager.isUserLoggedin() {
                 //navigate to user menu
                 self.performSegue(withIdentifier: "userMenuSeg", sender: self)
@@ -56,7 +56,7 @@ class ViewController: BaseUIViewController, GetDataProtocol {
             //navigate to register
             self.performSegue(withIdentifier: "registerSeg", sender: self)
         }
-        self.lunchTimer.invalidate()
+        //self.lunchTimer.invalidate()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

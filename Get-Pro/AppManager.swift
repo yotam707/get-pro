@@ -43,6 +43,9 @@ public class AppManager{
         }
         else {
             //call to view protocol with login error
+            let res = Response()
+            res.status = false
+            res.errorTxt = "User not exist"
         }
         
     }

@@ -92,8 +92,7 @@ public class AppManager{
     //SETTERS
     
     static func publishOrder(view: GetDataProtocol, orderReq:OrderRequest){
-        let res = OrdersManager.publishOrder(orderReq: orderReq)
-        print(res)
+        OrdersManager.publishOrder(orderReq: orderReq, view: view)
     }
     
     

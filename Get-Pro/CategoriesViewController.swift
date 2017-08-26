@@ -17,7 +17,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var loadingAI: UIActivityIndicatorView!
 
     var categories = [Category]()
-    
+    weak var proOrder = ProfessionalOrder()
        
     @IBAction func onBackButtonClick(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -86,16 +86,14 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         orderRequest.problemDescription = problamDescTV.text
         orderRequest.requestDate = Date()
         
-        // move to top professional controller
-        //self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
-        
+        AppManager.publishOrder(view: self, orderReq: orderRequest)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         //handle here Async - add the request id & move to next controller
         let professionalsVC = segue.destination as! TopProfessionalViewController
-        professionalsVC.orderRequestId = "123"
+        professionalsVC.proOrder = self.proOrder!
     }
     
     func setViewState(isEnabled:Bool){
@@ -106,11 +104,23 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     
     func onGetDataResponse(response: Response) {
         
-        switch response.actionType {
-        case K.ActionTypes.AcceptOrderRequest:
+        if response.status {
+            //save the result locally
+            self.proOrder = (response.entities as! [ProfessionalOrder])[0]
+            self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
+        }
+        else {
+            //alert
+            self.loadingAI.stopAnimating()
+            self.loadingAI.isHidden = true
+            self.setViewState(isEnabled: true)
+        }
+        
+        /*switch response.actionType {
+        case K.ActionTypes.confirmOrderRequestByPro:
             break;
         default:
-            //publish order requesr
+            //publishOrder requesr
             if response.status {
                 //save the result locally
                 self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
@@ -122,7 +132,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
                 self.setViewState(isEnabled: true)
             }
            
-        }
+        }*/
     }
 
 

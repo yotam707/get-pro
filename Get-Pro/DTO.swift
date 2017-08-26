@@ -114,6 +114,7 @@ class PotentialOrderRequest: BaseDTO{
 }
 
 class BaseDTO{
+    
 }
 
 

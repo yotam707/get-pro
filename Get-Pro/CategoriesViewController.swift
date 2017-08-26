@@ -8,7 +8,8 @@
 
 import UIKit
 
-class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource , GetDataProtocol {
+    
     @IBOutlet weak var problamDescTV: UITextView!
     @IBOutlet var navigationBar: UINavigationBar!
     @IBOutlet weak var categoriesTV: UITableView!
@@ -16,7 +17,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var loadingAI: UIActivityIndicatorView!
 
     var categories = [Category]()
-    
+    weak var proOrder = ProfessionalOrder()
        
     @IBAction func onBackButtonClick(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -25,24 +26,20 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.categories = CategoriesManager.categories
         categoriesTV.reloadData()
-        //self.loadingAI.bringSubview(toFront: UIView)
-           }
+        self.loadingAI.isHidden = true
+        self.loadingAI.stopAnimating()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.categories = AppManager.getCategories()
         self.categoriesTV.delegate = self
         self.categoriesTV.dataSource = self
- 
-        loadingAI.startAnimating()
-        self.setViewState(isEnabled: false)
-
         self.problamDescTV.layer.borderColor = AppManager.getColor(colorKey: K.Colors.mediumRed) .cgColor
         self.problamDescTV.layer.borderWidth = 0.5
-        //self.problamDescTV.layer.cornerRadius = 5
-
-    
+        
         //self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: horizontalLineV, color: K.Colors.lightRed)
         self.setViewColor(view: navigationBar, color: K.Colors.darkGray)
@@ -55,26 +52,6 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    /*func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedCell = collectionView.cellForItem(at: indexPath) as! CategoryCollectionViewCell
-        
-        //send request to server
-        let orderRequest = OrderRequest()
-        orderRequest.categoryId = selectedCell.category.id
-        orderRequest.userId = AppManager.getUserId()
-        orderRequest.problemDescription = problamDescTV.text
-        orderRequest.requestDate = DispatchTime.now()
-        AppManager.publishOrder(orderReq: orderRequest)
-        
-        
-        //need to display here spinner\loader for up to 60 sec and lock the UI
-        
-        
-        // move to top professional controller
-        self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
-    }*/
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,30 +73,27 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+ 
+        //start animation + lock the view
+        self.loadingAI.startAnimating()
+        self.loadingAI.isHidden = false
+        self.setViewState(isEnabled: false)
+        
         //send request to server
         let orderRequest = OrderRequest()
         orderRequest.categoryId = self.categories[indexPath.row].id
         orderRequest.userId = AppManager.getUserId()
         orderRequest.problemDescription = problamDescTV.text
         orderRequest.requestDate = Date()
-        AppManager.publishOrder(orderReq: orderRequest)
         
-        
-        //need to display here spinner\loader for up to 60 sec and lock the UI
-        
-        
-        // move to top professional controller
-        self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
-        
-        
+        AppManager.publishOrder(view: self, orderReq: orderRequest)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         //handle here Async - add the request id & move to next controller
         let professionalsVC = segue.destination as! TopProfessionalViewController
-        professionalsVC.orderRequestId = "123"
+        professionalsVC.proOrder = self.proOrder!
     }
     
     func setViewState(isEnabled:Bool){
@@ -127,6 +101,40 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         self.categoriesTV.allowsSelection = isEnabled
         self.problamDescTV.isUserInteractionEnabled = isEnabled
     }
+    
+    func onGetDataResponse(response: Response) {
+        
+        if response.status {
+            //save the result locally
+            self.proOrder = (response.entities as! [ProfessionalOrder])[0]
+            self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
+        }
+        else {
+            //alert
+            self.loadingAI.stopAnimating()
+            self.loadingAI.isHidden = true
+            self.setViewState(isEnabled: true)
+        }
+        
+        /*switch response.actionType {
+        case K.ActionTypes.confirmOrderRequestByPro:
+            break;
+        default:
+            //publishOrder requesr
+            if response.status {
+                //save the result locally
+                self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
+            }
+            else {
+                //alert
+                self.loadingAI.stopAnimating()
+                self.loadingAI.isHidden = true
+                self.setViewState(isEnabled: true)
+            }
+           
+        }*/
+    }
+
 
     
 }

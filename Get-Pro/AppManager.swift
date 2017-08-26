@@ -12,21 +12,26 @@ import UIKit
 
 public class AppManager{
     
-
-    
-    
-    //** mockData will be replaced with the real api (FirebaseManager) when we done.
-
-    /////////////////////////////////////////////////
-    //ELIRAN'S PART
+    ///////////////////////////////////////
+    //GENERAL
     
     static func getUserId() -> String {
         return LocalStorageManager.readFromStorage(key: K.User.userId)
     }
     
+    static func isUserLoggedin() -> Bool{
+        let loginType = LocalStorageManager.readFromStorage(key: K.Auth.loginType)
+        return loginType == K.LoginTypes.user
+    }
+    
+    
+    ///////////////////////////////////////
+    //GETTERS
+    
     static func register(email:String, password:String, name:String, loginType:String, view: GetDataProtocol){
         FirebaseManager.register(email: email, password: password, name: name, loginType: loginType, view: view)
     }
+    
     
     static func postRegister(userId:String, email:String, password:String, loginType:String) {
         LocalStorageManager.writeToStorage(key: K.Auth.email, value: email)
@@ -34,6 +39,7 @@ public class AppManager{
         LocalStorageManager.writeToStorage(key: K.Auth.loginType, value: loginType)
         LocalStorageManager.writeToStorage(key: K.User.userId, value: userId)
     }
+    
     
     static func login(view: GetDataProtocol){
         let email = LocalStorageManager.readFromStorage(key: K.Auth.email)
@@ -45,46 +51,49 @@ public class AppManager{
         else {
             //call to view protocol with login error
             let res = Response()
+            res.actionType = K.ActionTypes.login
             res.status = false
             res.errorTxt = "User not exist"
             view.onGetDataResponse(response: res)
         }
         
     }
-
-    static func isUserLoggedin() -> Bool{
-        let loginType = LocalStorageManager.readFromStorage(key: K.Auth.loginType)
-        return loginType == K.LoginTypes.user
-    }
+    
     
     static func initApp(view: GetDataProtocol, userType:String){
         if userType == K.LoginTypes.user {
             getCategories(view: view)
-            
         }
         else {
             getPendingOrders(view: view)
         }
         getMyOrders(view: view, userType: userType)
     }
+    
+    
     static func getCategories(view: GetDataProtocol){
-        
-    }
-    
-    
-    static func getProfessionals(orderRequestId:String){
-        //return MockData.getProfessionals(orderRequestId:orderRequestId)
+        CategoriesManager.getCategories(view: view)
     }
     
     
     static func getMyOrders(view: GetDataProtocol, userType:String){
-        //return MockData.getMyOrders()
+        OrdersManager.getMyOrders(userId: getUserId(), loginType: userType, view: view)
     }
+    
     
     static func getPendingOrders(view: GetDataProtocol){
         //return MockData.getMyOrders()
     }
     
+    
+    
+    
+    ///////////////////////////////////////
+    //SETTERS
+    
+    static func publishOrder(view: GetDataProtocol, orderReq:OrderRequest){
+        OrdersManager.publishOrder(orderReq: orderReq, view: view)
+    }
     
     
     
@@ -102,9 +111,7 @@ public class AppManager{
     }
     
     
-    static func publishOrder(orderReq:OrderRequest){
-        
-    }
+
     
     static func confirmOrder(orderId:String){
         

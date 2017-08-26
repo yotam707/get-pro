@@ -19,8 +19,7 @@ class TopProfessionalViewController : BaseUIViewController {
     @IBOutlet weak var professionalRatingImgV: UIImageView!
     @IBOutlet weak var loadingAI: UIActivityIndicatorView!
     
-    var professional = Professional()
-    var orderRequestId:String = ""
+    var proOrder = ProfessionalOrder()
 
     
     @IBAction func onBackButtonClick(_ sender: Any) {

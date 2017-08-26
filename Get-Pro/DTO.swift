@@ -145,6 +145,7 @@ class ProfessionalOrder: BaseDTO{
 }
 
 class BaseDTO{
+    
 }
 
 

@@ -38,8 +38,9 @@ public class AppManager{
     static func login(view: GetDataProtocol){
         let email = LocalStorageManager.readFromStorage(key: K.Auth.email)
         let password = LocalStorageManager.readFromStorage(key: K.Auth.password)
+        let loginType = LocalStorageManager.readFromStorage(key: K.Auth.loginType)
         if (email != "" && password != "") {
-           FirebaseManager.login(email: email, password: password, view: view)
+           FirebaseManager.login(email: email, password: password,loginType: loginType, view: view)
         }
         else {
             //call to view protocol with login error

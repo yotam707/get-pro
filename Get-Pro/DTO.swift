@@ -15,12 +15,14 @@ class User: BaseDTO{
     var email:String = ""
     var name: String = ""
     var apnToken: String = ""
-    init(id:String, password: String, email:String, name: String, apnToken: String) {
+    var imageUrl: String = ""
+    init(id:String, password: String, email:String, name: String, apnToken: String, imageUrl: String) {
         self.id = id
         self.password = password
         self.email = email
         self.name = name
         self.apnToken = apnToken
+        self.imageUrl = imageUrl
     }
     init(id:String, password: String, email:String, name: String) {
         self.id = id
@@ -29,7 +31,7 @@ class User: BaseDTO{
         self.name = name
     }
     convenience override init(){
-        self.init(id: "", password: "", email: "", name: "", apnToken: "")
+        self.init(id: "", password: "", email: "", name: "", apnToken: "", imageUrl: "")
     }
 }
 
@@ -107,10 +109,39 @@ class OrderRequest : BaseDTO{
     }
 }
 
-class PotentialOrderRequest: BaseDTO{
-    var id:String = ""
+class ProfessionalOrder: BaseDTO{
     var orderRequestId:String = ""
     var professionalId:String = ""
+    var name:String = ""
+    var phone:String = ""
+    var imageUrl:String = ""
+    var rating:Int = 0
+    var isTopProfessional:Bool = false
+    
+    init(orderRequestId: String, professionalId: String, name: String, phone: String, imageUrl: String, rating:Int, isTopProfessional: Bool) {
+        self.orderRequestId = orderRequestId
+        self.professionalId = professionalId
+        self.name = name
+        self.phone = phone
+        self.imageUrl = imageUrl
+        self.rating = rating
+        self.isTopProfessional = isTopProfessional
+    }
+    
+    init(pro: Professional, orderReqId: String){
+        self.orderRequestId = orderReqId
+        self.professionalId = pro.id
+        self.name = pro.name
+        self.phone = pro.phone
+        self.imageUrl = pro.imageUrl
+        self.rating = pro.rating
+    }
+    
+    convenience override init(){
+        self.init(orderRequestId: "" ,professionalId: "", name: "", phone: "", imageUrl: "", rating: 0, isTopProfessional: false)
+    }
+
+    
 }
 
 class BaseDTO{

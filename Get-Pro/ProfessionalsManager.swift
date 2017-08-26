@@ -17,7 +17,7 @@ public class ProfessionalsManager{
     ///////////////////////////////////////////////
     //GETTERS
     
-    static func getProfessionals(orderRequestId:String, view: GetDataProtocol){
+    static func getProfessionals(orderRequestId:String, professionalId: String , view: GetDataProtocol){
         let res = Response()
         res.actionType = K.ActionTypes.getProfessionals
         professionalsRef.queryOrdered(byChild: "orderRequestId").queryEqual(toValue: orderRequestId)

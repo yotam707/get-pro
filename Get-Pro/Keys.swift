@@ -14,8 +14,9 @@ public struct K {
         static let register = "register"
         static let login = "login"
         static let setOrderRequest = "setOrderRequest"
-        static let AcceptOrderRequest = "AcceptOrderRequest"
-        static let DeclineOrderRequest = "DeclineOrderRequest"
+        static let confirmOrderRequestByPro = "confirmOrderRequestByPro"
+        static let confirmOrderRequestByUser = "confirmOrderRequestByUser"
+        static let declineOrderRequest = "declineOrderRequest"
         
         static let getCategories = "getCategories"
         static let getMyOrders_User = "getMyOrders_User"
@@ -26,6 +27,7 @@ public struct K {
         static let getOrderDetails = "getOrderDetails"
         static let getConfirmedOrderPros = "getConfirmedOrderPros"
         static let getProfessionalOrderDetails = "getProfessionalOrderDetails"
+        static let publishOrder = "publishOrder"
         
     }
     

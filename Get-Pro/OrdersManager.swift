@@ -160,17 +160,49 @@ public class OrdersManager{
         })
     }
     
+    static func getProfessionalsApprovedOrder(orderReqId: String, _ compleation:@escaping (_ result: ProfessionalOrder) ->()){
+        requestOrderApprovedRef.child(orderReqId).observeSingleEvent(of: .childAdded, with: {(DataSnapshot) in
+            let approvedOrderDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
+            let proId = approvedOrderDic["professionalId"] as! String
+            ProfessionalsManager.getProfessionalDetils(professionalId: proId, { (pro) in
+                let orderPro = ProfessionalOrder.init(pro: pro, orderReqId: orderReqId)
+                compleation(orderPro)
+            })
+        })
+        
+    }
+    
+    
+    static func getUserApprovedOrder(orderReqId: String, _ compleation:@escaping (_ result: Bool)->()){
+        requestOrderApprovedRef.child(orderReqId).observeSingleEvent(of: .childChanged, with: { (DataSnapshot) in
+            guard let dic = DataSnapshot.value as? [String: AnyObject] else {
+                //compleation(false)
+                return
+            }
+            if (dic["userId"]?.exists())!{
+                compleation(true)
+            }
+        })
+    }
     ///////////////////////////////////////////////////
     //SETTERS
     
-    static func publishOrder(orderReq:OrderRequest) -> String{
+    static func publishOrder(orderReq:OrderRequest, view: GetDataProtocol){
+        let res = Response()
+        res.actionType = K.ActionTypes.publishOrder
         let requsetOrdersRefByUserId = requestOrdersRef.childByAutoId()
         let orderRequset = ["categoryId": orderReq.categoryId, "problemDescription" : orderReq.problemDescription, "requestDate" : orderReq.requestDate.description, "userId": orderReq.userId]
         requsetOrdersRefByUserId.setValue(orderRequset)
         addUserOrder(orderReqId: orderReq.id, userId: orderReq.userId, requestDate: orderReq.requestDate.description, categoryId: orderReq.categoryId)
-        return requsetOrdersRefByUserId.key
+        let orderReqId = requsetOrdersRefByUserId.key
+        getProfessionalsApprovedOrder(orderReqId: orderReqId, { (proOrder) in
+            res.entities.append(proOrder)
+            view.onGetDataResponse(response: res)
+        })
         
     }
+    
+    
     
     static func addUserOrder(orderReqId: String, userId: String, requestDate: String, categoryId: String){
         let userOrderRef = myOrdersUserRef.child("\(userId)").child("\(orderReqId)")
@@ -178,7 +210,7 @@ public class OrdersManager{
         userOrderRef.setValue(userOrderObj)
     }
     
-    static func confirmOrder(orderReqId:String, professionalId: String, userId: String){
+    static func confirmOrderByProfessional(orderReqId:String, professionalId: String, userId: String, view: GetDataProtocol){
         let orderRequestApprovedRefByOrderId = requestOrderApprovedRef.child("\(orderReqId)")
         let timestamp = convertDateToString(date: Date())
         let orderRequestApproved = ["professionalId": professionalId, "userId" : userId, "acceptDate" : timestamp]
@@ -187,6 +219,11 @@ public class OrdersManager{
         updateUserOrderWithProId(proId: professionalId, userId: userId, orderReqId: orderReqId)
         ProfessionalsManager.setProfessionalStatus(professionalId: professionalId, status: false)
         
+    }
+    
+    static func confirmOrderByUser(orderReqId: String, professionalId: String, userId: String, view: GetDataProtocol){
+        //need to add function here 
+        //getUserApprovedOrder
     }
     
     static func updateFinishOrder(orderReqId: String, proId: String, userId: String){
@@ -214,6 +251,7 @@ public class OrdersManager{
     
     static func updateUserOrderWithProId(proId: String, userId: String, orderReqId: String){
         myOrdersProRef.child(userId).child(orderReqId).updateChildValues(["status" : K.OrderStatus.inProgress, "professionalId" : proId])
+        requestOrderApprovedRef.child(orderReqId).updateChildValues(["userId": userId])
     }
     
     static func addProfessionalOrder(orderReqId:String, professionalId: String, acceptDate: String, userId: String){

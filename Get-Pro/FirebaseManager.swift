@@ -15,6 +15,7 @@ public class FirebaseManager{
 
     static let databaseRef = Database.database().reference()
     private static let usersDatabaseRef = databaseRef.child("Users")
+    private static let professionalsDatabaseRef = databaseRef.child("professionals")
     // let authHandler : Auth.self
     
     ///////////////////////////////////////////////
@@ -35,10 +36,16 @@ public class FirebaseManager{
         res.actionType = K.ActionTypes.register
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil{
-                let u = User.init(id: (user?.uid)!, password: password, email: email ,name: name)
-                u.apnToken = getPushToken()
-                registerUserInFbDb(user: u, loginType: loginType)
-                res.entities.append(u)
+                let pushToken = getPushToken()
+                if loginType == K.LoginTypes.user{
+                    let u = registerUserInFbDb(id: (user?.uid)!, password: password, email: email ,name: name, apnToken: pushToken)
+                    res.entities.append(u)
+                    
+                }
+                else{
+                    let p = registerProfessionalInDb(id: (user?.uid)!, password: password, email: email, name: name, apnToken: pushToken)
+                    res.entities.append(p)
+                }
                 view.onGetDataResponse(response: res)
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 changeRequest?.displayName = name
@@ -58,7 +65,7 @@ public class FirebaseManager{
         }
     }
 
-    static func login(email:String, password:String,view: GetDataProtocol){
+    static func login(email:String, password: String, loginType: String ,view: GetDataProtocol){
         let res = Response()
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if user != nil{
@@ -75,23 +82,23 @@ public class FirebaseManager{
         
     }
     
-    static func registerUserInFbDb(user: User, loginType :String){
-        let usersDatabaseRefById = usersDatabaseRef.child("\(user.id)")
-        let userObj = ["name" : user.name, "email" : user.email, "userType" : loginType, "pushToken" : user.apnToken]
+    static func registerUserInFbDb(id: String, password: String, email: String ,name: String, apnToken: String) -> User{
+        let u = User.init(id: id, password: password, email: email ,name: name, apnToken: apnToken)
+        let usersDatabaseRefById = usersDatabaseRef.child("\(id)")
+        let userObj = ["name" : name, "email" : email, "pushToken" : apnToken]
         usersDatabaseRefById.setValue(userObj)
-        if loginType == K.LoginTypes.professional {
-            ProfessionalsManager.addProfessionalUser(proId: user.id, proName: user.name + "-Pro")
-        }
+        return u
     }
     
-//    static func getUserNameById(uid: String,  _ compleation:@escaping(_ result: String) -> ()){
-//        usersDatabaseRef.child("\(uid)")
-//            .observe(.value, with: {(DataSnapshot) in
-//                let userDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
-//                compleation(userDic["name"] as! String)
-//        })
-//
-//    }
+    static func registerProfessionalInDb(id: String, password: String, email: String ,name: String, apnToken: String) -> Professional{
+        let p = Professional.init(id: id, name: name + "-Pro", phone: "", imageUrl: "", rating: 0, isTopProfessional: false)
+        
+        let professionalsDatabaseRefById = professionalsDatabaseRef.child(id)
+        let proObject = ["name" : name, "email": email, "phone": p.phone, "pushToken" : p.apnToken, "rating" : p.rating, "isTopProfessional": p.isTopProfessional, "imageUrl": p.imageUrl, "status" : true] as [String : Any]
+        professionalsDatabaseRefById.setValue(proObject)
+        return p
+    }
+    
     
     ///////////////////////////////////////////////
     //PRIVATE

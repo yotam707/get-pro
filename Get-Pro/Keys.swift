@@ -22,6 +22,7 @@ public struct K {
         static let getMyOrders_Pro = "getMyOrders_Pro"
         static let getPendingOrders = "getPendingOrders"
         static let getProfessionals = "getProfessionals"
+        static let getProfessionalDetails = "getProfessionalDetails"
         static let getOrderDetails = "getOrderDetails"
         static let getConfirmedOrderPros = "getConfirmedOrderPros"
         static let getProfessionalOrderDetails = "getProfessionalOrderDetails"

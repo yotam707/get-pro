@@ -15,6 +15,13 @@ class User: BaseDTO{
     var email:String = ""
     var name: String = ""
     var apnToken: String = ""
+    init(id:String, password: String, email:String, name: String, apnToken: String) {
+        self.id = id
+        self.password = password
+        self.email = email
+        self.name = name
+        self.apnToken = apnToken
+    }
     init(id:String, password: String, email:String, name: String) {
         self.id = id
         self.password = password
@@ -22,7 +29,7 @@ class User: BaseDTO{
         self.name = name
     }
     convenience override init(){
-        self.init(id: "", password: "", email: "", name: "")
+        self.init(id: "", password: "", email: "", name: "", apnToken: "")
     }
 }
 
@@ -33,7 +40,7 @@ class Professional: BaseDTO{
     var imageUrl:String = ""
     var rating:Int = 0
     var isTopProfessional:Bool = false
-    
+    var apnToken: String = ""
     init(id: String, name: String, phone: String, imageUrl: String, rating:Int, isTopProfessional: Bool) {
         self.id = id
         self.name = name

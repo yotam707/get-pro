@@ -17,16 +17,17 @@ public class ProfessionalsManager{
     ///////////////////////////////////////////////
     //GETTERS
     
-    
-    
-    
-    static func getProfessionals(orderRequestId:String, _ compleation:@escaping (_ result: [Professional]) ->()){
+    static func getProfessionals(orderRequestId:String, view: GetDataProtocol){
+        let res = Response()
+        res.actionType = K.ActionTypes.getProfessionals
         professionalsRef.queryOrdered(byChild: "orderRequestId").queryEqual(toValue: orderRequestId)
             .observe(.value, with: {  (DataSnapshot) in
                 self.professionals = []
                 
                 guard let snapshots = DataSnapshot.children.allObjects as? [DataSnapshot] else{
-                    compleation(self.professionals)
+                    res.status = false
+                    res.errorTxt = "failed to get professionals"
+                    view.onGetDataResponse(response: res)
                     return
                 }
                 for snap in snapshots{
@@ -42,22 +43,26 @@ public class ProfessionalsManager{
                         
                     }
                 }
-                
-                compleation(self.professionals)
+                res.entities = self.professionals
+                view.onGetDataResponse(response: res)
             })
     }
     
-    static func getProfessionalDetils(professionalId:String, _ compleation:@escaping(_ result: Professional) ->()){
+    static func getProfessionalDetils(professionalId: String, _ compleation:@escaping (_ result: Professional) -> ()){
         
-        professionalsRef.queryOrdered(byChild: "id").queryEqual(toValue: professionalId)
+        professionalsRef.child(professionalId)
             .observe(.value, with: {(DataSnapshot) in
                 let pro = Professional.init()
                 if let proDic = DataSnapshot.value as? Dictionary<String, AnyObject>{
                     pro.id = professionalId
                     pro.name = proDic["name"] as! String
+                    pro.phone = proDic["phone"] as! String
+                    pro.imageUrl = proDic["imageUrl"] as! String
+                    pro.rating = proDic["rating"] as! Int
+                    pro.isTopProfessional = proDic["isTopProfessional"] as! Bool
+                    
                 }
                 compleation(pro)
-            
             })
     }
     
@@ -68,6 +73,6 @@ public class ProfessionalsManager{
     }
     
     static func addProfessionalUser(proId: String, proName: String){
-        professionalsRef.child(proId).setValue(["active":true, "name" : proName])
+        professionalsRef.child(proId).setValue(["active":true, "name" : proName, "rating" : "0"])
     }
 }

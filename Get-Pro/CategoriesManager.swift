@@ -19,12 +19,16 @@ public class CategoriesManager{
     ///////////////////////////////////////////////
     //GETTERS
     
-    static func getCategories(_ completion:@escaping (_ result: [Category]) -> ()){
+    static func getCategories(view:GetDataProtocol){
+        let res = Response()
+        res.actionType = K.ActionTypes.getCategories
         categoriesRef.observe(.value, with: { (DataSnapshot) in
             self.categories = []
             
             guard let snapshots = DataSnapshot.children.allObjects as? [DataSnapshot] else {
-                completion(self.categories)
+                res.errorTxt = "No Categories to display"
+                res.status = false
+                view.onGetDataResponse(response: res)
                 return
             }
             for snap in snapshots{
@@ -34,7 +38,8 @@ public class CategoriesManager{
                 }
             }
             
-            completion(self.categories)
+            res.entities = self.categories
+            view.onGetDataResponse(response: res)
         })
         
     }

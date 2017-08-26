@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -795,22 +795,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTW-9Z-Y6f">
-                                <rect key="frame" x="46" y="612" width="283" height="35"/>
-                                <color key="backgroundColor" red="1" green="0.61203660192655596" blue="0.58125038239146831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="dGM-2E-DfM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
-                                <state key="normal" title="Register">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onRegisterClick:" destination="GHR-KK-cAQ" eventType="touchUpInside" id="RmU-8o-sBD"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="30p-ng-zOQ">
-                                <rect key="frame" x="46" y="497" width="283" height="35"/>
+                                <rect key="frame" x="46" y="246" width="283" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="EtS-Pt-kFC"/>
                                 </constraints>
@@ -822,7 +808,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QgE-zI-aiu">
-                                <rect key="frame" x="46" y="447" width="283" height="35"/>
+                                <rect key="frame" x="46" y="187" width="283" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Bzp-dN-bgc"/>
                                 </constraints>
@@ -834,7 +820,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2r8-HS-NFl">
-                                <rect key="frame" x="46" y="562" width="283" height="35"/>
+                                <rect key="frame" x="46" y="316" width="283" height="35"/>
                                 <color key="backgroundColor" red="1" green="0.61203660189999998" blue="0.58125038240000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Jcq-1y-nNg"/>
@@ -847,6 +833,20 @@
                                     <action selector="onRegisterAsProClick:" destination="GHR-KK-cAQ" eventType="touchUpInside" id="3J0-Xv-xgU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTW-9Z-Y6f">
+                                <rect key="frame" x="46" y="370" width="283" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.61203660192655596" blue="0.58125038239146831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="dGM-2E-DfM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="19"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onRegisterClick:" destination="GHR-KK-cAQ" eventType="touchUpInside" id="RmU-8o-sBD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -855,13 +855,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="oTW-9Z-Y6f" secondAttribute="trailing" constant="30" id="4Jf-Os-927"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2r8-HS-NFl" secondAttribute="trailing" constant="30" id="8BN-IT-x2e"/>
                             <constraint firstItem="oTW-9Z-Y6f" firstAttribute="leading" secondItem="ded-2J-lwC" secondAttribute="leadingMargin" constant="30" id="9E7-Nn-Var"/>
-                            <constraint firstItem="vfM-ei-rPh" firstAttribute="top" secondItem="oTW-9Z-Y6f" secondAttribute="bottom" constant="20" id="BcW-g5-dzL"/>
-                            <constraint firstItem="oTW-9Z-Y6f" firstAttribute="top" secondItem="2r8-HS-NFl" secondAttribute="bottom" constant="15" id="UaE-VD-epO"/>
+                            <constraint firstItem="vfM-ei-rPh" firstAttribute="top" secondItem="oTW-9Z-Y6f" secondAttribute="bottom" constant="262" id="BcW-g5-dzL"/>
+                            <constraint firstItem="oTW-9Z-Y6f" firstAttribute="top" secondItem="2r8-HS-NFl" secondAttribute="bottom" constant="19" id="UaE-VD-epO"/>
                             <constraint firstItem="30p-ng-zOQ" firstAttribute="leading" secondItem="ded-2J-lwC" secondAttribute="leadingMargin" constant="30" id="ePV-SA-Bwb"/>
                             <constraint firstItem="QgE-zI-aiu" firstAttribute="leading" secondItem="ded-2J-lwC" secondAttribute="leadingMargin" constant="30" id="ecD-9w-gBI"/>
                             <constraint firstItem="2r8-HS-NFl" firstAttribute="leading" secondItem="ded-2J-lwC" secondAttribute="leadingMargin" constant="30" id="fdB-Vl-bn2"/>
-                            <constraint firstItem="30p-ng-zOQ" firstAttribute="top" secondItem="QgE-zI-aiu" secondAttribute="bottom" constant="15" id="lP9-uQ-FAH"/>
-                            <constraint firstItem="2r8-HS-NFl" firstAttribute="top" secondItem="30p-ng-zOQ" secondAttribute="bottom" constant="30" id="x9F-dp-Q7L"/>
+                            <constraint firstItem="30p-ng-zOQ" firstAttribute="top" secondItem="QgE-zI-aiu" secondAttribute="bottom" constant="24" id="lP9-uQ-FAH"/>
+                            <constraint firstItem="2r8-HS-NFl" firstAttribute="top" secondItem="30p-ng-zOQ" secondAttribute="bottom" constant="35" id="x9F-dp-Q7L"/>
                         </constraints>
                     </view>
                     <connections>

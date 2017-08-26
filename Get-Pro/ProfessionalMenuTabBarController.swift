@@ -12,7 +12,7 @@ class ProfessionalMenuTabBarController : UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "professionalMenuViewController") as! UITabBarController
+        let rController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfessionalMenuTabBarController") as! UITabBarController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = rController
     }

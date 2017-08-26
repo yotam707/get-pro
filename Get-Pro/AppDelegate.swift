@@ -93,9 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // the FCM registration token.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
-        UserDefaults.standard.set(deviceToken, forKey: "ApnDeviceToken")
+        NotificationsManger.saveApnToken(token: deviceToken)
         print("APNs token retrieved: \(deviceToken)")
-        
+        //UserDefaults.standard.set(deviceToken, forKey: "ApnDeviceToken")
         // With swizzling disabled you must set the APNs token here.
         // Messaging.messaging().apnsToken = deviceToken
     }
@@ -213,7 +213,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if pathConfig[1] == "orderRequest" {
             let vc = storyboard.instantiateViewController(withIdentifier: "testVC") as! TestViewController
             vc.reqIdVal = pathConfig[2]
-            vc.initView()
+            //vc.initView()
             window?.rootViewController = vc
             
         }

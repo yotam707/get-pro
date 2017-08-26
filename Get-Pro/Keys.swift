@@ -23,6 +23,8 @@ public struct K {
         static let getPendingOrders = "getPendingOrders"
         static let getProfessionals = "getProfessionals"
         static let getOrderDetails = "getOrderDetails"
+        static let getConfirmedOrderPros = "getConfirmedOrderPros"
+        static let getProfessionalOrderDetails = "getProfessionalOrderDetails"
         
     }
     
@@ -52,6 +54,17 @@ public struct K {
         static let mediumRed = "mediumRed"
         static let lightRed = "lightRed"
         
+    }
+    
+    struct OrderStatus{
+        static let pending = "pending"
+        static let inProgress = "inProgress"
+        static let finished = "finished"
+        static let cancelled  = "cancelled"
+    }
+    
+    struct NotificationManager{
+        static let apnToken = "apnToken"
     }
 }
 

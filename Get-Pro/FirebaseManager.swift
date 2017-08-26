@@ -29,16 +29,18 @@ public class FirebaseManager{
     
     ///////////////////////////////////////////////
     //SETTERS
-    
+    //TODO: check profile change request for display name 
     static func register(email:String, password:String, name: String, loginType: String, view: GetDataProtocol) {
         let res = Response()
+        res.actionType = K.ActionTypes.register
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if user != nil{
                 let u = User.init(id: (user?.uid)!, password: password, email: email ,name: name)
+                u.apnToken = getPushToken()
                 registerUserInFbDb(user: u, loginType: loginType)
                 res.entities.append(u)
                 view.onGetDataResponse(response: res)
-                let changeRequest = user?.createProfileChangeRequest()
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 changeRequest?.displayName = name
                 changeRequest?.commitChanges(completion: { error in
                     if let error = error {
@@ -75,18 +77,21 @@ public class FirebaseManager{
     
     static func registerUserInFbDb(user: User, loginType :String){
         let usersDatabaseRefById = usersDatabaseRef.child("\(user.id)")
-        let userObj = ["name" : user.name, "email" : user.email, "userType" : loginType]
+        let userObj = ["name" : user.name, "email" : user.email, "userType" : loginType, "pushToken" : user.apnToken]
         usersDatabaseRefById.setValue(userObj)
+        if loginType == K.LoginTypes.professional {
+            ProfessionalsManager.addProfessionalUser(proId: user.id, proName: user.name + "-Pro")
+        }
     }
     
-    static func getUserNameById(uid: String,  _ compleation:@escaping(_ result: String) -> ()){
-        usersDatabaseRef.child("\(uid)")
-            .observe(.value, with: {(DataSnapshot) in
-                let userDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
-                compleation(userDic["name"] as! String)
-        })
-
-    }
+//    static func getUserNameById(uid: String,  _ compleation:@escaping(_ result: String) -> ()){
+//        usersDatabaseRef.child("\(uid)")
+//            .observe(.value, with: {(DataSnapshot) in
+//                let userDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
+//                compleation(userDic["name"] as! String)
+//        })
+//
+//    }
     
     ///////////////////////////////////////////////
     //PRIVATE

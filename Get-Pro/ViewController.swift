@@ -16,7 +16,7 @@ class ViewController: BaseUIViewController, GetDataProtocol {
         
         super.viewWillAppear(animated)
         
-        //LocalStorageManager.clearKeys()
+        LocalStorageManager.clearKeys()
         
         //load data from server
         //get my orders (user & pro)

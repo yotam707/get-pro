@@ -33,4 +33,13 @@ public class NotificationsManger{
         return url.pathComponents
     }
     
+    static func saveApnToken(token: Data){
+        UserDefaults.standard.set(token, forKey: K.NotificationManager.apnToken)
+    }
+    static func getApnToken()->String{
+        if let token = UserDefaults.standard.string(forKey: K.NotificationManager.apnToken){
+            return token
+        }
+        return ""
+    }
 }

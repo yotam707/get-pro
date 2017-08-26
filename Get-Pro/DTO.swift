@@ -14,10 +14,12 @@ class User: BaseDTO{
     var password:String = ""
     var email:String = ""
     var name: String = ""
+    var apnToken: String = ""
     init(id:String, password: String, email:String, name: String) {
         self.id = id
         self.password = password
         self.email = email
+        self.name = name
     }
     convenience override init(){
         self.init(id: "", password: "", email: "", name: "")
@@ -113,5 +115,7 @@ class Response{
     var errorTxt: String = ""
     var status: Bool = true
     var actionType: String = ""
+    
+    
 }
 

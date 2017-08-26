@@ -21,7 +21,7 @@ class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        OrdersManager.confirmOrder(orderReqId: "-KsKKSKmt8nqGhUdQSqQ", professionalId: "jvriIZ20hXSktUGN31kiTn02Kwy1")
+        //OrdersManager.confirmOrder(orderReqId: "-KsKKSKmt8nqGhUdQSqQ", professionalId: "jvriIZ20hXSktUGN31kiTn02Kwy1", userId: String)
 
         // Do any additional setup after loading the view.
     }
@@ -30,20 +30,21 @@ class TestViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
     
-    func initView(){
-        OrdersManager.getProfessionalOrderDetails(orderId: reqIdVal, { (order) in
-            
-            DispatchQueue.main.async {
-                
-            }
-            print(order)
-            self.reqId.text = self.reqIdVal
-            self.reqDesc.text = order.problemDescription
-        })
-        }
+   // func initView(){
+//        OrdersManager.getProfessionalOrderDetails(orderId: reqIdVal, { (order) in
+//            
+//            DispatchQueue.main.async {
+//                
+//            }
+//            print(order)
+//            self.reqId.text = self.reqIdVal
+//            self.reqDesc.text = order.problemDescription
+//        })
+//        }
 
-    }
+   // }
     
 
     /*

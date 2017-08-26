@@ -222,7 +222,7 @@ public class OrdersManager{
     }
     
     static func confirmOrderByUser(orderReqId: String, professionalId: String, userId: String, view: GetDataProtocol){
-        //need to add function here 
+        //need to add function here
         //getUserApprovedOrder
     }
     

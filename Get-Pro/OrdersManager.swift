@@ -97,14 +97,15 @@ public class OrdersManager{
                 
                 for snap in snapshots{
                     if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
-                        let orderReqId_d = ordersDic["orderRequestId"] as! String
-                        let professionalId_d = ordersDic["professionalId"] as! String
-                        let acceptedDate_d = ordersDic["acceptedDate"] as! Date
-                        let completedDate_d = ordersDic["completedDate"] as! Date
+                        let orderReqId_d = snap.key
+                        //let categoryId = ordersDic["categoryId"] as! String
+                        let requestDate = ordersDic["requestDate"] as! Date
+                        //let status = ordersDic["status"] as! String
                         
-                        let order = Order(orderRequestId: orderReqId_d, professionalId: professionalId_d, acceptedDate: acceptedDate_d, completedDate: completedDate_d)
                         
-                        self.orders.append(order)
+                        let order = Order(orderRequestId: orderReqId_d, professionalId: "", acceptedDate: requestDate, completedDate: requestDate)
+                        
+                        print(order)
                     }
                 }
                 res.entities = self.orders
@@ -193,8 +194,9 @@ public class OrdersManager{
         let requsetOrdersRefByUserId = requestOrdersRef.childByAutoId()
         let orderRequset = ["categoryId": orderReq.categoryId, "problemDescription" : orderReq.problemDescription, "requestDate" : orderReq.requestDate.description, "userId": orderReq.userId]
         requsetOrdersRefByUserId.setValue(orderRequset)
-        addUserOrder(orderReqId: orderReq.id, userId: orderReq.userId, requestDate: orderReq.requestDate.description, categoryId: orderReq.categoryId)
         let orderReqId = requsetOrdersRefByUserId.key
+        orderReq.id = orderReqId
+        addUserOrder(orderReqId: orderReq.id, userId: orderReq.userId, requestDate: orderReq.requestDate.description, categoryId: orderReq.categoryId)
         getProfessionalsApprovedOrder(orderReqId: orderReqId, { (proOrder) in
             res.entities.append(proOrder)
             view.onGetDataResponse(response: res)

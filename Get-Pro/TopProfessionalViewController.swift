@@ -22,6 +22,13 @@ class TopProfessionalViewController : BaseUIViewController {
     var proOrder = ProfessionalOrder()
 
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        professionalNameLbl.text = proOrder.name
+
+    }
+    
     @IBAction func onBackButtonClick(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

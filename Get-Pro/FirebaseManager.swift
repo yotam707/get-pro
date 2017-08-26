@@ -83,9 +83,9 @@ public class FirebaseManager{
     }
     
     static func registerUserInFbDb(id: String, password: String, email: String ,name: String, apnToken: String) -> User{
-        let u = User.init(id: id, password: password, email: email ,name: name, apnToken: apnToken)
+        let u = User.init(id: id, password: password, email: email ,name: name, apnToken: apnToken, imageUrl: "")
         let usersDatabaseRefById = usersDatabaseRef.child("\(id)")
-        let userObj = ["name" : name, "email" : email, "pushToken" : apnToken]
+        let userObj = ["name" : name, "email" : email, "pushToken" : apnToken, "imageUrl" : ""]
         usersDatabaseRefById.setValue(userObj)
         return u
     }

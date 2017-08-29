@@ -71,6 +71,7 @@ class Category: BaseDTO{
     }
 }
 
+
 class Order : BaseDTO{
     var orderRequestId:String = ""
     var professionalId:String = ""
@@ -157,4 +158,66 @@ class Response{
     
     
 }
+
+
+
+
+////////////////
+//View DTO
+
+
+
+class UserOrderView : BaseDTO {
+    
+    var professionalName:String = ""
+    var categoryName:String = ""
+    var professionalImageUrl:String = ""
+    var professionalRating:Int = 0
+    var completedDate:Date = Date()
+    
+    init(professionalName: String, categoryName: String, professionalImageUrl: String, professionalRating: Int, completedDate: Date) {
+        self.professionalName = professionalName
+        self.categoryName = categoryName
+        self.professionalImageUrl = professionalImageUrl
+        self.professionalRating = professionalRating
+        self.completedDate = completedDate
+    }
+    
+    convenience override init(){
+        self.init(professionalName: "" ,categoryName: "", professionalImageUrl: "", professionalRating: 0, completedDate: Date())
+    }
+}
+
+
+class ProfessionalOrderDetailsView: BaseDTO{
+    var orderRequestId:String = ""
+    var professionalId:String = ""
+    var userName:String = ""
+    var userImageUrl:String = ""
+    var userLocationDistance: Float
+    var userCity: String
+    var problemDescription:String = ""
+    var completedDate:Date = Date()
+    
+    init(orderRequestId: String, professionalId: String, userName: String, userImageUrl: String, userLocationDistance: Float, userCity: String, problemDescription: String, completedDate : Date) {
+        self.orderRequestId = orderRequestId
+        self.professionalId = professionalId
+        self.userName = userName
+        self.userImageUrl = userImageUrl
+        self.userLocationDistance = userLocationDistance
+        self.userCity = userCity
+        self.problemDescription = problemDescription
+        self.completedDate = completedDate
+    }
+    
+    convenience override init(){
+        self.init(orderRequestId: "", professionalId: "", userName: "", userImageUrl: "",userLocationDistance: 0.0, userCity: "", problemDescription: "", completedDate : Date())
+    }
+}
+
+
+
+
+
+
 

@@ -69,10 +69,10 @@ public class ProfessionalsManager{
     ////////////////////////////////////////////////
     //SETTERS
     static func setProfessionalStatus(professionalId:String, status:Bool){
-        professionalsRef.child(professionalId).updateChildValues(["active": status])
+        professionalsRef.child(professionalId).updateChildValues(["status": status])
     }
     
     static func addProfessionalUser(proId: String, proName: String){
-        professionalsRef.child(proId).setValue(["active":true, "name" : proName, "rating" : "0"])
+        professionalsRef.child(proId).setValue(["status":true, "name" : proName, "rating" : "0"])
     }
 }

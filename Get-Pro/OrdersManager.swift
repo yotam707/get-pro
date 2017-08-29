@@ -72,7 +72,7 @@ public class OrdersManager{
                         let completedDate_d = ordersDic["completedDate"] as! Date
                         
                         let order = Order(orderRequestId: orderReqId_d, professionalId: professionalId_d, acceptedDate: acceptedDate_d, completedDate: completedDate_d)
-                        
+                            //professionalOrderDetailsView -> This is the obj to return [list]
                         self.orders.append(order)
                     }
                 }
@@ -102,7 +102,7 @@ public class OrdersManager{
                         let requestDate = ordersDic["requestDate"] as! Date
                         //let status = ordersDic["status"] as! String
                         
-                        
+                        //userOrderView -> this is obj to return
                         let order = Order(orderRequestId: orderReqId_d, professionalId: "", acceptedDate: requestDate, completedDate: requestDate)
                         
                         print(order)
@@ -225,7 +225,12 @@ public class OrdersManager{
     
     static func confirmOrderByUser(orderReqId: String, professionalId: String, userId: String, view: GetDataProtocol){
         //need to add function here
-        //getUserApprovedOrder
+//        let res = Response()
+//        getUserApprovedOrder(orderReqId: orderReqId, { (result) in
+//            if result {
+//                
+//            }
+//        })
     }
     
     static func updateFinishOrder(orderReqId: String, proId: String, userId: String){

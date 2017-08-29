@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TopProfessionalViewController : BaseUIViewController {
+class TopProfessionalViewController : BaseUIViewController, GetDataProtocol {
     
     @IBOutlet weak var getProBtn: UIButton!
     @IBOutlet weak var moreProfessionalsBtn: UIBarButtonItem!
@@ -25,6 +25,8 @@ class TopProfessionalViewController : BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        loadingAI.stopAnimating()
+        loadingAI.isHidden = true
         professionalNameLbl.text = proOrder.name
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: getProBtn, color: K.Colors.darkRed)
@@ -43,18 +45,40 @@ class TopProfessionalViewController : BaseUIViewController {
     @IBAction func onGetProButtonClick(_ sender: Any) {
         
         self.loadingAI.startAnimating()
+        loadingAI.isHidden = false
         self.setViewState(isEnabled: false)
     
         let order = UserOrderView()
         order.categoryName = orderReq.categoryName
         order.orderRequstId = orderReq.id
-        //OrdersManager.confirmOrderByUser(userOrder: <#T##UserOrderView#>, view: <#T##GetDataProtocol#>)
-        
-        // move to top order confirmation controller
-        self.performSegue(withIdentifier: "acceptTopProfessionalSeg", sender: self)
+        order.problemDescription = orderReq.problemDescription
+        order.professionalId = proOrder.professionalId
+        order.professionalImageUrl = proOrder.imageUrl
+        order.professionalName = proOrder.name
+        order.professionalRating = proOrder.rating
+        order.userId = orderReq.userId
+        order.userImageUrl = orderReq.userImageUrl
+        order.userName = orderReq.userName
+        OrdersManager.confirmOrderByUser(userOrder: order, view: self)
+    
+    }
+    
+    func onGetDataResponse(response: Response) {
+        if response.status {
+            loadingAI.stopAnimating()
+            loadingAI.isHidden = true
+            // move to top order confirmation controller
+            self.performSegue(withIdentifier: "acceptTopProfessionalSeg", sender: self)
+        }
+        else {
+            //alert
+        }
     }
     
     @IBAction func onMoreProfessionalCuttonClick(_ sender: Any) {
+        
+        //send decline?
+        
         // move to professionals controller
         self.performSegue(withIdentifier: "professionalSeg", sender: self)
     }

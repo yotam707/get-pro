@@ -16,6 +16,7 @@ class ProOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.orders = OrdersManager.proOrders
+        self.setViewColor(view: self.view, color: K.Colors.darkGray)
     }
     
     override func didReceiveMemoryWarning() {

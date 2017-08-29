@@ -207,6 +207,7 @@ class ProfessionalOrderDetailsView: BaseDTO{
     var professionalName:String = ""
     var professionalImageUrl:String = ""
     var professionalRating:Int = 0
+    var userId:String = ""
     var userName:String = ""
     var userImageUrl:String = ""
     var userLocationDistance: Float

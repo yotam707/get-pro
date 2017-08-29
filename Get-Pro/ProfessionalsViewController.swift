@@ -53,11 +53,12 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         cell.professional = pro
         cell.acceptClickDelegate = self
         cell.professionalNameLbl.text = pro.name
-        
         cell.avatarImageImgV.image = UIImage(named: "avatar.png")
         cell.avatarImageImgV.layer.cornerRadius = 40
         cell.avatarImageImgV.layer.borderColor = UIColor.white.cgColor
         cell.avatarImageImgV.layer.borderWidth = 3
+        let str = "rating_img_\(pro.rating).png"
+        cell.ratingImgV.image = UIImage(named: str)
         
         // Returning the cell
         return cell
@@ -66,6 +67,8 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
     func onUserAcceptBtnClick(orderRequest: OrderRequest) {
         
         //send data to server
+        //orderma
+        
         
         // move to top order confirmation controller
         self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)

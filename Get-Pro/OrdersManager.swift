@@ -19,6 +19,7 @@ public class OrdersManager{
     static private let myOrdersProRef = FirebaseManager.databaseRef.child("ProfessionalOrders")
     static private(set) var userOrders = [UserOrderView]()
     static private(set) var proOrders = [ProfessionalOrderDetailsView]()
+    static private(set) var proPendingOrders = [ProfessionalOrderDetailsView]()
     
     
     

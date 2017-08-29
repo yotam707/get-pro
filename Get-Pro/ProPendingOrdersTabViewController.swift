@@ -14,9 +14,8 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //load pending orders here
-        
+        self.setViewColor(view: self.view, color: K.Colors.darkGray)
+        self.orders = OrdersManager.proPendingOrders
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,17 +56,19 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
     }
     
     func onGetDataResponse(response: Response) {
-        
+        if response.status {
+            // move to order confirmation controller
+            self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
+        }
+        else {
+            //alert
+        }
     }
     
     
     func onProfessionalAcceptBtnClick(orderDetails: ProfessionalOrderDetailsView) {
-        
         //send data to server
-        
-        
-        // move to top order confirmation controller
-        self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
+        OrdersManager.confirmOrderByProfessional(orderProDetails: orderDetails, view: self)
     }
     
 }

@@ -67,9 +67,6 @@ public class AppManager{
         if userType == K.LoginTypes.user {
             getCategories(view: view)
         }
-        else {
-            getPendingOrders(view: view)
-        }
         getMyOrders(view: view, userType: userType)
     }
     
@@ -84,12 +81,6 @@ public class AppManager{
     }
     
     
-    static func getPendingOrders(view: GetDataProtocol){
-        //return MockData.getMyOrders()
-    }
-    
-    
-    
     
     ///////////////////////////////////////
     //SETTERS
@@ -97,54 +88,6 @@ public class AppManager{
     static func publishOrder(view: GetDataProtocol, orderReq:OrderRequest){
         OrdersManager.publishOrder(orderReq: orderReq, view: view)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    static func getMyOrderDetails(orderId:String) -> Order{
-        return MockData.getMyOrderDetails(orderId:orderId)
-    }
-    
-    
-
-    
-    static func confirmOrder(orderId:String){
-        
-    }
-    
-    static func rateOrder(orderId:String, rate:Int){
-        
-    }
-    
-    
-    
-    
-    //** mockData will be replaced with the real api (FirebaseManager) when we done.
-    
-    /////////////////////////////////////////////////
-    //YOTAM'S PART
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

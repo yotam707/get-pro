@@ -13,6 +13,10 @@ class ProOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UI
     @IBOutlet weak var ordersTV: UITableView!
     var orders = [ProfessionalOrderDetailsView]()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.orders = OrdersManager.proOrders
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

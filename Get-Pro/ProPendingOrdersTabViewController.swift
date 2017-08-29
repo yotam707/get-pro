@@ -12,7 +12,12 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
     @IBOutlet weak var ordersTV: UITableView!
     var orders = [ProfessionalOrderDetailsView]()
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //load pending orders here
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

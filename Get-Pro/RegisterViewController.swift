@@ -105,14 +105,10 @@ class RegisterViewController: BaseUIViewController, GetDataProtocol {
         case K.ActionTypes.getCategories:
             self.loadingAI.stopAnimating()
             self.loadingAI.isHidden = true
-            if self.selectedloginType == K.LoginTypes.user {
-                self.performSegue(withIdentifier: "r_UserMenuSeg", sender: self)
-            }
-            else {
-                self.performSegue(withIdentifier: "r_ProfessionalMenuSeg", sender: self)
-            }
+            self.performSegue(withIdentifier: "r_UserMenuSeg", sender: self)
             break;
         case K.ActionTypes.getMyOrders_Pro:
+            self.performSegue(withIdentifier: "r_ProfessionalMenuSeg", sender: self)
             break;
         case K.ActionTypes.getMyOrders_User:
             break;

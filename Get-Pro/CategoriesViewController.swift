@@ -10,6 +10,7 @@ import UIKit
 
 class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource , GetDataProtocol {
     
+    @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var problamDescTV: UITextView!
     @IBOutlet var navigationBar: UINavigationBar!
     @IBOutlet weak var categoriesTV: UITableView!
@@ -105,6 +106,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         self.categoriesTV.isScrollEnabled = isEnabled
         self.categoriesTV.allowsSelection = isEnabled
         self.problamDescTV.isUserInteractionEnabled = isEnabled
+        self.backBtn.isEnabled = isEnabled
     }
     
     func onGetDataResponse(response: Response) {

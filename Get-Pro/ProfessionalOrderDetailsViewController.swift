@@ -16,6 +16,8 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
     @IBOutlet weak var separatorV: UIView!
     @IBOutlet weak var problemDescTitleLbl: UILabel!
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var declineBtn: UIBarButtonItem!
+    
     @IBOutlet weak var problemDescriptionTxtV: UITextView!
     @IBOutlet weak var userAvatarImgV: UIImageView!
     @IBOutlet weak var userNameLbl: UILabel!
@@ -29,6 +31,8 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
     @IBAction func onAcceptButtonClick(_ sender: Any) {
         self.loadingAI.startAnimating()
         self.loadingAI.isHidden = false
+        self.acceptButton.isEnabled = false
+        self.declineBtn.isEnabled = false
         OrdersManager.confirmOrderByProfessional(orderProDetails: orderDetails, view: self)
     }
     
@@ -65,7 +69,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
                 self.orderDetails = (response.entities as! [ProfessionalOrderDetailsView])[0]
                 userNameLbl.text = orderDetails.userName
                 userAvatarImgV.image = UIImage (named: "avatar.png")
-                userAvatarImgV.layer.cornerRadius = 40
+                userAvatarImgV.layer.cornerRadius = 60
                 userAvatarImgV.layer.borderColor = UIColor.white.cgColor
                 userAvatarImgV.layer.borderWidth = 3
                 problemDescriptionTxtV.text = orderDetails.problemDescription

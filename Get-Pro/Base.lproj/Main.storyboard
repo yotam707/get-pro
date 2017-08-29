@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -105,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6D7-6e-byR">
-                                <rect key="frame" x="36" y="40" width="303" height="289"/>
+                                <rect key="frame" x="36" y="40" width="303" height="283.5"/>
                                 <color key="backgroundColor" red="1" green="0.58254815914799596" blue="0.55795885934275913" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="30"/>
                                 <state key="normal" title="FIND A PRO">
@@ -116,7 +116,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3lu-c8-arZ">
-                                <rect key="frame" x="36" y="359" width="303" height="288"/>
+                                <rect key="frame" x="36" y="353.5" width="303" height="283.5"/>
                                 <color key="backgroundColor" red="1" green="0.56412485371505428" blue="0.4963919449146772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="30"/>
                                 <state key="normal" title="MY ORDERS">
@@ -130,7 +130,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="3lu-c8-arZ" secondAttribute="trailing" constant="20" id="EER-h5-pee"/>
-                            <constraint firstItem="Gl7-ME-k4k" firstAttribute="top" secondItem="3lu-c8-arZ" secondAttribute="bottom" constant="20" id="Eia-5f-UCe"/>
+                            <constraint firstItem="Gl7-ME-k4k" firstAttribute="top" secondItem="3lu-c8-arZ" secondAttribute="bottom" constant="30" id="Eia-5f-UCe"/>
                             <constraint firstItem="3lu-c8-arZ" firstAttribute="leading" secondItem="kJ0-ex-faM" secondAttribute="leadingMargin" constant="20" id="JU0-KZ-57O"/>
                             <constraint firstItem="3lu-c8-arZ" firstAttribute="height" secondItem="6D7-6e-byR" secondAttribute="height" id="Ptc-KM-j0d"/>
                             <constraint firstItem="6D7-6e-byR" firstAttribute="top" secondItem="nB9-5X-prB" secondAttribute="bottom" constant="20" id="oAf-32-I5n"/>
@@ -211,7 +211,7 @@
                                         <rect key="frame" x="0.0" y="28" width="355" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YyB-Bh-wLn" id="nSC-0k-cGL">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vk9-xU-uSb">
@@ -279,6 +279,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="oRb-XV-KUB"/>
                     <connections>
+                        <outlet property="backBtn" destination="tUK-ch-QH2" id="TNH-MI-hcB"/>
                         <outlet property="categoriesTV" destination="Iic-2A-ZLT" id="G0R-d0-uJ7"/>
                         <outlet property="horizontalLineV" destination="86B-8e-Rwl" id="Ha7-om-tdM"/>
                         <outlet property="loadingAI" destination="dyH-vv-7MF" id="jrX-1s-IIs"/>
@@ -683,7 +684,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9h3-ip-ki0" id="ARi-Hk-6Xr" customClass="UserOrdersUITableViewCell" customModule="Get_Pro" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="129"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professional Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4b-Jn-TNL">
@@ -936,7 +937,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eNj-OK-Q96" id="KLH-GA-37j">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="7Hx-Pp-vb5">
@@ -1024,7 +1025,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Vj-YU-jln" id="HtR-AU-hVn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="xzP-lC-1d2">
@@ -1138,7 +1139,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ih-86-0O0">
                                         <rect key="frame" x="5" y="55" width="365" height="23"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                        <color key="textColor" red="0.99606269598007202" green="0.9921298623085022" blue="0.99607473611831665" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.13223543770000001" green="0.13679579710000001" blue="0.21972160530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1241,6 +1242,7 @@
                     <connections>
                         <outlet property="acceptButton" destination="myc-nD-bar" id="EwA-bg-RNN"/>
                         <outlet property="bottomV" destination="HQc-Xi-PnC" id="QJj-PZ-dXN"/>
+                        <outlet property="declineBtn" destination="zFW-1P-sDk" id="8jK-in-hvE"/>
                         <outlet property="loadingAI" destination="9vm-Cl-LJB" id="g4L-yC-9nQ"/>
                         <outlet property="problemDescTitleLbl" destination="mbP-Z2-OwK" id="fjb-la-0Ky"/>
                         <outlet property="problemDescriptionTxtV" destination="ck5-kA-nAe" id="TrS-U9-lSQ"/>
@@ -1357,10 +1359,10 @@
         <image name="rating_img_0" width="119" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="toG-36-F0t"/>
-        <segue reference="0Zm-vR-jNp"/>
-        <segue reference="a21-bu-Wqj"/>
         <segue reference="fyj-CE-lEl"/>
-        <segue reference="gKR-ZT-pAh"/>
+        <segue reference="a21-bu-Wqj"/>
+        <segue reference="NT4-3Y-OCf"/>
+        <segue reference="0Zm-vR-jNp"/>
+        <segue reference="toG-36-F0t"/>
     </inferredMetricsTieBreakers>
 </document>

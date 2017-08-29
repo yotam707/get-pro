@@ -29,7 +29,7 @@ class TopProfessionalViewController : BaseUIViewController {
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: getProBtn, color: K.Colors.darkRed)
         professionalAvatarImgV.image = UIImage(named: "avatar.png")
-        professionalAvatarImgV.layer.cornerRadius = 40
+        professionalAvatarImgV.layer.cornerRadius = 60
         professionalAvatarImgV.layer.borderColor = UIColor.white.cgColor
         professionalAvatarImgV.layer.borderWidth = 3
         let str = "rating_img_\(proOrder.rating).png"

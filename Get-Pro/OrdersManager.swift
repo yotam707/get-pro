@@ -142,7 +142,7 @@ public class OrdersManager{
                         proOrder.userName = ordersDic["userName"] as! String
                         proOrder.userImageUrl = ordersDic["userImageUrl"] as! String
                         proOrder.problemDescription = ordersDic["problemDescription"] as! String
-                        proOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptedDate"] as! String))
+                        proOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptDate"] as! String))
                         self.proOrders.append(proOrder)
                     }
                 }
@@ -174,7 +174,7 @@ public class OrdersManager{
                         userOrder.professionalId = ordersDic["professionalId"] as! String
                         userOrder.professionalName = ordersDic["professionalName"] as! String
                         userOrder.professionalImageUrl = ordersDic["professionalImageUrl"] as! String
-                        userOrder.professionalRating = ordersDic["professionalRating"] as! Int
+                        userOrder.professionalRating = Int(ordersDic["professionalRating"] as! String)!
                         userOrder.problemDescription = ordersDic["problemDescription"] as! String
                         userOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptDate"] as! String))
                         self.userOrders.append(userOrder)
@@ -339,8 +339,8 @@ public class OrdersManager{
         
         let res = Response()
         res.actionType = K.ActionTypes.confirmOrderRequestByUser
-        getUserApprovedOrder(orderReqId: userOrder.orderRequstId, { (result) in
-            if result {
+        //getUserApprovedOrder(orderReqId: userOrder.orderRequstId, { (result) in
+          //  if result {
                 //update order request status
                 updateOrderRequestStatus(orderRequestId: userOrder.orderRequstId, status: K.OrderStatus.inProgress)
                 let timestamp = convertDateToString(date: Date())
@@ -355,13 +355,13 @@ public class OrdersManager{
                 proOrderRef.setValue(proOrderDetails)
                 
                 view.onGetDataResponse(response: res)
-            }
-            else{
-                res.status = false
-                res.errorTxt = "The order was not approved"
-                view.onGetDataResponse(response: res)
-            }
-        })
+//}
+//            else{
+//                res.status = false
+//                res.errorTxt = "The order was not approved"
+//                view.onGetDataResponse(response: res)
+//            }
+      //  })
     }
     
     static func updateOrderRequestStatus(orderRequestId: String, status: String){

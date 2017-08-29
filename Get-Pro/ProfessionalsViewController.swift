@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, AcceptProfessionalDelegate {
+class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, AcceptUserDelegate {
     
     
     @IBOutlet weak var professionalsTV: UITableView!
@@ -23,13 +23,10 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         //self.professionals = AppManager.getProfessionals(orderRequestId: self.orderRequestId)
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: self.professionalsTV, color: K.Colors.darkGray)
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func onBackButtonClick(_ sender: Any) {
@@ -54,17 +51,10 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         
         // Adding the right informations
         cell.professional = pro
-        cell.acceptProfessionalClickDelegate = self
+        cell.acceptClickDelegate = self
         cell.professionalNameLbl.text = pro.name
         
-        //let url = NSURL(string: pro.imageUrl) //postPhoto URL
-        //let data = NSData(contentsOfURL: url! as URL ) // this URL convert into Data
-        //if data != nil {  //Some time Data value will be nil so we need to validate such things
-           // cell.avatarImageImgV.image = UIImage(data: data!)
-        //}
-        
         cell.avatarImageImgV.image = UIImage(named: "avatar.png")
-        
         cell.avatarImageImgV.layer.cornerRadius = 40
         cell.avatarImageImgV.layer.borderColor = UIColor.white.cgColor
         cell.avatarImageImgV.layer.borderWidth = 3
@@ -73,8 +63,10 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         return cell
     }
     
-    func onProfessionalAcceptBtnClick(potentialOrderRequestId: String)
-    {
+    func onUserAcceptBtnClick(orderRequest: OrderRequest) {
+        
+        //send data to server
+        
         // move to top order confirmation controller
         self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
     }

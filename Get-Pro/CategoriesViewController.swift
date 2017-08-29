@@ -21,7 +21,6 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
        
     @IBAction func onBackButtonClick(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 
+protocol AcceptUserDelegate: class {
+    func onUserAcceptBtnClick(orderRequest: OrderRequest)
+}
+
 protocol AcceptProfessionalDelegate: class {
-    func onProfessionalAcceptBtnClick(potentialOrderRequestId: String)
+    func onProfessionalAcceptBtnClick(orderDetails: ProfessionalOrderDetailsView)
 }
 
 protocol GetDataProtocol: class {

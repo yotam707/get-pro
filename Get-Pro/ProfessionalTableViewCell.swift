@@ -18,30 +18,12 @@ class ProfessionalTableViewCell :UITableViewCell {
     @IBOutlet weak var ratingImgV: UIImageView!
     
     weak var professional = Professional()
-    weak var acceptProfessionalClickDelegate: AcceptProfessionalDelegate?
+    weak var orderRequest = OrderRequest()
+    weak var acceptClickDelegate: AcceptUserDelegate?
     
     
     @IBAction func onAcceptProfessionalBtnClick(_ sender: Any) {
-        acceptProfessionalClickDelegate?.onProfessionalAcceptBtnClick(potentialOrderRequestId: (self.professional?.id)!);
+        acceptClickDelegate?.onUserAcceptBtnClick(orderRequest: orderRequest!);
     }
-    
-    
-    /*@IBOutlet weak var professionalNameLbl: UILabel!
-    @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var avatarImageImgV: UIImageView!
-    @IBOutlet weak var acceptProfessionalBtn: UIButton!
-    
-    
-    
-    
-    
-    
-    weak var professional = Professional()
-    weak var acceptProfessionalClickDelegate: AcceptProfessionalDelegate?
-    
-    
-    @IBAction func onAcceptProfessionalBtnClick(_ sender: Any) {
-        acceptProfessionalClickDelegate?.onProfessionalAcceptBtnClick(potentialOrderRequestId: (self.professional?.id)!);
-    }*/
     
 }

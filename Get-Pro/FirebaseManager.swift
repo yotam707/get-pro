@@ -93,8 +93,8 @@ public class FirebaseManager{
     static func registerProfessionalInDb(id: String, password: String, email: String ,name: String, apnToken: String) -> Professional{
         let p = Professional.init(id: id, name: name + "-Pro", phone: "", imageUrl: "", rating: 0, isTopProfessional: false)
         
-        let professionalsDatabaseRefById = professionalsDatabaseRef.child(id)
-        let proObject = ["name" : name, "email": email, "phone": p.phone, "pushToken" : p.apnToken, "rating" : p.rating, "isTopProfessional": p.isTopProfessional, "imageUrl": p.imageUrl, "status" : true, "categoryId" : "1"] as [String : Any]
+        let professionalsDatabaseRefById = professionalsDatabaseRef.child("\(id)")
+        let proObject = ["name" : name, "email": email, "phone": p.phone, "pushToken" : apnToken, "rating" : p.rating, "isTopProfessional": p.isTopProfessional, "imageUrl": p.imageUrl, "status" : true, "categoryId" : "1"] as [String : Any]
         professionalsDatabaseRefById.setValue(proObject)
         return p
     }

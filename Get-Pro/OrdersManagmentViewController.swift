@@ -21,9 +21,10 @@ class OrdersManagmentViewController: BaseUIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userOrders = OrdersManager.userOrders
-        
         self.userOrdersTV.delegate = self
         self.userOrdersTV.dataSource = self
+        self.setViewColor(view: self.view, color: K.Colors.darkGray)
+        self.setViewColor(view: self.userOrdersTV, color: K.Colors.darkGray)
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,17 +48,18 @@ class OrdersManagmentViewController: BaseUIViewController, UITableViewDataSource
         
         self.setViewColor(view: cell, color: K.Colors.darkGray)
         
-        cell.professionalAvatarImgV.image = UIImage(named: "avatar.png")
-        cell.professionalAvatarImgV.layer.cornerRadius = 40
+        //cell.professionalAvatarImgV.image = UIImage(named: "avatar.png")
+        AppManager.getImageFromUrl(url: order.professionalImageUrl, imgView: cell.professionalAvatarImgV)
+        cell.professionalAvatarImgV.layer.cornerRadius = 35
         cell.professionalAvatarImgV.layer.borderColor = UIColor.white.cgColor
         cell.professionalAvatarImgV.layer.borderWidth = 3
         
         let str = ("rating_img_\(order.professionalRating).png")
-        cell.professionalRatingImgV.imageView?.image = UIImage(named: str)
+        cell.professionalRatingImgV.image = UIImage(named: str)
         
         cell.professionalNameLbl.text = order.professionalName
         cell.categoryNameLbl.text = order.categoryName
-        cell.orderDateLbl.text = order.completedDate.description
+        cell.orderDateLbl.text = OrdersManager.shortDateToString(date: order.completedDate)
         
         
         // Returning the cell

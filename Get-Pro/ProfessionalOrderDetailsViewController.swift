@@ -85,7 +85,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
             }
             break
         default:
-            //confirmed by Pro
+            //confirmed by user
             if response.status {
                 self.loadingAI.stopAnimating()
                 self.loadingAI.isHidden = true
@@ -97,6 +97,11 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
                 //alert
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! ProOrderInProgressViewController
+        vc.orderDetails = self.orderDetails
     }
     
 }

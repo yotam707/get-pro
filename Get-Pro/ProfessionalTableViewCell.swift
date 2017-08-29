@@ -23,7 +23,7 @@ class ProfessionalTableViewCell :UITableViewCell {
     
     
     @IBAction func onAcceptProfessionalBtnClick(_ sender: Any) {
-        acceptClickDelegate?.onUserAcceptBtnClick(orderRequest: orderRequest!);
+        acceptClickDelegate?.onUserAcceptBtnClick(orderRequest: orderRequest!, professional: professional!);
     }
     
 }

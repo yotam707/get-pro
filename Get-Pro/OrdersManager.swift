@@ -17,8 +17,10 @@ public class OrdersManager{
     static private let requestOrderRateRef = FirebaseManager.databaseRef.child("OrderRate")
     static private let myOrdersUserRef = FirebaseManager.databaseRef.child("UserOrders")
     static private let myOrdersProRef = FirebaseManager.databaseRef.child("ProfessionalOrders")
+    static private let OrderProsRef = FirebaseManager.databaseRef.child("OrderPros")
     static private(set) var userOrders = [UserOrderView]()
     static private(set) var proOrders = [ProfessionalOrderDetailsView]()
+    static private(set) var proPendingOrders = [ProfessionalOrderDetailsView]()
     
     
     
@@ -38,19 +40,86 @@ public class OrdersManager{
             })
         })
     }
+    
+    
 
     static func getMyOrders(userId: String, loginType:String, view: GetDataProtocol){
         let res = Response()
         switch loginType {
         case K.LoginTypes.user:
             getUserOrders(userId: userId, view: view, res: res)
+            break
         case K.LoginTypes.professional:
             getProOrders(proId: userId, view: view, res: res)
+            getProPendingOrders(proId: userId, view: view)
+            break
         default:
             res.status = false
             res.errorTxt = "Unknowen login type in getMyOrders"
         }
     }
+    static func getProPendingOrders(proId: String, view: GetDataProtocol){
+        let res = Response()
+        res.actionType = K.ActionTypes.getPendingOrders
+        OrderProsRef.observe(.value, with: {(DataSnapshot) in
+            guard let snapshots = DataSnapshot.children.allObjects as? [DataSnapshot] else{
+                res.status = false
+                res.errorTxt = "Failed to bring Pending Professional Orders"
+                view.onGetDataResponse(response: res)
+                return
+            }
+            
+            for snap in snapshots{
+                let proOrder = ProfessionalOrderDetailsView()
+                 if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
+                     proOrder.orderRequestId = snap.key
+                     proOrder.professionalId = proId
+                     proOrder.userName = ordersDic["userName"] as! String
+                     proOrder.userImageUrl = ordersDic["userImageUrl"] as! String
+                     proOrder.problemDescription = ordersDic["problemDescription"] as! String
+                     proOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptedDate"] as! String))
+                     self.proPendingOrders.append(proOrder)
+                 }
+             }
+             res.entities = self.proPendingOrders
+            view.onGetDataResponse(response: res)
+        })
+    }
+    
+//        ordersRef.queryEqual(toValue: snap.key)
+//            .observe(.value, with: {(DataSnapshot) in
+//                let orderDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
+//                status = orderDic["status"] as! String
+//                if status != K.OrderStatus.pending{
+//                    continue
+//                }
+//                
+//            })
+//
+//
+//        myOrdersProRef.child("\(proId)")
+//            .observe(.value, with: {(DataSnapshot) in
+//                self.proOrders = []
+//                
+//
+//                for snap in snapshots{
+//                    let proOrder = ProfessionalOrderDetailsView()
+//                    if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
+//                        proOrder.orderRequestId = snap.key
+//                        proOrder.professionalId = proId
+//                        proOrder.userName = ordersDic["userName"] as! String
+//                        proOrder.userImageUrl = ordersDic["userImageUrl"] as! String
+//                        proOrder.problemDescription = ordersDic["problemDescription"] as! String
+//                        proOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptedDate"] as! String))
+//                        self.proOrders.append(proOrder)
+//                    }
+//                }
+//                res.entities = self.proOrders
+//                view.onGetDataResponse(response: res)
+//            })
+//        
+//    }
+//
     
     static func getProOrders(proId: String, view: GetDataProtocol, res: Response){
         res.actionType = K.ActionTypes.getMyOrders_Pro
@@ -82,6 +151,7 @@ public class OrdersManager{
             })
 
     }
+    
     
     static func getUserOrders(userId: String, view: GetDataProtocol, res: Response){
         res.actionType = K.ActionTypes.getMyOrders_User
@@ -124,6 +194,7 @@ public class OrdersManager{
                     let currentOrder = ProfessionalOrderDetailsView.init()
                     let orderRequestDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
                     currentOrder.userName = orderRequestDic["userName"] as! String
+                    currentOrder.userId = orderRequestDic["userId"] as! String
                     currentOrder.problemDescription = orderRequestDic["problemDescription"] as! String
                     currentOrder.userImageUrl = orderRequestDic["userImageUrl"] as! String
                     res.entities.append(currentOrder)
@@ -235,6 +306,7 @@ public class OrdersManager{
                 view.onGetDataResponse(response: res)
             }
             else{
+                ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: true)
                 res.status = false
                 res.errorTxt = "Confirm order by professional failed"
                 view.onGetDataResponse(response: res)

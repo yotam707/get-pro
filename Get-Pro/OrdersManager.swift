@@ -232,14 +232,29 @@ public class OrdersManager{
         })
     }
     
+//    static func getProfessionalsApprovedOrder(orderReqId: String, _ compleation:@escaping (_ result: ProfessionalOrder) ->()){
+//        requestOrderApprovedRef.child(orderReqId).observeSingleEvent(of: .childAdded, with: {(DataSnapshot) in
+//            let approvedOrderDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
+//            let proId = approvedOrderDic["professionalId"] as! String
+//            ProfessionalsManager.getProfessionalDetils(professionalId: proId, { (pro) in
+//                let orderPro = ProfessionalOrder.init(pro: pro, orderReqId: orderReqId)
+//                compleation(orderPro)
+//            })
+//        })
+//        
+//    }
+    
     static func getProfessionalsApprovedOrder(orderReqId: String, _ compleation:@escaping (_ result: ProfessionalOrder) ->()){
-        requestOrderApprovedRef.child(orderReqId).observeSingleEvent(of: .childAdded, with: {(DataSnapshot) in
-            let approvedOrderDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
-            let proId = approvedOrderDic["professionalId"] as! String
-            ProfessionalsManager.getProfessionalDetils(professionalId: proId, { (pro) in
-                let orderPro = ProfessionalOrder.init(pro: pro, orderReqId: orderReqId)
-                compleation(orderPro)
+        requestOrderApprovedRef.child(orderReqId).observeSingleEvent(of: .childAdded, with: { (snapshot) in
+            requestOrdersRef.child(orderReqId).observe(.value, with: {(snapshot) in
+                let approvedOrderDic = snapshot.value as? [String: AnyObject] ?? [:]
+                let proId = approvedOrderDic["professionalId"] as! String
+                ProfessionalsManager.getProfessionalDetils(professionalId: proId, { (pro) in
+                    let orderPro = ProfessionalOrder.init(pro: pro, orderReqId: orderReqId)
+                    compleation(orderPro)
+                })
             })
+        
         })
         
     }

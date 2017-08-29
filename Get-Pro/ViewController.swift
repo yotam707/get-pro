@@ -56,9 +56,11 @@ class ViewController: BaseUIViewController, GetDataProtocol {
             self.handleDataProgressResponse(progress: self.userDataProgress, counter: self.userDataProgressCounter)
             break;
         case K.ActionTypes.getMyOrders_Pro:
+            self.proDataProgressCounter-=1
             self.handleDataProgressResponse(progress: self.proDataProgress, counter: self.proDataProgressCounter)
             break;
         case K.ActionTypes.getPendingOrders:
+            self.proDataProgressCounter-=1
             self.handleDataProgressResponse(progress: self.proDataProgress, counter: self.proDataProgressCounter)
             break;
         default:

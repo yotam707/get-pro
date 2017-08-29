@@ -211,9 +211,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let pathConfig = NotificationsManger.handleNotificationUrl(url: url)
         if pathConfig[1] == "orderRequest" {
-            let vc = storyboard.instantiateViewController(withIdentifier: "testVC") as! TestViewController
-            vc.reqIdVal = pathConfig[2]
-            //vc.initView()
+            let vc = storyboard.instantiateViewController(withIdentifier: "proOrderDetailsView") as! ProfessionalOrderDetailsViewController
+            vc.orderRequestId = pathConfig[2]
             window?.rootViewController = vc
             
         }

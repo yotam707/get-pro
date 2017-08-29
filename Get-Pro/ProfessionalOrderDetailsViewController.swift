@@ -15,6 +15,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
     @IBOutlet weak var problemDescriptionTxtV: UITextView!
     @IBOutlet weak var userAvatarImgV: UIImageView!
     @IBOutlet weak var userNameLbl: UILabel!
+    var orderRequestId : String = ""
     
     
     @IBAction func onDeclineButtonClick(_ sender: Any) {
@@ -27,6 +28,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //load order request + loading animation
     }
     
     override func didReceiveMemoryWarning() {

@@ -33,6 +33,8 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
         self.loadingAI.isHidden = false
         self.acceptButton.isEnabled = false
         self.declineBtn.isEnabled = false
+        orderDetails.orderRequestId = self.orderRequestId
+        orderDetails.professionalId  = AppManager.getUserId()
         OrdersManager.confirmOrderByProfessional(orderProDetails: orderDetails, view: self)
     }
     

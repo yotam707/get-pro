@@ -121,14 +121,27 @@ class RegisterViewController: BaseUIViewController, GetDataProtocol {
         default:
             //register action
             if response.status {
-                let user = (response.entities as! [User])[0]
+                var user = User()
+                if self.selectedloginType == K.LoginTypes.user {
+                    user = (response.entities as! [User])[0]
+                    AppManager.postRegister(user: user, loginType: selectedloginType)
+                }
+                else {
+                    let pro = (response.entities as! [Professional])[0]
+                    user.name = nameTB.text!
+                    user.email = emailTB.text!
+                    user.password = passwordTB.text!
+                    user.imageUrl = pro.imageUrl
+                    user.id = pro.id
+                }
                 AppManager.postRegister(user: user, loginType: selectedloginType)
                 AppManager.initApp(view: self, userType: self.selectedloginType)
             }
             else {
                 //alert here
+                
                 self.loadingAI.stopAnimating()
-                self.loadingAI.isHidden = false
+                self.loadingAI.isHidden = true
                 self.setViewState(isEnabled: true)
 
             }

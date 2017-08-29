@@ -17,19 +17,17 @@ class MenuViewController: BaseUIViewController {
         super.viewDidLoad()
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: orderProffesionalBtn, color: K.Colors.darkRed)
+        self.setViewColor(view: manageOrdersBtn, color: K.Colors.darkRed)
         self.disableEnableManageOrdersBtn()
         self.setAsRootView(view: self)
     }
     
     func disableEnableManageOrdersBtn(){
-        //let isEnabled = AppManager.getMyOrders().count > 0
-        //manageOrdersBtn.isEnabled = isEnabled
-//        if isEnabled {
-//            self.setViewColor(view: manageOrdersBtn, color: K.Colors.darkRed)
-//        }
-//        else {
-//            self.setViewColor(view: manageOrdersBtn, color: K.Colors.disabledGray)
-//        }
+        let isEnabled = OrdersManager.userOrders.count > 0
+        if !isEnabled {
+            self.setViewColor(view: manageOrdersBtn, color: K.Colors.disabledGray)
+            manageOrdersBtn.isEnabled = false
+        }
     }
 
 }

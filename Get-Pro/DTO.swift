@@ -93,20 +93,24 @@ class Order : BaseDTO{
 class OrderRequest : BaseDTO{
     var id:String = ""
     var userId:String = ""
+    var userName:String = ""
+    var userImageUrl: String = ""
+    var professionalId: String = ""
     var categoryId:String = ""
+    var categoryName: String = ""
     var problemDescription:String = ""
     var requestDate:Date = Date()
     
-    init(id: String, userId: String, categoryId: String, problemDescription: String, requestDate: Date) {
+    init(id: String, userId: String, categoryId: String, problemDescription: String) {
         self.id = id
         self.userId = userId
         self.categoryId = categoryId
         self.problemDescription = problemDescription
-        self.requestDate = requestDate
+        self.requestDate = Date()
     }
     
     convenience override init(){
-        self.init(id: "", userId: "", categoryId: "", problemDescription: "", requestDate: Date())
+        self.init(id: "", userId: "", categoryId: "", problemDescription: "")
     }
 }
 
@@ -168,14 +172,22 @@ class Response{
 
 
 class UserOrderView : BaseDTO {
-    
-    var professionalName:String = ""
+    var orderRequstId: String = ""
     var categoryName:String = ""
+    var userId: String = ""
+    var userName: String = ""
+    var userImageUrl: String = ""
+    var professionalId: String = ""
+    var professionalName:String = ""
     var professionalImageUrl:String = ""
     var professionalRating:Int = 0
+    var problemDescription: String = ""
+    var acceptedDate: Date = Date()
     var completedDate:Date = Date()
     
-    init(professionalName: String, categoryName: String, professionalImageUrl: String, professionalRating: Int, completedDate: Date) {
+    init(orderRequstId :String ,categoryName: String, userName: String, professionalId:String ,professionalName: String, professionalImageUrl: String, professionalRating: Int, completedDate: Date) {
+        self.professionalId = professionalId
+        self.orderRequstId = orderRequstId
         self.professionalName = professionalName
         self.categoryName = categoryName
         self.professionalImageUrl = professionalImageUrl
@@ -184,7 +196,7 @@ class UserOrderView : BaseDTO {
     }
     
     convenience override init(){
-        self.init(professionalName: "" ,categoryName: "", professionalImageUrl: "", professionalRating: 0, completedDate: Date())
+        self.init(orderRequstId : "",categoryName: "", userName: "", professionalId:"", professionalName: "" , professionalImageUrl: "", professionalRating: 0, completedDate: Date())
     }
 }
 
@@ -192,11 +204,15 @@ class UserOrderView : BaseDTO {
 class ProfessionalOrderDetailsView: BaseDTO{
     var orderRequestId:String = ""
     var professionalId:String = ""
+    var professionalName:String = ""
+    var professionalImageUrl:String = ""
+    var professionalRating:Int = 0
     var userName:String = ""
     var userImageUrl:String = ""
     var userLocationDistance: Float
     var userCity: String
     var problemDescription:String = ""
+    var acceptedDate: Date = Date()
     var completedDate:Date = Date()
     
     init(orderRequestId: String, professionalId: String, userName: String, userImageUrl: String, userLocationDistance: Float, userCity: String, problemDescription: String, completedDate : Date) {

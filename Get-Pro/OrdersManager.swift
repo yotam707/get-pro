@@ -17,7 +17,8 @@ public class OrdersManager{
     static private let requestOrderRateRef = FirebaseManager.databaseRef.child("OrderRate")
     static private let myOrdersUserRef = FirebaseManager.databaseRef.child("UserOrders")
     static private let myOrdersProRef = FirebaseManager.databaseRef.child("ProfessionalOrders")
-    static private(set) var orders = [Order]()
+    static private(set) var userOrders = [UserOrderView]()
+    static private(set) var proOrders = [ProfessionalOrderDetailsView]()
     
     
     
@@ -55,7 +56,7 @@ public class OrdersManager{
         res.actionType = K.ActionTypes.getMyOrders_Pro
         myOrdersProRef.child("\(proId)")
             .observe(.value, with: {(DataSnapshot) in
-                self.orders = []
+                self.proOrders = []
                 
                 guard let snapshots = DataSnapshot.children.allObjects as? [DataSnapshot] else{
                     res.status = false
@@ -65,18 +66,18 @@ public class OrdersManager{
                 }
                 
                 for snap in snapshots{
+                    let proOrder = ProfessionalOrderDetailsView()
                     if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
-                        let orderReqId_d = ordersDic["orderRequestId"] as! String
-                        let professionalId_d = ordersDic["userId"] as! String
-                        let acceptedDate_d = ordersDic["acceptedDate"] as! Date
-                        let completedDate_d = ordersDic["completedDate"] as! Date
-                        
-                        let order = Order(orderRequestId: orderReqId_d, professionalId: professionalId_d, acceptedDate: acceptedDate_d, completedDate: completedDate_d)
-                            //professionalOrderDetailsView -> This is the obj to return [list]
-                        self.orders.append(order)
+                        proOrder.orderRequestId = snap.key
+                        proOrder.professionalId = proId
+                        proOrder.userName = ordersDic["userName"] as! String
+                        proOrder.userImageUrl = ordersDic["userImageUrl"] as! String
+                        proOrder.problemDescription = ordersDic["problemDescription"] as! String
+                        proOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptedDate"] as! String))
+                        self.proOrders.append(proOrder)
                     }
                 }
-                res.entities = self.orders
+                res.entities = self.proOrders
                 view.onGetDataResponse(response: res)
             })
 
@@ -86,7 +87,7 @@ public class OrdersManager{
         res.actionType = K.ActionTypes.getMyOrders_User
         myOrdersUserRef.child("\(userId)")
             .observe(.value, with: {(DataSnapshot) in
-                self.orders = []
+                self.userOrders = []
                 
                 guard let snapshots = DataSnapshot.children.allObjects as? [DataSnapshot] else{
                     res.status = false
@@ -97,35 +98,34 @@ public class OrdersManager{
                 
                 for snap in snapshots{
                     if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
-                        let orderReqId_d = snap.key
-                        //let categoryId = ordersDic["categoryId"] as! String
-                        let requestDate = ordersDic["requestDate"] as! Date
-                        //let status = ordersDic["status"] as! String
-                        
-                        //userOrderView -> this is obj to return
-                        let order = Order(orderRequestId: orderReqId_d, professionalId: "", acceptedDate: requestDate, completedDate: requestDate)
-                        
-                        print(order)
+                        let userOrder = UserOrderView()
+                        userOrder.orderRequstId = snap.key
+                        userOrder.categoryName = ordersDic["categoryName"] as! String
+                        userOrder.professionalId = ordersDic["professionalId"] as! String
+                        userOrder.professionalName = ordersDic["professionalName"] as! String
+                        userOrder.professionalImageUrl = ordersDic["professionalImageUrl"] as! String
+                        userOrder.professionalRating = ordersDic["professionalRating"] as! Int
+                        userOrder.problemDescription = ordersDic["problemDescription"] as! String
+                        userOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptDate"] as! String))
+                        self.userOrders.append(userOrder)
                     }
                 }
-                res.entities = self.orders
+                res.entities = self.userOrders
                 view.onGetDataResponse(response: res)
             })
 
     }
 
     
-    static func getProfessionalOrderDetails(orderId:String, view: GetDataProtocol){
+    static func getProfessionalOrderDetails(orderRequsetId:String, view: GetDataProtocol){
         let res = Response()
         res.actionType = K.ActionTypes.getProfessionalOrderDetails
-        requestOrdersRef.child(orderId).observe(.value ,with: { (DataSnapshot) in
-                    let currentOrder = OrderRequest.init()
+        requestOrdersRef.child(orderRequsetId).observe(.value ,with: { (DataSnapshot) in
+                    let currentOrder = ProfessionalOrderDetailsView.init()
                     let orderRequestDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
-                    currentOrder.categoryId = orderRequestDic["categoryId"] as! String
+                    currentOrder.userName = orderRequestDic["userName"] as! String
                     currentOrder.problemDescription = orderRequestDic["problemDescription"] as! String
-                    currentOrder.requestDate = convertStringToDate(dateString: orderRequestDic["requestDate"] as! String)
-                    currentOrder.id = orderId
-                    currentOrder.userId = orderRequestDic["userId"] as! String
+                    currentOrder.userImageUrl = orderRequestDic["userImageUrl"] as! String
                     res.entities.append(currentOrder)
                     view.onGetDataResponse(response: res)
         })
@@ -177,10 +177,20 @@ public class OrdersManager{
     static func getUserApprovedOrder(orderReqId: String, _ compleation:@escaping (_ result: Bool)->()){
         requestOrderApprovedRef.child(orderReqId).observeSingleEvent(of: .childChanged, with: { (DataSnapshot) in
             guard let dic = DataSnapshot.value as? [String: AnyObject] else {
-                //compleation(false)
                 return
             }
-            if (dic["userId"]?.exists())!{
+            if (dic["professionalId"]?.exists())!{
+                compleation(true)
+            }
+        })
+    }
+    
+    static func getProApprovedOrderByUser(orderReqId: String, professionalId: String, _ compleation:@escaping (_ result: Bool)->()){
+        myOrdersProRef.child(professionalId).child(orderReqId).observeSingleEvent(of: .childAdded, with: { (DataSnapshot) in
+            guard let dic = DataSnapshot.value as? [String: AnyObject] else {
+                return
+            }
+            if (!dic.isEmpty) {
                 compleation(true)
             }
         })
@@ -192,12 +202,11 @@ public class OrdersManager{
         let res = Response()
         res.actionType = K.ActionTypes.publishOrder
         let requsetOrdersRefByUserId = requestOrdersRef.childByAutoId()
-        let orderRequset = ["categoryId": orderReq.categoryId, "problemDescription" : orderReq.problemDescription, "requestDate" : orderReq.requestDate.description, "userId": orderReq.userId]
+        let orderRequset = ["categoryId": orderReq.categoryId,"cateogryName": orderReq.categoryName,"problemDescription" : orderReq.problemDescription, "requestDate" : orderReq.requestDate.description, "userId": orderReq.userId, "userName" : orderReq.userName, "userImageUrl" : orderReq.userImageUrl ,"status" : K.OrderStatus.pending]
         requsetOrdersRefByUserId.setValue(orderRequset)
         let orderReqId = requsetOrdersRefByUserId.key
         orderReq.id = orderReqId
-        addUserOrder(orderReqId: orderReq.id, userId: orderReq.userId, requestDate: orderReq.requestDate.description, categoryId: orderReq.categoryId)
-        getProfessionalsApprovedOrder(orderReqId: orderReqId, { (proOrder) in
+        getProfessionalsApprovedOrder(orderReqId: orderReqId,{ (proOrder) in
             res.entities.append(proOrder)
             view.onGetDataResponse(response: res)
         })
@@ -206,31 +215,73 @@ public class OrdersManager{
     
     
     
-    static func addUserOrder(orderReqId: String, userId: String, requestDate: String, categoryId: String){
+    static func addUserOrder(orderReqId: String, userId: String, requestDate: String, categoryName: String){
         let userOrderRef = myOrdersUserRef.child("\(userId)").child("\(orderReqId)")
-        let userOrderObj = ["status" : K.OrderStatus.pending, "requestDate" : requestDate, "categoryId" : categoryId]
+        let userOrderObj = ["requestDate" : requestDate, "categoryName" : categoryName]
         userOrderRef.setValue(userOrderObj)
     }
     
-    static func confirmOrderByProfessional(orderReqId:String, professionalId: String, userId: String, view: GetDataProtocol){
-        let orderRequestApprovedRefByOrderId = requestOrderApprovedRef.child("\(orderReqId)")
+    static func confirmOrderByProfessional(orderProDetails: ProfessionalOrderDetailsView ,view: GetDataProtocol){
+        let res = Response()
+        res.actionType = K.ActionTypes.confirmOrderRequestByPro
+        let orderRequestApprovedRefByOrderId = requestOrderApprovedRef.child("\(orderProDetails.orderRequestId)")
         let timestamp = convertDateToString(date: Date())
-        let orderRequestApproved = ["professionalId": professionalId, "userId" : userId, "acceptDate" : timestamp]
+        let orderRequestApproved = ["professionalId": orderProDetails.professionalId ,"acceptDate" : timestamp]
+       
         orderRequestApprovedRefByOrderId.setValue(orderRequestApproved)
-        addProfessionalOrder(orderReqId: orderReqId, professionalId: professionalId, acceptDate: timestamp, userId: userId)
-        updateUserOrderWithProId(proId: professionalId, userId: userId, orderReqId: orderReqId)
-        ProfessionalsManager.setProfessionalStatus(professionalId: professionalId, status: false)
+        ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: false)
+        getProApprovedOrderByUser(orderReqId: orderProDetails.orderRequestId, professionalId: orderProDetails.professionalId, { (result) in
+            if result {
+                view.onGetDataResponse(response: res)
+            }
+            else{
+                res.status = false
+                res.errorTxt = "Confirm order by professional failed"
+                view.onGetDataResponse(response: res)
+            }
+        
+        })
         
     }
+
     
-    static func confirmOrderByUser(orderReqId: String, professionalId: String, userId: String, view: GetDataProtocol){
-        //need to add function here
-//        let res = Response()
-//        getUserApprovedOrder(orderReqId: orderReqId, { (result) in
-//            if result {
-//                
-//            }
-//        })
+    static func confirmOrderByUser(userOrder: UserOrderView, view: GetDataProtocol){
+        //change order request status to in progress
+        //send to professional approval
+        //write this order for the user and professional
+        
+        let res = Response()
+        res.actionType = K.ActionTypes.confirmOrderRequestByUser
+        getUserApprovedOrder(orderReqId: userOrder.orderRequstId, { (result) in
+            if result {
+                //update order request status
+                updateOrderRequestStatus(orderRequestId: userOrder.orderRequstId, status: K.OrderStatus.inProgress)
+                let timestamp = convertDateToString(date: Date())
+                //need to add function here
+                let userOrderDetails = ["professionalId": userOrder.professionalId, "professionalName": userOrder.professionalName, "professionalImageUrl" : userOrder.professionalImageUrl, "professionalRating": userOrder.professionalRating.description ,"userName" : userOrder.userName, "categoryName": userOrder.categoryName, "problemDescription" : userOrder.problemDescription ,"acceptDate" : timestamp]
+                
+                let proOrderDetails = ["userId": userOrder.userId, "userImageUrl" : userOrder.userImageUrl, "userName" : userOrder.userName, "categoryName": userOrder.categoryName,
+                                       "problemDescription" : userOrder.problemDescription ,"acceptDate" : timestamp]
+                let userOrderRef = myOrdersUserRef.child(userOrder.userId).child(userOrder.orderRequstId)
+                userOrderRef.setValue(userOrderDetails)
+                let proOrderRef =  myOrdersProRef.child(userOrder.professionalId).child(userOrder.orderRequstId)
+                proOrderRef.setValue(proOrderDetails)
+                
+                view.onGetDataResponse(response: res)
+            }
+            else{
+                res.status = false
+                res.errorTxt = "The order was not approved"
+                view.onGetDataResponse(response: res)
+            }
+        })
+    }
+    
+    static func updateOrderRequestStatus(orderRequestId: String, status: String){
+        let orderRequestRefById = requestOrdersRef.child(orderRequestId)
+        let updateOrderReqObj = ["status" : status]
+        orderRequestRefById.updateChildValues(updateOrderReqObj)
+        
     }
     
     static func updateFinishOrder(orderReqId: String, proId: String, userId: String){

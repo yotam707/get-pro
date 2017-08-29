@@ -18,6 +18,8 @@
 		573AC6D11F0ACC4F00112B24 /* Get_Pro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 573AC6CF1F0ACC4F00112B24 /* Get_Pro.xcdatamodeld */; };
 		573AC6D31F0ACC4F00112B24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 573AC6D21F0ACC4F00112B24 /* Assets.xcassets */; };
 		576726331F48B258003CC28A /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576726321F48B258003CC28A /* NotificationsManager.swift */; };
+		57A441FE1F55609C00C9E5C8 /* ProfessionalOrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A441FC1F55609C00C9E5C8 /* ProfessionalOrderDetailsViewController.swift */; };
+		57A441FF1F55609C00C9E5C8 /* ProOrderInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A441FD1F55609C00C9E5C8 /* ProOrderInProgressViewController.swift */; };
 		8E25D6F71F0E86860052DC6B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6F61F0E86860052DC6B /* RegisterViewController.swift */; };
 		8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6F81F0E9AEF0052DC6B /* MenuViewController.swift */; };
 		8E25D6FB1F0E9E440052DC6B /* OrdersManagmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E25D6FA1F0E9E440052DC6B /* OrdersManagmentViewController.swift */; };
@@ -59,6 +61,8 @@
 		573AC6D21F0ACC4F00112B24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		573AC6D71F0ACC4F00112B24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		576726321F48B258003CC28A /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		57A441FC1F55609C00C9E5C8 /* ProfessionalOrderDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalOrderDetailsViewController.swift; sourceTree = "<group>"; };
+		57A441FD1F55609C00C9E5C8 /* ProOrderInProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProOrderInProgressViewController.swift; sourceTree = "<group>"; };
 		8E25D6F61F0E86860052DC6B /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8E25D6F81F0E9AEF0052DC6B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8E25D6FA1F0E9E440052DC6B /* OrdersManagmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersManagmentViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 		573AC6C71F0ACC4F00112B24 /* Get-Pro */ = {
 			isa = PBXGroup;
 			children = (
+				57A441FC1F55609C00C9E5C8 /* ProfessionalOrderDetailsViewController.swift */,
+				57A441FD1F55609C00C9E5C8 /* ProOrderInProgressViewController.swift */,
 				570D47181F3B338600526CA3 /* Get-Pro.entitlements */,
 				570D47131F3A307A00526CA3 /* Managers */,
 				570D470F1F35DB4500526CA3 /* GoogleService-Info.plist */,
@@ -326,6 +332,7 @@
 				5712758D1F49D4E400AFA44D /* TestViewController.swift in Sources */,
 				8EA8FF041F0C23F3009CDE6D /* MockData.swift in Sources */,
 				8E6FC45E1F4F4624000676F4 /* ProfessionalMenuTabBarController.swift in Sources */,
+				57A441FF1F55609C00C9E5C8 /* ProOrderInProgressViewController.swift in Sources */,
 				8E25D6F91F0E9AEF0052DC6B /* MenuViewController.swift in Sources */,
 				570D47171F3A3DA800526CA3 /* OrdersManager.swift in Sources */,
 				8EA8FF001F0C23F3009CDE6D /* AppManager.swift in Sources */,
@@ -336,6 +343,7 @@
 				8E25D6FF1F0E9F380052DC6B /* ProfessionalsViewController.swift in Sources */,
 				570D47121F3A295500526CA3 /* CategoriesManager.swift in Sources */,
 				8E6FC45A1F3A2A90000676F4 /* TopProfessionalViewController.swift in Sources */,
+				57A441FE1F55609C00C9E5C8 /* ProfessionalOrderDetailsViewController.swift in Sources */,
 				8EB90EED1F12067A006AD86E /* BaseUIViewController.swift in Sources */,
 				8E25D6FD1F0E9E860052DC6B /* CategoriesViewController.swift in Sources */,
 				8EA8FF081F0C282F009CDE6D /* DTO.swift in Sources */,

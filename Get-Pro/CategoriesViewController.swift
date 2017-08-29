@@ -17,8 +17,9 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var loadingAI: UIActivityIndicatorView!
 
     var categories = [Category]()
-    weak var proOrder = ProfessionalOrder()
-       
+    var proOrder = ProfessionalOrder()
+    var orderRequest = OrderRequest()
+    
     @IBAction func onBackButtonClick(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -44,6 +45,8 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         self.setViewColor(view: navigationBar, color: K.Colors.darkGray)
         self.setViewColor(view: categoriesTV, color: K.Colors.darkGray)
 
+        self.orderRequest = OrderRequest()
+        self.proOrder = ProfessionalOrder()
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,20 +82,23 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         self.setViewState(isEnabled: false)
         
         //send request to server
-        let orderRequest = OrderRequest()
-        orderRequest.categoryId = self.categories[indexPath.row].id
-        orderRequest.userId = AppManager.getUserId()
-        orderRequest.problemDescription = problamDescTV.text
-        orderRequest.requestDate = Date()
+        self.orderRequest.categoryId = self.categories[indexPath.row].id
+        self.orderRequest.categoryName = self.categories[indexPath.row].name
+        self.orderRequest.userId = AppManager.getUserId()
+        self.orderRequest.userName = LocalStorageManager.readFromStorage(key: K.User.name)
+        self.orderRequest.userImageUrl = LocalStorageManager.readFromStorage(key: K.User.imageUrl)
+        self.orderRequest.problemDescription = problamDescTV.text
+        self.orderRequest.requestDate = Date()
         
-        AppManager.publishOrder(view: self, orderReq: orderRequest)
+        AppManager.publishOrder(view: self, orderReq: self.orderRequest)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         //handle here Async - add the request id & move to next controller
         let professionalsVC = segue.destination as! TopProfessionalViewController
-        professionalsVC.proOrder = self.proOrder!
+        professionalsVC.proOrder = self.proOrder
+        professionalsVC.orderReq = self.orderRequest
     }
     
     func setViewState(isEnabled:Bool){
@@ -106,32 +112,16 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         if response.status {
             //save the result locally
             self.proOrder = (response.entities as! [ProfessionalOrder])[0]
+            self.orderRequest.id = self.proOrder.orderRequestId
             self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
         }
         else {
             //alert
+            
             self.loadingAI.stopAnimating()
             self.loadingAI.isHidden = true
             self.setViewState(isEnabled: true)
         }
-        
-        /*switch response.actionType {
-        case K.ActionTypes.confirmOrderRequestByPro:
-            break;
-        default:
-            //publishOrder requesr
-            if response.status {
-                //save the result locally
-                self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
-            }
-            else {
-                //alert
-                self.loadingAI.stopAnimating()
-                self.loadingAI.isHidden = true
-                self.setViewState(isEnabled: true)
-            }
-           
-        }*/
     }
 
 

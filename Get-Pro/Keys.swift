@@ -44,6 +44,8 @@ public struct K {
     
     struct User {
         static let userId = "userId"
+        static let name = "name"
+        static let imageUrl = "imageUrl"
     }
     
     struct Colors {

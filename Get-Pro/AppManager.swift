@@ -33,11 +33,14 @@ public class AppManager{
     }
     
     
-    static func postRegister(userId:String, email:String, password:String, loginType:String) {
-        LocalStorageManager.writeToStorage(key: K.Auth.email, value: email)
-        LocalStorageManager.writeToStorage(key: K.Auth.password, value: password)
+    static func postRegister(user :User, loginType:String) {
+        
+        LocalStorageManager.writeToStorage(key: K.User.userId, value: user.id)
+        LocalStorageManager.writeToStorage(key: K.User.imageUrl, value: user.imageUrl)
+        LocalStorageManager.writeToStorage(key: K.User.name, value: user.name)
+        LocalStorageManager.writeToStorage(key: K.Auth.email, value: user.email)
+        LocalStorageManager.writeToStorage(key: K.Auth.password, value: user.password)
         LocalStorageManager.writeToStorage(key: K.Auth.loginType, value: loginType)
-        LocalStorageManager.writeToStorage(key: K.User.userId, value: userId)
     }
     
     

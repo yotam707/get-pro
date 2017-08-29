@@ -58,7 +58,7 @@ public class FirebaseManager{
                 })
             }
             else{
-                res.errorTxt = "Resgiter Failed"
+                res.errorTxt = "Resgiter Failed | \(error.debugDescription)"
                 res.status = false
                 view.onGetDataResponse(response: res)
             }

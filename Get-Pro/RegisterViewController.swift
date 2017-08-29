@@ -122,8 +122,7 @@ class RegisterViewController: BaseUIViewController, GetDataProtocol {
             //register action
             if response.status {
                 let user = (response.entities as! [User])[0]
-                AppManager.postRegister(userId: user.id, email: user.email, password: user.password, loginType: selectedloginType)
-                
+                AppManager.postRegister(user: user, loginType: selectedloginType)
                 AppManager.initApp(view: self, userType: self.selectedloginType)
             }
             else {

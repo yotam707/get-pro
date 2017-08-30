@@ -995,12 +995,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="History" image="clock-timer-7" selectedImage="clock-timer-7" id="bHs-Kf-AwJ"/>
                     <connections>
-                        <segue destination="KNL-Zf-fLj" kind="show" identifier="orderRequestHistoryDetailsSeg" id="0Zm-vR-jNp"/>
+                        <outlet property="ordersTV" destination="erg-eD-j2z" id="DBN-tG-B2Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UHL-T7-yIL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1385" y="1704"/>
+            <point key="canvasLocation" x="1385" y="2199"/>
         </scene>
         <!--Pendings-->
         <scene sceneID="1qF-yQ-sge">
@@ -1106,7 +1106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5B-xm-Vbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1385" y="873"/>
+            <point key="canvasLocation" x="1385" y="659"/>
         </scene>
         <!--Professional Order Details View Controller-->
         <scene sceneID="PGa-bF-8gH">
@@ -1335,7 +1335,7 @@
         <!--Professional Menu Tab Bar Controller-->
         <scene sceneID="Q3n-rL-dC9">
             <objects>
-                <tabBarController id="ZVt-04-51g" customClass="ProfessionalMenuTabBarController" customModule="Get_Pro" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="professionalMenuTabBar" id="ZVt-04-51g" customClass="ProfessionalMenuTabBarController" customModule="Get_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cZY-mh-eAa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1344,6 +1344,7 @@
                     <connections>
                         <segue destination="DTh-4K-ptm" kind="relationship" relationship="viewControllers" id="CKS-fx-qi9"/>
                         <segue destination="OW5-8R-6MJ" kind="relationship" relationship="viewControllers" id="FUW-7z-HHP"/>
+                        <segue destination="KNL-Zf-fLj" kind="show" identifier="proFromNotificationSeg" id="4Iu-k9-27L"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lG6-2o-N78" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1367,7 +1368,7 @@
         <segue reference="fyj-CE-lEl"/>
         <segue reference="a21-bu-Wqj"/>
         <segue reference="NT4-3Y-OCf"/>
+        <segue reference="4Iu-k9-27L"/>
         <segue reference="0j5-SU-ugh"/>
-        <segue reference="0Zm-vR-jNp"/>
     </inferredMetricsTieBreakers>
 </document>

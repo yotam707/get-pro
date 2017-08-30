@@ -27,7 +27,7 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         self.setViewColor(view: self.professionalsTV, color: K.Colors.darkGray)
         loadingAI.bringSubview(toFront: professionalsTV)
         //get all relevant pros in pending
-        OrdersManager.getAdditionalProfessionals(declinedProfessionalId: declinedProfessionalId, orderRequestId: declinedProfessionalId, view: self)
+        OrdersManager.getAdditionalProfessionals(declinedProfessionalId: declinedProfessionalId, orderRequestId: orderRequestId, view: self)
         loadingAI.startAnimating()
         loadingAI.isHidden = false
     }
@@ -61,8 +61,8 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         cell.acceptClickDelegate = self
         cell.professionalNameLbl.text = pro.name
         AppManager.getImageFromUrl(url: pro.imageUrl, imgView: cell.avatarImageImgV, imgSize: 80)
-        let str = "rating_img_\(pro.rating).png"
-        cell.ratingImgV.image = UIImage(named: str)
+        //let str = "rating_img_\(pro.rating).png"
+        //cell.ratingImgV.image = UIImage(named: str)
         
         // Returning the cell
         return cell
@@ -92,6 +92,7 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
             if response.status {
                 loadingAI.stopAnimating()
                 loadingAI.isHidden = true
+                
                 // move to top order confirmation controller
                 self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
             }
@@ -115,5 +116,6 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         }
         
     }
+    
     
 }

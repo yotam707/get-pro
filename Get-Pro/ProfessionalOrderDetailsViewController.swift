@@ -36,6 +36,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
         orderDetails.orderRequestId = self.orderRequestId
         orderDetails.professionalId  = AppManager.getUserId()
         OrdersManager.confirmOrderByProfessional(orderProDetails: orderDetails, view: self)
+        self.initActionTimer(view: self)
     }
     
     
@@ -81,6 +82,11 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
                 self.displayAlert(message: response.errorTxt)
             }
             break
+        case K.ActionTypes.rejectAction:
+            self.loadingAI.stopAnimating()
+            self.loadingAI.isHidden = true
+            self.displayAlert(message: response.errorTxt)
+            break
         default:
             //confirmed by user
             if response.status {
@@ -95,6 +101,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
             }
         }
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ProOrderInProgressViewController

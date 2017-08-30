@@ -54,7 +54,7 @@ class OrdersManagmentViewController: BaseUIViewController, UITableViewDataSource
         
         cell.professionalNameLbl.text = order.professionalName
         cell.categoryNameLbl.text = order.categoryName
-        cell.orderDateLbl.text = OrdersManager.shortDateToString(date: order.completedDate)
+        cell.orderDateLbl.text = OrdersManager.shortDateToString(date: order.acceptedDate)
         
         
         // Returning the cell

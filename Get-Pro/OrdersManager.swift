@@ -205,14 +205,14 @@ public class OrdersManager{
 
             for snap in snapshots{
                 if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
-                    let proId = ordersDic["professionalId"] as! String
+                    let proId = ordersDic["proId"] as! String
                     if proId != declinedProfessionalId {
                         let proOrder = ProfessionalOrder()
                         proOrder.orderRequestId = snap.key
                         proOrder.professionalId = proId
-                        proOrder.name = ordersDic["professionalName"] as! String
-                        proOrder.imageUrl = ordersDic["professionalImageUrl"] as! String
-                        proOrder.rating = Int(ordersDic["professionalRating"] as! String)!
+                        proOrder.name = ordersDic["proName"] as! String
+                        proOrder.imageUrl = ordersDic["proImage"] as! String
+                        proOrder.rating = ordersDic["proRating"] as! Int
                         self.additionalPros.append(proOrder)
                     }
                 }
@@ -439,7 +439,7 @@ public class OrdersManager{
     
     static func shortDateToString(date: Date)->String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        dateFormatter.dateFormat = "yy-MM-dd hh:mm"
         let s = dateFormatter.string(from:date as Date)
         return s
     }

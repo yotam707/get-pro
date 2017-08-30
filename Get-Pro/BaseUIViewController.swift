@@ -34,4 +34,15 @@ class BaseUIViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func initActionTimer(view: GetDataProtocol){
+        let when = DispatchTime.now() + 90
+        DispatchQueue.main.asyncAfter(deadline: when, execute: {
+            let res = Response()
+            res.status = true
+            res.errorTxt = "The action was rejected duo to timeuot."
+            res.actionType = K.ActionTypes.rejectAction
+            view.onGetDataResponse(response: res)
+        })
+    }
+    
 }

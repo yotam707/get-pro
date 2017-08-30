@@ -45,7 +45,7 @@ class ProOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UI
         AppManager.getImageFromUrl(url: order.userImageUrl, imgView: cell.userAvatarImgV, imgSize: 80)
         cell.userNameLbl.text = order.userName
         cell.userCityLbl.text = order.userCity
-        cell.orderDateLbl.text = order.completedDate.description
+        cell.orderDateLbl.text = OrdersManager.shortDateToString(date: order.acceptedDate)
         
         // Returning the cell
         return cell

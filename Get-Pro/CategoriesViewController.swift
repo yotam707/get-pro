@@ -78,6 +78,13 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
  
+        if problamDescTV.text == "" {
+            self.displayAlert(message: "Please fill in problem description.")
+            categoriesTV.reloadData()
+            return
+        }
+        
+        
         //start animation + lock the view
         self.loadingAI.startAnimating()
         self.loadingAI.isHidden = false

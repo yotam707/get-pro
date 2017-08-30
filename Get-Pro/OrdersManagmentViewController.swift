@@ -48,12 +48,7 @@ class OrdersManagmentViewController: BaseUIViewController, UITableViewDataSource
         
         self.setViewColor(view: cell, color: K.Colors.darkGray)
         
-        //cell.professionalAvatarImgV.image = UIImage(named: "avatar.png")
-        AppManager.getImageFromUrl(url: order.professionalImageUrl, imgView: cell.professionalAvatarImgV)
-        cell.professionalAvatarImgV.layer.cornerRadius = 35
-        cell.professionalAvatarImgV.layer.borderColor = UIColor.white.cgColor
-        cell.professionalAvatarImgV.layer.borderWidth = 3
-        
+        AppManager.getImageFromUrl(url: order.professionalImageUrl, imgView: cell.professionalAvatarImgV, imgSize: 70)
         let str = ("rating_img_\(order.professionalRating).png")
         cell.professionalRatingImgV.image = UIImage(named: str)
         

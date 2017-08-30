@@ -44,12 +44,7 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
             for: indexPath) as! ProfessionalOrderUITavleViewCell
         
         self.setViewColor(view: cell, color: K.Colors.darkGray)
-        
-        cell.userAvatarImgV.image = UIImage(named: "avatar.png")
-        cell.userAvatarImgV.layer.cornerRadius = 40
-        cell.userAvatarImgV.layer.borderColor = UIColor.white.cgColor
-        cell.userAvatarImgV.layer.borderWidth = 3
-        
+        AppManager.getImageFromUrl(url: order.userImageUrl, imgView: cell.userAvatarImgV, imgSize: 80)
         cell.userNameLbl.text = order.userName
         cell.userCityLbl.text = order.userCity
         cell.acceptClickDelegate = self

@@ -78,6 +78,7 @@ public class OrdersManager{
                 if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
                     proOrder.orderRequestId = snap.key
                     proOrder.professionalId = proId
+                    proOrder.userId = ordersDic["userId"] as! String
                     proOrder.userName = ordersDic["userName"] as! String
                     proOrder.userImageUrl = ordersDic["userImageUrl"] as! String
                     proOrder.problemDescription = ordersDic["problemDescription"] as! String

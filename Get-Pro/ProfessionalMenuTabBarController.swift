@@ -19,7 +19,9 @@ class ProfessionalMenuTabBarController : UITabBarController {
         if(isOpenedFromNotification){
             self.isOpenedFromNotification = false
             //proFromNotificationSeg
-            self.performSegue(withIdentifier: "proFromNotificationSeg", sender: self)
+            DispatchQueue.main.async ( execute:{
+                self.performSegue(withIdentifier: "proFromNotificationSeg", sender: self)
+            })
         }
     }
     

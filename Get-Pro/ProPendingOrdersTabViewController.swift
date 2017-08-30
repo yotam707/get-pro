@@ -13,6 +13,7 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
     @IBOutlet weak var loadingAI: UIActivityIndicatorView!
     
     var orders = [ProfessionalOrderDetailsView]()
+    var orderDetails = ProfessionalOrderDetailsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +63,9 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
             self.loadingAI.stopAnimating()
             self.loadingAI.isHidden = true
             // move to order confirmation controller
-            self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
+            DispatchQueue.main.async ( execute:{
+                self.performSegue(withIdentifier: "proInProgressOrderListSeg", sender: self)
+            })
         }
         else {
             loadingAI.stopAnimating()
@@ -76,7 +79,13 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
         //send data to server
         self.loadingAI.startAnimating()
         self.loadingAI.isHidden = false
+        self.orderDetails = orderDetails
         OrdersManager.confirmOrderByProfessional(orderProDetails: orderDetails, view: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! ProOrderInProgressViewController
+        vc.orderDetails = self.orderDetails
     }
     
 }

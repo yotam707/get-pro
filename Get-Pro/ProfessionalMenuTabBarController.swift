@@ -10,19 +10,31 @@ import UIKit
 
 class ProfessionalMenuTabBarController : UITabBarController {
     
+    var orderRequestId = ""
+    var isOpenedFromNotification = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if(isOpenedFromNotification){
+            self.isOpenedFromNotification = false
+            //proFromNotificationSeg
+            self.performSegue(withIdentifier: "proFromNotificationSeg", sender: self)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Access the UITabBarController from a UIViewController and get all the elements (NSArray of UITabBarItem) (tabs) of the tab Bar
-//        let tabItems = self.tabBarController?.tabBar.items as! NSObject
-//        let tabItem = tabItems?[0]
-//        if OrdersManager.proPendingOrders.count > 0 {
-//            tabItem?.badgeValue = OrdersManager.proPendingOrders.count.description
-//        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! ProfessionalOrderDetailsViewController
+        vc.orderRequestId = self.orderRequestId
     }
     
 }

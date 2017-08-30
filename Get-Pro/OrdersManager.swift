@@ -56,7 +56,7 @@ public class OrdersManager{
             break
         default:
             res.status = false
-            res.errorTxt = "Unknowen login type in getMyOrders"
+            res.errorTxt = "Unknown login type in getMyOrders"
         }
     }
     static func getProPendingOrders(proId: String, view: GetDataProtocol){
@@ -130,7 +130,7 @@ public class OrdersManager{
                 
                 guard let snapshots = DataSnapshot.children.allObjects as? [DataSnapshot] else{
                     res.status = false
-                    res.errorTxt = "Failed to bring User Orders"
+                    res.errorTxt = "Failed to retrive the user orders"
                     view.onGetDataResponse(response: res)
                     return
                 }
@@ -245,6 +245,24 @@ public class OrdersManager{
                 compleation(true)
         })
     }
+    
+    static func checkProOrderStatus(orderReqId: String, _ compleation:@escaping (_ result: Bool) ->()){
+        requestOrdersRef.child(orderReqId).observe(.value, with: {(DataSnapshot) in
+            guard let dic = DataSnapshot.value as? [String: AnyObject] else {
+                compleation(false)
+                return
+            }
+            if let status = dic["status"] as? String{
+                if status == K.OrderStatus.pending{
+                    compleation(true)
+                }
+                else{
+                    compleation(false)
+                }
+            }
+        
+        })
+    }
     ///////////////////////////////////////////////////
     //SETTERS
     
@@ -274,20 +292,32 @@ public class OrdersManager{
     static func confirmOrderByProfessional(orderProDetails: ProfessionalOrderDetailsView ,view: GetDataProtocol){
         let res = Response()
         res.actionType = K.ActionTypes.confirmOrderRequestByPro
-        let orderRequestApprovedRefByOrderId = requestOrderApprovedRef.child("\(orderProDetails.orderRequestId)")
-        let timestamp = convertDateToString(date: Date())
-        let orderRequestApproved = ["professionalId": orderProDetails.professionalId ,"acceptDate" : timestamp]
-       
-        orderRequestApprovedRefByOrderId.setValue(orderRequestApproved)
-        ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: false)
-        getProApprovedOrderByUser(orderReqId: orderProDetails.orderRequestId, professionalId: orderProDetails.professionalId, { (result) in
+        checkProOrderStatus(orderReqId: orderProDetails.orderRequestId, {(result) in
             if result {
-                view.onGetDataResponse(response: res)
+                let orderRequestApprovedRefByOrderId = requestOrderApprovedRef.child("\(orderProDetails.orderRequestId)")
+                let timestamp = convertDateToString(date: Date())
+                let orderRequestApproved = ["professionalId": orderProDetails.professionalId ,"acceptDate" : timestamp]
+                
+                orderRequestApprovedRefByOrderId.setValue(orderRequestApproved)
+                ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: false)
+                getProApprovedOrderByUser(orderReqId: orderProDetails.orderRequestId, professionalId: orderProDetails.professionalId, { (result) in
+                    if result {
+                        view.onGetDataResponse(response: res)
+                    }
+                    else{
+                        ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: true)
+                        res.status = false
+                        res.errorTxt = "Confirm order by professional failed"
+                        view.onGetDataResponse(response: res)
+                    }
+                    
+                })
+
             }
             else{
                 ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: true)
                 res.status = false
-                res.errorTxt = "Confirm order by professional failed"
+                res.errorTxt = "Confirm order by professional failed - order is no longer available"
                 view.onGetDataResponse(response: res)
             }
         

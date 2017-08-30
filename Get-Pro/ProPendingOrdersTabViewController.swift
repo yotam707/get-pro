@@ -23,6 +23,7 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
         self.setViewColor(view: self.ordersTV, color: K.Colors.darkGray)
         self.ordersTV.dataSource = self
         self.ordersTV.delegate = self
+        self.setViewColor(view: self.ordersTV, color: K.Colors.darkGray)
         self.orders = OrdersManager.proPendingOrders
     }
     
@@ -52,6 +53,7 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
         AppManager.getImageFromUrl(url: order.userImageUrl, imgView: cell.userAvatarImgV, imgSize: 80)
         cell.userNameLbl.text = order.userName
         cell.userCityLbl.text = order.userCity
+        cell.proOrderDetails = order
         cell.acceptClickDelegate = self
         
         // Returning the cell

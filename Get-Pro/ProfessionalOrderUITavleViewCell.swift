@@ -15,7 +15,7 @@ class ProfessionalOrderUITavleViewCell : UITableViewCell {
     @IBOutlet weak var userCityLbl: UILabel!
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var acceptOrderBtn: UIButton!
-    weak var proOrderDetails = ProfessionalOrderDetailsView()
+    weak var proOrderDetails: ProfessionalOrderDetailsView?
     weak var acceptClickDelegate: AcceptProfessionalDelegate?
 
     

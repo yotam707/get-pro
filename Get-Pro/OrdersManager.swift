@@ -17,7 +17,8 @@ public class OrdersManager{
     static private let requestOrderRateRef = FirebaseManager.databaseRef.child("OrderRate")
     static private let myOrdersUserRef = FirebaseManager.databaseRef.child("UserOrders")
     static private let myOrdersProRef = FirebaseManager.databaseRef.child("ProfessionalOrders")
-    static private let OrderProsRef = FirebaseManager.databaseRef.child("OrderPros")
+    static private let OrderProsRef = FirebaseManager.databaseRef.child("OrdersPros")
+    static private let PendingOrderProsRef = FirebaseManager.databaseRef.child("PendingOrderPros")
     static private(set) var userOrders = [UserOrderView]()
     static private(set) var proOrders = [ProfessionalOrderDetailsView]()
     static private(set) var proPendingOrders = [ProfessionalOrderDetailsView]()
@@ -61,7 +62,8 @@ public class OrdersManager{
     static func getProPendingOrders(proId: String, view: GetDataProtocol){
         let res = Response()
         res.actionType = K.ActionTypes.getPendingOrders
-        OrderProsRef.observe(.value, with: {(DataSnapshot) in
+        
+        PendingOrderProsRef.child(proId).observe(.value, with: { (DataSnapshot) in
             guard let snapshots = DataSnapshot.children.allObjects as? [DataSnapshot] else{
                 res.status = false
                 res.errorTxt = "Failed to bring Pending Professional Orders"
@@ -71,56 +73,23 @@ public class OrdersManager{
             
             for snap in snapshots{
                 let proOrder = ProfessionalOrderDetailsView()
-                 if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
-                     proOrder.orderRequestId = snap.key
-                     proOrder.professionalId = proId
-                     proOrder.userName = ordersDic["userName"] as! String
-                     proOrder.userImageUrl = ordersDic["userImageUrl"] as! String
-                     proOrder.problemDescription = ordersDic["problemDescription"] as! String
-                     proOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptedDate"] as! String))
-                     self.proPendingOrders.append(proOrder)
-                 }
-             }
-             res.entities = self.proPendingOrders
+                if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
+                    proOrder.orderRequestId = snap.key
+                    proOrder.professionalId = proId
+                    proOrder.userName = ordersDic["userName"] as! String
+                    proOrder.userImageUrl = ordersDic["userImageUrl"] as! String
+                    proOrder.problemDescription = ordersDic["problemDescription"] as! String
+                    proOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["requestDate"] as! String))
+                    self.proPendingOrders.append(proOrder)
+                }
+            }
+            res.entities = self.proPendingOrders
             view.onGetDataResponse(response: res)
         })
     }
     
-//        ordersRef.queryEqual(toValue: snap.key)
-//            .observe(.value, with: {(DataSnapshot) in
-//                let orderDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
-//                status = orderDic["status"] as! String
-//                if status != K.OrderStatus.pending{
-//                    continue
-//                }
-//                
-//            })
-//
-//
-//        myOrdersProRef.child("\(proId)")
-//            .observe(.value, with: {(DataSnapshot) in
-//                self.proOrders = []
-//                
-//
-//                for snap in snapshots{
-//                    let proOrder = ProfessionalOrderDetailsView()
-//                    if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
-//                        proOrder.orderRequestId = snap.key
-//                        proOrder.professionalId = proId
-//                        proOrder.userName = ordersDic["userName"] as! String
-//                        proOrder.userImageUrl = ordersDic["userImageUrl"] as! String
-//                        proOrder.problemDescription = ordersDic["problemDescription"] as! String
-//                        proOrder.acceptedDate = convertStringToDate(dateString: (ordersDic["acceptedDate"] as! String))
-//                        self.proOrders.append(proOrder)
-//                    }
-//                }
-//                res.entities = self.proOrders
-//                view.onGetDataResponse(response: res)
-//            })
-//        
-//    }
-//
     
+
     static func getProOrders(proId: String, view: GetDataProtocol, res: Response){
         res.actionType = K.ActionTypes.getMyOrders_Pro
         myOrdersProRef.child("\(proId)")
@@ -273,12 +242,7 @@ public class OrdersManager{
     
     static func getProApprovedOrderByUser(orderReqId: String, professionalId: String, _ compleation:@escaping (_ result: Bool)->()){
         myOrdersProRef.child(professionalId).child(orderReqId).observeSingleEvent(of: .childAdded, with: { (DataSnapshot) in
-            guard let dic = DataSnapshot.value as? [String: AnyObject] else {
-                return
-            }
-            if (!dic.isEmpty) {
                 compleation(true)
-            }
         })
     }
     ///////////////////////////////////////////////////

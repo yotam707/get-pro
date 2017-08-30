@@ -85,7 +85,7 @@ public class FirebaseManager{
     static func registerUserInFbDb(id: String, password: String, email: String ,name: String, apnToken: String) -> User{
         let u = User.init(id: id, password: password, email: email ,name: name, apnToken: apnToken, imageUrl: "")
         let usersDatabaseRefById = usersDatabaseRef.child("\(id)")
-        let userObj = ["name" : name, "email" : email, "pushToken" : apnToken, "imageUrl" : ""]
+        let userObj = ["name" : name, "email" : email, "pushToken" : apnToken, "imageUrl" : "https://firebasestorage.googleapis.com/v0/b/get-pro-990d4.appspot.com/o/default-profile.png?alt=media&token=d6de3579-a403-4e91-8a69-d16cecefb4ee"]
         usersDatabaseRefById.setValue(userObj)
         return u
     }

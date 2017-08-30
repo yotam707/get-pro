@@ -73,7 +73,7 @@ public class FirebaseManager{
                 res.entities.append(u)
                 view.onGetDataResponse(response: res)
             }
-            else{
+            else{//handle errors
                 res.errorTxt = "login Failed" + error.debugDescription
                 res.status = false
                 view.onGetDataResponse(response: res)

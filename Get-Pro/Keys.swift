@@ -27,6 +27,7 @@ public struct K {
         static let getConfirmedOrderPros = "getConfirmedOrderPros"
         static let getProfessionalOrderDetails = "getProfessionalOrderDetails"
         static let publishOrder = "publishOrder"
+        static let getAdditionalProfessionals = "getAdditionalProfessionals"
     }
     
     struct LoginTypes{

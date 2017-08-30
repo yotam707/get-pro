@@ -22,6 +22,7 @@ public class OrdersManager{
     static private(set) var userOrders = [UserOrderView]()
     static private(set) var proOrders = [ProfessionalOrderDetailsView]()
     static private(set) var proPendingOrders = [ProfessionalOrderDetailsView]()
+    static private(set) var additionalPros = [ProfessionalOrder]()
     
     
     
@@ -188,30 +189,38 @@ public class OrdersManager{
             })
     }
     
-    //example!!!
-    static func getMyOrderDetails2(orderId:String, view: GetDataProtocol){
-        requestOrdersRef.child(orderId)
-            .observe(.value, with: {(DataSnapshot) in
-                let or = OrderRequest.init()
-                let orderReqDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
-                or.problemDescription = orderReqDic["problemDescription"] as! String
-                let res = Response()
-                res.entities.append(or)
+    static func getAdditionalProfessionals(declinedProfessionalId:String, orderRequestId: String, view: GetDataProtocol){
+        let res = Response()
+        res.actionType = K.ActionTypes.getAdditionalProfessionals
+        OrderProsRef.child(orderRequestId).observe(.value, with: {(DataSnapshot) in
+            
+            guard let snapshots = DataSnapshot.children.allObjects as? [DataSnapshot] else{
+                res.status = false
+                res.errorTxt = "Failed to retrive additional professionals"
                 view.onGetDataResponse(response: res)
+                return
+            }
+
+            for snap in snapshots{
+                if let ordersDic = snap.value as? Dictionary<String,AnyObject>{
+                    let proId = ordersDic["professionalId"] as! String
+                    if proId != declinedProfessionalId {
+                        let proOrder = ProfessionalOrder()
+                        proOrder.orderRequestId = snap.key
+                        proOrder.professionalId = proId
+                        proOrder.name = ordersDic["professionalName"] as! String
+                        proOrder.imageUrl = ordersDic["professionalImageUrl"] as! String
+                        proOrder.rating = Int(ordersDic["professionalRating"] as! String)!
+                        self.additionalPros.append(proOrder)
+                    }
+                }
+            }
+            res.entities = additionalPros
+            view.onGetDataResponse(response: res)
+        
         })
     }
     
-//    static func getProfessionalsApprovedOrder(orderReqId: String, _ compleation:@escaping (_ result: ProfessionalOrder) ->()){
-//        requestOrderApprovedRef.child(orderReqId).observeSingleEvent(of: .childAdded, with: {(DataSnapshot) in
-//            let approvedOrderDic = DataSnapshot.value as? [String: AnyObject] ?? [:]
-//            let proId = approvedOrderDic["professionalId"] as! String
-//            ProfessionalsManager.getProfessionalDetils(professionalId: proId, { (pro) in
-//                let orderPro = ProfessionalOrder.init(pro: pro, orderReqId: orderReqId)
-//                compleation(orderPro)
-//            })
-//        })
-//        
-//    }
     
     static func getProfessionalsApprovedOrder(orderReqId: String, _ compleation:@escaping (_ result: ProfessionalOrder) ->()){
         requestOrderApprovedRef.child(orderReqId).observeSingleEvent(of: .childAdded, with: { (snapshot) in

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol AcceptUserDelegate: class {
-    func onUserAcceptBtnClick(orderRequest: OrderRequest, professional:Professional)
+    func onUserAcceptBtnClick(orderRequest: OrderRequest, professional:ProfessionalOrder)
 }
 
 protocol AcceptProfessionalDelegate: class {

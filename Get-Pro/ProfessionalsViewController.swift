@@ -14,8 +14,9 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
     @IBOutlet weak var professionalsTV: UITableView!
     @IBOutlet weak var loadingAI: UIActivityIndicatorView!
     
-    var professionals = [Professional]()
+    var professionals = [ProfessionalOrder]()
     var orderRequestId:String = ""
+    var declinedProfessionalId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,10 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: self.professionalsTV, color: K.Colors.darkGray)
         loadingAI.bringSubview(toFront: professionalsTV)
-        loadingAI.stopAnimating()
-        loadingAI.isHidden = true
+        //get all relevant pros in pending
+        
+        loadingAI.startAnimating()
+        loadingAI.isHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,13 +68,13 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         return cell
     }
     
-    func onUserAcceptBtnClick(orderRequest: OrderRequest, professional:Professional) {
+    func onUserAcceptBtnClick(orderRequest: OrderRequest, professional:ProfessionalOrder) {
         
         let order = UserOrderView()
         order.categoryName = orderRequest.categoryName
         order.orderRequstId = orderRequest.id
         order.problemDescription = orderRequest.problemDescription
-        order.professionalId = professional.id
+        order.professionalId = professional.professionalId
         order.professionalImageUrl = professional.imageUrl
         order.professionalName = professional.name
         order.professionalRating = professional.rating
@@ -84,17 +87,33 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
     }
     
     func onGetDataResponse(response: Response) {
-        if response.status {
-            loadingAI.stopAnimating()
-            loadingAI.isHidden = true
-            // move to top order confirmation controller
-            self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
+        switch response.actionType {
+        case K.ActionTypes.confirmOrderRequestByUser:
+            if response.status {
+                loadingAI.stopAnimating()
+                loadingAI.isHidden = true
+                // move to top order confirmation controller
+                self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
+            }
+            else {
+                loadingAI.stopAnimating()
+                loadingAI.isHidden = true
+                self.displayAlert(message: response.errorTxt)
+            }
+        default:
+            //get pending pro list
+            if response.status {
+                loadingAI.stopAnimating()
+                loadingAI.isHidden = true
+                
+                self.professionals = response.entities as! [ProfessionalOrder]
+                self.professionalsTV.reloadData()
+            }
+            else {
+                self.displayAlert(message: response.errorTxt)
+            }
         }
-        else {
-            loadingAI.stopAnimating()
-            loadingAI.isHidden = true
-            self.displayAlert(message: response.errorTxt)
-        }
+        
     }
     
 }

@@ -188,5 +188,6 @@ public class AppManager{
             imgView.layer.masksToBounds = true
         })
     }
+
     
 }

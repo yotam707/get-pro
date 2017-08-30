@@ -68,7 +68,10 @@ class TopProfessionalViewController : BaseUIViewController, GetDataProtocol {
             self.performSegue(withIdentifier: "acceptTopProfessionalSeg", sender: self)
         }
         else {
-            //alert
+            self.loadingAI.stopAnimating()
+            self.loadingAI.isHidden = true
+            self.setViewState(isEnabled: true)
+            self.displayAlert( message: response.errorTxt)
         }
     }
     

@@ -25,7 +25,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
     var orderDetails = ProfessionalOrderDetailsView()
     
     @IBAction func onDeclineButtonClick(_ sender: Any) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onAcceptButtonClick(_ sender: Any) {
@@ -44,7 +44,8 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
         self.setViewState(isHidden: true)
         self.loadingAI.startAnimating()
         self.loadingAI.isHidden = false
-       
+        self.setViewColor(view: self.view, color: K.Colors.darkGray)
+        self.setViewColor(view: self.acceptButton, color: K.Colors.darkRed)
         OrdersManager.getProfessionalOrderDetails(orderRequsetId: orderRequestId, view: self)
     }
     
@@ -67,7 +68,6 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
         case K.ActionTypes.getProfessionalOrderDetails:
             //load view
             if response.status {
-                
                 self.orderDetails = (response.entities as! [ProfessionalOrderDetailsView])[0]
                 userNameLbl.text = orderDetails.userName
                 AppManager.getImageFromUrl(url: orderDetails.userImageUrl, imgView: self.userAvatarImgV, imgSize: 120)
@@ -78,7 +78,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
                 self.setViewState(isHidden: false)
             }
             else {
-                //alert
+                self.displayAlert(message: response.errorTxt)
             }
             break
         default:
@@ -91,7 +91,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
                 self.performSegue(withIdentifier: "proInProgressOrderSeg", sender: self)
             }
             else {
-                //alert
+                self.displayAlert(message: response.errorTxt)
             }
         }
     }

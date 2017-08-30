@@ -43,6 +43,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         
         //self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: horizontalLineV, color: K.Colors.lightRed)
+        self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: navigationBar, color: K.Colors.darkGray)
         self.setViewColor(view: categoriesTV, color: K.Colors.darkGray)
 
@@ -110,7 +111,6 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     }
     
     func onGetDataResponse(response: Response) {
-        
         if response.status {
             //save the result locally
             self.proOrder = (response.entities as! [ProfessionalOrder])[0]
@@ -119,11 +119,10 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
             self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
         }
         else {
-            //alert
-            
             self.loadingAI.stopAnimating()
             self.loadingAI.isHidden = true
             self.setViewState(isEnabled: true)
+            self.displayAlert( message: response.errorTxt)
         }
     }
 

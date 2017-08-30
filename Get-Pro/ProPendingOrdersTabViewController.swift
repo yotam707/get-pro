@@ -10,11 +10,17 @@ import UIKit
 
 class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UITableViewDataSource , GetDataProtocol , AcceptProfessionalDelegate {
     @IBOutlet weak var ordersTV: UITableView!
+    @IBOutlet weak var loadingAI: UIActivityIndicatorView!
+    
     var orders = [ProfessionalOrderDetailsView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingAI.bringSubview(toFront: ordersTV)
+        self.loadingAI.stopAnimating()
+        self.loadingAI.isHidden = true
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
+        self.setViewColor(view: self.ordersTV, color: K.Colors.darkGray)
         self.ordersTV.dataSource = self
         self.ordersTV.delegate = self
         self.orders = OrdersManager.proPendingOrders
@@ -54,17 +60,23 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
     
     func onGetDataResponse(response: Response) {
         if response.status {
+            self.loadingAI.stopAnimating()
+            self.loadingAI.isHidden = true
             // move to order confirmation controller
             self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
         }
         else {
-            //alert
+            loadingAI.stopAnimating()
+            loadingAI.isHidden = true
+            self.displayAlert(message: response.errorTxt)
         }
     }
     
     
     func onProfessionalAcceptBtnClick(orderDetails: ProfessionalOrderDetailsView) {
         //send data to server
+        self.loadingAI.startAnimating()
+        self.loadingAI.isHidden = false
         OrdersManager.confirmOrderByProfessional(orderProDetails: orderDetails, view: self)
     }
     

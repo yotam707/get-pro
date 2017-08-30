@@ -91,7 +91,9 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
             self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
         }
         else {
-            //alert
+            loadingAI.stopAnimating()
+            loadingAI.isHidden = true
+            self.displayAlert(message: response.errorTxt)
         }
     }
     

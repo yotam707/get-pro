@@ -1015,6 +1015,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FyM-fw-ltT">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="1" green="0.95436883930000005" blue="0.036051401019999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UtY-3i-B9t">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1088,11 +1092,14 @@
                             <constraint firstAttribute="trailing" secondItem="UtY-3i-B9t" secondAttribute="trailing" id="18A-SX-BC0"/>
                             <constraint firstItem="UtY-3i-B9t" firstAttribute="top" secondItem="a7V-aw-gs0" secondAttribute="bottom" id="36z-MB-0aQ"/>
                             <constraint firstItem="UtY-3i-B9t" firstAttribute="leading" secondItem="TQu-ko-oB3" secondAttribute="leading" id="hBt-bj-kjL"/>
+                            <constraint firstItem="FyM-fw-ltT" firstAttribute="centerX" secondItem="TQu-ko-oB3" secondAttribute="centerX" id="jei-ON-5l9"/>
                             <constraint firstItem="j2t-97-cAb" firstAttribute="top" secondItem="UtY-3i-B9t" secondAttribute="bottom" id="ogt-8X-quT"/>
+                            <constraint firstItem="FyM-fw-ltT" firstAttribute="centerY" secondItem="TQu-ko-oB3" secondAttribute="centerY" id="uxY-bw-r2V"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Pendings" image="box-incoming-7" selectedImage="box-incoming-7" id="h68-is-GJU"/>
                     <connections>
+                        <outlet property="loadingAI" destination="FyM-fw-ltT" id="9Cx-kk-g2h"/>
                         <outlet property="ordersTV" destination="UtY-3i-B9t" id="fXj-ED-s8a"/>
                         <segue destination="KNL-Zf-fLj" kind="show" identifier="orderRequestDetailsSeg" id="haM-Zo-kKH"/>
                         <segue destination="1PD-5z-tsN" kind="show" identifier="proInProgressOrderListSeg" id="0j5-SU-ugh"/>
@@ -1361,7 +1368,7 @@
         <segue reference="fyj-CE-lEl"/>
         <segue reference="a21-bu-Wqj"/>
         <segue reference="NT4-3Y-OCf"/>
+        <segue reference="0j5-SU-ugh"/>
         <segue reference="0Zm-vR-jNp"/>
-        <segue reference="toG-36-F0t"/>
     </inferredMetricsTieBreakers>
 </document>

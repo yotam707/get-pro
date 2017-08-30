@@ -134,12 +134,10 @@ class RegisterViewController: BaseUIViewController, GetDataProtocol {
                 AppManager.initApp(view: self, userType: self.selectedloginType)
             }
             else {
-                //alert here
-                
                 self.loadingAI.stopAnimating()
                 self.loadingAI.isHidden = true
                 self.setViewState(isEnabled: true)
-
+                self.displayAlert( message: response.errorTxt)
             }
         }
     }

@@ -15,7 +15,8 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
-        self.setViewColor(view: self.ordersTV, color: K.Colors.darkGray)
+        self.ordersTV.dataSource = self
+        self.ordersTV.delegate = self
         self.orders = OrdersManager.proPendingOrders
     }
     

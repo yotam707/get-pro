@@ -138,7 +138,12 @@ public class AppManager{
         return CGFloat(number/255.0)
     }
     
-    static func getImageFromUrl(url: String, imgView: UIImageView) {
+    static func getImageFromUrl(url: String, imgView: UIImageView, imgSize: Int) {
+        let defaultImg = UIImage(named: "avatar.png")
+        if (url == ""){
+            setImgView(imgView: imgView, img: defaultImg!,imgSize: imgSize)
+            return
+        }
         let catPictureURL = URL(string: url)!
         
         // Creating a session object with the default configuration.
@@ -150,9 +155,7 @@ public class AppManager{
             // The download has finished.
             if let e = error {
                 print("Error downloading cat picture: \(e)")
-                DispatchQueue.main.async ( execute:{
-                    imgView.image = UIImage(named: "avatar.png")
-                })
+                setImgView(imgView: imgView, img: defaultImg!,imgSize: imgSize)
             } else {
                 // No errors found.
                 // It would be weird if we didn't have a response, so check for that too.
@@ -160,26 +163,30 @@ public class AppManager{
                     print("Downloaded cat picture with response code \(res.statusCode)")
                     if let imageData = data {
                         // Finally convert that Data into an image and do what you wish with it.
-                        let img =  UIImage(data: imageData)
-                        DispatchQueue.main.async ( execute:{
-                            imgView.image = img
-                        })
+                        let _img =  UIImage(data: imageData)
+                        setImgView(imgView: imgView, img: _img!,imgSize: imgSize)
                     } else {
                         print("Couldn't get image: Image is nil")
-                        DispatchQueue.main.async ( execute:{
-                            imgView.image = UIImage(named: "avatar.png")
-                        })
+                        setImgView(imgView: imgView, img: defaultImg!,imgSize: imgSize)
                     }
                 } else {
                     print("Couldn't get response code for some reason")
-                    DispatchQueue.main.async ( execute:{
-                        imgView.image = UIImage(named: "avatar.png")
-                    })
+                    setImgView(imgView: imgView, img: defaultImg!,imgSize: imgSize)
                 }
             }
         }
         
         downloadPicTask.resume()
+    }
+    
+    static func setImgView(imgView: UIImageView, img:UIImage, imgSize: Int){
+        DispatchQueue.main.async ( execute:{
+            imgView.image = img
+            imgView.layer.cornerRadius = CGFloat(imgSize/2)
+            imgView.layer.borderColor = UIColor.white.cgColor
+            imgView.layer.borderWidth = 3
+            imgView.layer.masksToBounds = true
+        })
     }
     
 }

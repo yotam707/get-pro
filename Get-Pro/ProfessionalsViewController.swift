@@ -57,10 +57,7 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         cell.professional = pro
         cell.acceptClickDelegate = self
         cell.professionalNameLbl.text = pro.name
-        cell.avatarImageImgV.image = UIImage(named: "avatar.png")
-        cell.avatarImageImgV.layer.cornerRadius = 40
-        cell.avatarImageImgV.layer.borderColor = UIColor.white.cgColor
-        cell.avatarImageImgV.layer.borderWidth = 3
+        AppManager.getImageFromUrl(url: pro.imageUrl, imgView: cell.avatarImageImgV, imgSize: 80)
         let str = "rating_img_\(pro.rating).png"
         cell.ratingImgV.image = UIImage(named: str)
         

@@ -70,10 +70,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
                 
                 self.orderDetails = (response.entities as! [ProfessionalOrderDetailsView])[0]
                 userNameLbl.text = orderDetails.userName
-                userAvatarImgV.image = UIImage (named: "avatar.png")
-                userAvatarImgV.layer.cornerRadius = 60
-                userAvatarImgV.layer.borderColor = UIColor.white.cgColor
-                userAvatarImgV.layer.borderWidth = 3
+                AppManager.getImageFromUrl(url: orderDetails.userImageUrl, imgView: self.userAvatarImgV, imgSize: 120)
                 problemDescriptionTxtV.text = orderDetails.problemDescription
                 
                 self.loadingAI.stopAnimating()

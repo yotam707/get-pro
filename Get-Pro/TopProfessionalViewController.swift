@@ -30,10 +30,7 @@ class TopProfessionalViewController : BaseUIViewController, GetDataProtocol {
         professionalNameLbl.text = proOrder.name
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: getProBtn, color: K.Colors.darkRed)
-        professionalAvatarImgV.image = UIImage(named: "avatar.png")
-        professionalAvatarImgV.layer.cornerRadius = 60
-        professionalAvatarImgV.layer.borderColor = UIColor.white.cgColor
-        professionalAvatarImgV.layer.borderWidth = 3
+        AppManager.getImageFromUrl(url: proOrder.imageUrl, imgView: self.professionalAvatarImgV, imgSize: 120)
         let str = "rating_img_\(proOrder.rating).png"
         professionalRatingImgV.image = UIImage(named: str)
     }

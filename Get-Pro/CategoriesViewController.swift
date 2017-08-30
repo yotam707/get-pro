@@ -66,12 +66,12 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         
         // create a new cell if needed or reuse an old one
         let cell = self.categoriesTV.dequeueReusableCell(withIdentifier: "categoryCell") as! CategoryUITableViewCell!
-        
         let category = self.categories[indexPath.row]
         cell?.category = category
         cell?.categoryNameLbl.text = category.name
         self.setViewColor(view: (cell?.cellBGV)!, color: K.Colors.darkGray)
-        
+        cell?.categoryNameLbl.textColor = AppManager.getColor(colorKey: K.Colors.darkRed)
+
         return cell!
     }
     

@@ -74,7 +74,7 @@ public class FirebaseManager{
                 view.onGetDataResponse(response: res)
             }
             else{
-                res.errorTxt = "login Failed"
+                res.errorTxt = "login Failed" + error.debugDescription
                 res.status = false
                 view.onGetDataResponse(response: res)
             }

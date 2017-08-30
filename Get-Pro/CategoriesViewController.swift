@@ -115,6 +115,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
             //save the result locally
             self.proOrder = (response.entities as! [ProfessionalOrder])[0]
             self.orderRequest.id = self.proOrder.orderRequestId
+            setViewState(isEnabled: true)
             self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
         }
         else {

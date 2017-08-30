@@ -12,13 +12,9 @@ import UIKit
 class UserOrdersUITableViewCell : UITableViewCell{
     
     @IBOutlet weak var professionalAvatarImgV: UIImageView!
-    @IBOutlet weak var professionalRatingImgV: UserOrdersUITableViewCell!
+    @IBOutlet weak var professionalRatingImgV: UIImageView!
     @IBOutlet weak var professionalNameLbl: UILabel!
     @IBOutlet weak var categoryNameLbl: UILabel!
     @IBOutlet weak var orderDateLbl: UILabel!
-    
-    
-    
-    
     
 }

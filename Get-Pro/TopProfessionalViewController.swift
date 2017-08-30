@@ -76,9 +76,6 @@ class TopProfessionalViewController : BaseUIViewController, GetDataProtocol {
     }
     
     @IBAction func onMoreProfessionalCuttonClick(_ sender: Any) {
-        
-        //send decline?
-        
         // move to professionals controller
         self.performSegue(withIdentifier: "professionalSeg", sender: self)
     }

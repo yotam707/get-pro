@@ -393,5 +393,12 @@ public class OrdersManager{
         let s = dateFormatter.string(from:date as Date)
         return s
     }
+    
+    static func shortDateToString(date: Date)->String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        let s = dateFormatter.string(from:date as Date)
+        return s
+    }
 
 }

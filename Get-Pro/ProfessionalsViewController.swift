@@ -8,10 +8,12 @@
 
 import UIKit
 
-class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, AcceptUserDelegate {
+class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, AcceptUserDelegate, GetDataProtocol {
     
     
     @IBOutlet weak var professionalsTV: UITableView!
+    @IBOutlet weak var loadingAI: UIActivityIndicatorView!
+    
     var professionals = [Professional]()
     var orderRequestId:String = ""
     
@@ -20,9 +22,11 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         
         self.professionalsTV.dataSource = self
         self.professionalsTV.delegate = self
-        //self.professionals = AppManager.getProfessionals(orderRequestId: self.orderRequestId)
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: self.professionalsTV, color: K.Colors.darkGray)
+        loadingAI.bringSubview(toFront: professionalsTV)
+        loadingAI.stopAnimating()
+        loadingAI.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,14 +68,34 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         return cell
     }
     
-    func onUserAcceptBtnClick(orderRequest: OrderRequest) {
+    func onUserAcceptBtnClick(orderRequest: OrderRequest, professional:Professional) {
         
-        //send data to server
-        //orderma
-        
-        
-        // move to top order confirmation controller
-        self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
+        let order = UserOrderView()
+        order.categoryName = orderRequest.categoryName
+        order.orderRequstId = orderRequest.id
+        order.problemDescription = orderRequest.problemDescription
+        order.professionalId = professional.id
+        order.professionalImageUrl = professional.imageUrl
+        order.professionalName = professional.name
+        order.professionalRating = professional.rating
+        order.userId = orderRequest.userId
+        order.userImageUrl = orderRequest.userImageUrl
+        order.userName = orderRequest.userName
+        loadingAI.startAnimating()
+        loadingAI.isHidden = false
+        OrdersManager.confirmOrderByUser(userOrder: order, view: self)
+    }
+    
+    func onGetDataResponse(response: Response) {
+        if response.status {
+            loadingAI.stopAnimating()
+            loadingAI.isHidden = true
+            // move to top order confirmation controller
+            self.performSegue(withIdentifier: "acceptProfessionalSeg", sender: self)
+        }
+        else {
+            //alert
+        }
     }
     
 }

@@ -17,7 +17,6 @@ public struct K {
         static let confirmOrderRequestByPro = "confirmOrderRequestByPro"
         static let confirmOrderRequestByUser = "confirmOrderRequestByUser"
         static let declineOrderRequest = "declineOrderRequest"
-        
         static let getCategories = "getCategories"
         static let getMyOrders_User = "getMyOrders_User"
         static let getMyOrders_Pro = "getMyOrders_Pro"
@@ -28,7 +27,6 @@ public struct K {
         static let getConfirmedOrderPros = "getConfirmedOrderPros"
         static let getProfessionalOrderDetails = "getProfessionalOrderDetails"
         static let publishOrder = "publishOrder"
-        
     }
     
     struct LoginTypes{
@@ -50,11 +48,9 @@ public struct K {
     
     struct Colors {
         static let disabledGray = "disabledGray"
-        
         static let darkGray = "darkGray"
         static let mediumGray = "mediumGray"
         static let lightGray = "lightGray"
-
         static let darkRed = "darkRed"
         static let mediumRed = "mediumRed"
         static let lightRed = "lightRed"

@@ -19,13 +19,14 @@ class ProOrderInProgressViewController : BaseUIViewController{
     @IBAction func onDoneButtonClick(_ sender: Any) {
         //send data to server
         OrdersManager.updateFinishOrder(orderReqId: orderDetails.orderRequestId, proId: orderDetails.professionalId, userId: orderDetails.userId)
+        
         self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewColor(view: self.view, color:  K.Colors.darkGray)
-        self.setViewColor(view: orderDoneBtn, color: K.Colors.darkGray)
+        self.setViewColor(view: orderDoneBtn, color: K.Colors.darkRed)
     }
     
     override func didReceiveMemoryWarning() {

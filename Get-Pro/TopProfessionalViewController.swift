@@ -80,6 +80,14 @@ class TopProfessionalViewController : BaseUIViewController, GetDataProtocol {
         self.performSegue(withIdentifier: "professionalSeg", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "professionalSeg" {
+            let vc = segue.destination as! ProfessionalsViewController
+            vc.declinedProfessionalId = self.proOrder.professionalId
+            vc.orderRequestId = self.orderReq.id
+        }
+    }
+    
     func setViewState(isEnabled:Bool){
         getProBtn.isEnabled = isEnabled
         moreProfessionalsBtn.isEnabled = isEnabled

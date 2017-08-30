@@ -17,7 +17,7 @@ class ProfessionalTableViewCell :UITableViewCell {
     @IBOutlet weak var acceptProfessionalBtn: UIButton!
     @IBOutlet weak var ratingImgV: UIImageView!
     
-    weak var professional = Professional()
+    weak var professional = ProfessionalOrder()
     weak var orderRequest = OrderRequest()
     weak var acceptClickDelegate: AcceptUserDelegate?
     

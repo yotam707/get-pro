@@ -30,10 +30,7 @@ class ProPendingOrdersTabViewController : BaseUIViewController, UITableViewDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func onBackButtonClick(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orders.count

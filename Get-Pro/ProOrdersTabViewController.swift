@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UITableViewDataSource , GetDataProtocol {
+class ProOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var ordersTV: UITableView!
     var orders = [ProfessionalOrderDetailsView]()
@@ -16,6 +16,8 @@ class ProOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.orders = OrdersManager.proOrders
+        self.ordersTV.dataSource = self
+        self.ordersTV.delegate = self
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: self.ordersTV, color: K.Colors.darkGray)
     }
@@ -23,10 +25,7 @@ class ProOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UI
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func onBackButtonClick(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orders.count
@@ -50,11 +49,5 @@ class ProOrdersTabViewController : BaseUIViewController, UITableViewDelegate, UI
         
         // Returning the cell
         return cell
-    }
-    
-    func onGetDataResponse(response: Response) {
-        
-    }
-
-    
+    }    
 }

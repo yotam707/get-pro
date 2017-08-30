@@ -23,6 +23,7 @@ public class OrdersManager{
     static private(set) var proOrders = [ProfessionalOrderDetailsView]()
     static private(set) var proPendingOrders = [ProfessionalOrderDetailsView]()
     static private(set) var additionalPros = [ProfessionalOrder]()
+    static private var didCheckOrderStatus: Bool = false
     
     
     
@@ -258,10 +259,11 @@ public class OrdersManager{
     static func checkProOrderStatus(orderReqId: String, _ compleation:@escaping (_ result: Bool) ->()){
         requestOrdersRef.child(orderReqId).observe(.value, with: {(DataSnapshot) in
             guard let dic = DataSnapshot.value as? [String: AnyObject] else {
-                compleation(false)
                 return
             }
-            if let status = dic["status"] as? String{
+            if !didCheckOrderStatus {
+                didCheckOrderStatus = true
+                let status = dic["status"] as? String
                 if status == K.OrderStatus.pending{
                     compleation(true)
                 }
@@ -269,7 +271,9 @@ public class OrdersManager{
                     compleation(false)
                 }
             }
-        
+            else{
+                return
+            }
         })
     }
     ///////////////////////////////////////////////////
@@ -309,19 +313,6 @@ public class OrdersManager{
                 
                 orderRequestApprovedRefByOrderId.setValue(orderRequestApproved)
                 ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: false)
-                getProApprovedOrderByUser(orderReqId: orderProDetails.orderRequestId, professionalId: orderProDetails.professionalId, { (result) in
-                    if result {
-                        view.onGetDataResponse(response: res)
-                    }
-                    else{
-                        ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: true)
-                        res.status = false
-                        res.errorTxt = "Confirm order by professional failed"
-                        view.onGetDataResponse(response: res)
-                    }
-                    
-                })
-
             }
             else{
                 ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: true)
@@ -330,6 +321,18 @@ public class OrdersManager{
                 view.onGetDataResponse(response: res)
             }
         
+        })
+        getProApprovedOrderByUser(orderReqId: orderProDetails.orderRequestId, professionalId: orderProDetails.professionalId, { (result) in
+            if result {
+                view.onGetDataResponse(response: res)
+            }
+            else{
+                ProfessionalsManager.setProfessionalStatus(professionalId: orderProDetails.professionalId, status: true)
+                res.status = false
+                res.errorTxt = "Confirm order by professional failed"
+                view.onGetDataResponse(response: res)
+            }
+            
         })
         
     }

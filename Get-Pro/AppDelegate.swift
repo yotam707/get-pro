@@ -211,13 +211,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let pathConfig = NotificationsManger.handleNotificationUrl(url: url)
         if pathConfig[1] == "orderRequest" {
-//            let vc = storyboard.instantiateViewController(withIdentifier: "proOrderDetailsView") as! ProfessionalOrderDetailsViewController
-//            vc.orderRequestId = pathConfig[2]
-//            window?.rootViewController = vc
-            let t = storyboard.instantiateViewController(withIdentifier: "aaa") as!
+            let pt = storyboard.instantiateViewController(withIdentifier: "professionalMenuTabBar") as!
             ProfessionalMenuTabBarController
-            window?.rootViewController = t
-            
+            pt.orderRequestId = pathConfig[2]
+            pt.isOpenedFromNotification = true
+            window?.rootViewController = pt
         }
         completionHandler()
     }

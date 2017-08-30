@@ -27,7 +27,7 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         self.setViewColor(view: self.professionalsTV, color: K.Colors.darkGray)
         loadingAI.bringSubview(toFront: professionalsTV)
         //get all relevant pros in pending
-        
+        OrdersManager.getAdditionalProfessionals(declinedProfessionalId: declinedProfessionalId, orderRequestId: declinedProfessionalId, view: self)
         loadingAI.startAnimating()
         loadingAI.isHidden = false
     }

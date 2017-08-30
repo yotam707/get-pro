@@ -995,6 +995,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="History" image="clock-timer-7" selectedImage="clock-timer-7" id="bHs-Kf-AwJ"/>
                     <connections>
+                        <outlet property="ordersTV" destination="erg-eD-j2z" id="DBN-tG-B2Z"/>
                         <segue destination="KNL-Zf-fLj" kind="show" identifier="orderRequestHistoryDetailsSeg" id="0Zm-vR-jNp"/>
                     </connections>
                 </viewController>

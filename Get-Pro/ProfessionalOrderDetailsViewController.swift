@@ -86,6 +86,7 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
             self.loadingAI.stopAnimating()
             self.loadingAI.isHidden = true
             self.displayAlert(message: response.errorTxt)
+            self.dismiss(animated: true, completion: nil)
             break
         default:
             //confirmed by user

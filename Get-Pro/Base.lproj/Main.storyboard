@@ -1177,7 +1177,7 @@
                                 <color key="textColor" red="0.99606269598007202" green="0.9921298623085022" blue="0.99607473611831665" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ck5-kA-nAe">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck5-kA-nAe">
                                 <rect key="frame" x="21" y="342" width="333" height="120"/>
                                 <color key="backgroundColor" red="0.99606269598007202" green="0.9921298623085022" blue="0.99607473611831665" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1370,6 +1370,6 @@
         <segue reference="a21-bu-Wqj"/>
         <segue reference="NT4-3Y-OCf"/>
         <segue reference="4Iu-k9-27L"/>
-        <segue reference="0j5-SU-ugh"/>
+        <segue reference="toG-36-F0t"/>
     </inferredMetricsTieBreakers>
 </document>

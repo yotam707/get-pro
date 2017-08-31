@@ -59,6 +59,7 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         
         // Adding the right informations
         cell.professional = pro
+        cell.orderRequest = self.orderRequest
         cell.acceptClickDelegate = self
         cell.professionalNameLbl.text = pro.name
         AppManager.getImageFromUrl(url: pro.imageUrl, imgView: cell.avatarImageImgV, imgSize: 80)

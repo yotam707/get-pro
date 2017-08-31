@@ -14,7 +14,8 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
     @IBOutlet weak var professionalsTV: UITableView!
     @IBOutlet weak var loadingAI: UIActivityIndicatorView!
     
-    var professionals = [ProfessionalOrder]()
+    var proOrders = [ProfessionalOrder]()
+    var orderRequest = OrderRequest()
     var orderRequestId:String = ""
     var declinedProfessionalId = ""
     
@@ -41,13 +42,13 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return professionals.count
+        return proOrders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Getting the right element
-        let pro = professionals[indexPath.row]
+        let pro = proOrders[indexPath.row]
         
         // Instantiate a cell
         let cell = tableView.dequeueReusableCell(
@@ -61,8 +62,8 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
         cell.acceptClickDelegate = self
         cell.professionalNameLbl.text = pro.name
         AppManager.getImageFromUrl(url: pro.imageUrl, imgView: cell.avatarImageImgV, imgSize: 80)
-        //let str = "rating_img_\(pro.rating).png"
-        //cell.ratingImgV.image = UIImage(named: str)
+        let str = "rating_img_\(pro.rating).png"
+        cell.ratingImgV.image = UIImage(named: str)
         
         // Returning the cell
         return cell
@@ -107,7 +108,7 @@ class ProfessionalsViewController: BaseUIViewController, UITableViewDataSource, 
                 loadingAI.stopAnimating()
                 loadingAI.isHidden = true
                 
-                self.professionals = response.entities as! [ProfessionalOrder]
+                self.proOrders = response.entities as! [ProfessionalOrder]
                 self.professionalsTV.reloadData()
             }
             else {

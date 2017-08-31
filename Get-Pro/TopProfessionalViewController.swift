@@ -19,6 +19,7 @@ class TopProfessionalViewController : BaseUIViewController, GetDataProtocol {
     @IBOutlet weak var professionalRatingImgV: UIImageView!
     @IBOutlet weak var loadingAI: UIActivityIndicatorView!
     
+    var proOrders = [ProfessionalOrder]()
     var proOrder = ProfessionalOrder()
     var orderReq = OrderRequest()
     
@@ -84,6 +85,8 @@ class TopProfessionalViewController : BaseUIViewController, GetDataProtocol {
         if segue.identifier == "professionalSeg" {
             let vc = segue.destination as! ProfessionalsViewController
             vc.declinedProfessionalId = self.proOrder.professionalId
+            vc.orderRequest = self.orderReq
+            vc.proOrders = self.proOrders
             vc.orderRequestId = self.orderReq.id
         }
     }

@@ -549,6 +549,7 @@
                                             <outlet property="acceptProfessionalBtn" destination="ZVx-dt-m0p" id="uoW-5G-xyY"/>
                                             <outlet property="avatarImageImgV" destination="Bm7-RS-CZi" id="gSg-q2-VVi"/>
                                             <outlet property="professionalNameLbl" destination="Wvm-rh-UjQ" id="4wI-NM-mFG"/>
+                                            <outlet property="ratingImgV" destination="acR-bf-2Cm" id="NPe-s8-P9V"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

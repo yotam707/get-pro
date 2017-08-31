@@ -21,6 +21,8 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     var proOrder = ProfessionalOrder()
     var orderRequest = OrderRequest()
     
+    var proOrders = [ProfessionalOrder]()
+    
     @IBAction func onBackButtonClick(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -100,6 +102,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         self.orderRequest.requestDate = Date()
         
         AppManager.publishOrder(view: self, orderReq: self.orderRequest)
+        self.initActionTimer(view: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -107,6 +110,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         //handle here Async - add the request id & move to next controller
         let professionalsVC = segue.destination as! TopProfessionalViewController
         professionalsVC.proOrder = self.proOrder
+        professionalsVC.proOrders = self.proOrders
         professionalsVC.orderReq = self.orderRequest
     }
     
@@ -118,19 +122,30 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
     }
     
     func onGetDataResponse(response: Response) {
-        if response.status {
-            //save the result locally
-            self.proOrder = (response.entities as! [ProfessionalOrder])[0]
-            self.orderRequest.id = self.proOrder.orderRequestId
-            setViewState(isEnabled: true)
-            self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
-        }
-        else {
+        switch response.actionType {
+        case K.ActionTypes.rejectAction:
             self.loadingAI.stopAnimating()
             self.loadingAI.isHidden = true
             self.setViewState(isEnabled: true)
-            self.displayAlert( message: response.errorTxt)
+            self.displayAlert(message: response.errorTxt)
+            break
+        default:
+            if response.status {
+                //save the result locally
+                self.proOrders = (response.entities as! [ProfessionalOrder])
+                self.proOrder = self.proOrders[0]
+                self.orderRequest.id = self.proOrder.orderRequestId
+                setViewState(isEnabled: true)
+                self.performSegue(withIdentifier: "topProfessionalSeg", sender: self)
+            }
+            else {
+                self.loadingAI.stopAnimating()
+                self.loadingAI.isHidden = true
+                self.setViewState(isEnabled: true)
+                self.displayAlert( message: response.errorTxt)
+            }
         }
+
     }
 
 

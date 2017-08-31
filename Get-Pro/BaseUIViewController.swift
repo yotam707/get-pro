@@ -34,6 +34,12 @@ class BaseUIViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func displayAlertWithCompletion(title:String = "Error", message:String, closeButtonHandler:@escaping (_ action: UIAlertAction)->Void){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: closeButtonHandler))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func initActionTimer(view: GetDataProtocol){
         let when = DispatchTime.now() + 90
         DispatchQueue.main.asyncAfter(deadline: when, execute: {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: BaseUIViewController, GetDataProtocol {
+class RegisterViewController: BaseUIViewController, UITextFieldDelegate, GetDataProtocol {
     
     @IBOutlet weak var nameTB: UITextField!
     @IBOutlet weak var emailTB: UITextField!
@@ -24,10 +24,19 @@ class RegisterViewController: BaseUIViewController, GetDataProtocol {
         super.viewDidLoad()
         self.registerBtn.isEnabled = false
         self.registerAsProBtn.isEnabled = false
+        self.nameTB.delegate = self
+        self.emailTB.delegate = self
+        self.passwordTB.delegate = self
         self.loadingAI.isHidden = true
         self.selectedloginType = ""
         self.enableDisableRegisterBtn(isEnabled: false)
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     

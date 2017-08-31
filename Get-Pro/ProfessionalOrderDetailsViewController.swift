@@ -85,8 +85,9 @@ class ProfessionalOrderDetailsViewController : BaseUIViewController, GetDataProt
         case K.ActionTypes.rejectAction:
             self.loadingAI.stopAnimating()
             self.loadingAI.isHidden = true
-            self.displayAlert(message: response.errorTxt)
-            self.dismiss(animated: true, completion: nil)
+            self.displayAlertWithCompletion(message: response.errorTxt, closeButtonHandler: { (action) -> Void in
+                self.dismiss(animated: true, completion: nil)
+            })
             break
         default:
             //confirmed by user

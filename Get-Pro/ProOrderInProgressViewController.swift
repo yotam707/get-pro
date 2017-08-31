@@ -33,13 +33,14 @@ class ProOrderInProgressViewController : BaseUIViewController{
     
     func onTimerUpdate() {
         counter+=1
-        
-        let date = NSDate(timeIntervalSince1970: Double(counter) / 1000)
-        let formatter = DateFormatter()
-        formatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
-        formatter.dateFormat = "HH:mm:ss"
-        
-        orderTimerLbl.text = formatter.string(from: date as Date)
+        let hh = (counter/3600)%24
+        let preH = hh < 9 ? "0" : ""
+        let mm = (counter/60)%60
+        let preM = mm < 9 ? "0" : ""
+        let ss = (counter%60)
+        let preS = ss < 9 ? "0" : ""
+
+        orderTimerLbl.text = "\(preH)\(hh):\(preM)\(mm):\(preS)\(ss)"
     }
     
     

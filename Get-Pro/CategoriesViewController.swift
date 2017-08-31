@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate, GetDataProtocol {
+class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource , GetDataProtocol {
     
     @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var problamDescTV: UITextView!
@@ -45,7 +45,6 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         //self.categories = AppManager.getCategories()
         self.categoriesTV.delegate = self
         self.categoriesTV.dataSource = self
-        self.problamDescTV.delegate = self
         self.problamDescTV.layer.borderColor = AppManager.getColor(colorKey: K.Colors.mediumRed) .cgColor
         self.problamDescTV.layer.borderWidth = 0.5
         

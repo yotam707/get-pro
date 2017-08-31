@@ -13,8 +13,8 @@ class ProOrderInProgressViewController : BaseUIViewController{
     @IBOutlet weak var orderDoneBtn: UIButton!
     @IBOutlet weak var orderTimerLbl: UILabel!
     var orderDetails = ProfessionalOrderDetailsView()
- 
-
+    var timer: Timer?
+    var counter = 0
     
     @IBAction func onDoneButtonClick(_ sender: Any) {
         //send data to server
@@ -27,7 +27,21 @@ class ProOrderInProgressViewController : BaseUIViewController{
         super.viewDidLoad()
         self.setViewColor(view: self.view, color:  K.Colors.darkGray)
         self.setViewColor(view: orderDoneBtn, color: K.Colors.darkRed)
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.onTimerUpdate), userInfo: nil, repeats: true)
+
     }
+    
+    func onTimerUpdate() {
+        counter+=1
+        
+        let date = NSDate(timeIntervalSince1970: Double(counter) / 1000)
+        let formatter = DateFormatter()
+        formatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
+        formatter.dateFormat = "HH:mm:ss"
+        
+        orderTimerLbl.text = formatter.string(from: date as Date)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

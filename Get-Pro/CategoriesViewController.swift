@@ -8,7 +8,9 @@
 
 import UIKit
 
-class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource , GetDataProtocol {
+class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITableViewDataSource,
+UITextViewDelegate,
+GetDataProtocol {
     
     @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var problamDescTV: UITextView!
@@ -27,10 +29,6 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         self.dismiss(animated: true, completion: nil)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -47,7 +45,7 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         self.categoriesTV.dataSource = self
         self.problamDescTV.layer.borderColor = AppManager.getColor(colorKey: K.Colors.mediumRed) .cgColor
         self.problamDescTV.layer.borderWidth = 0.5
-        
+        problamDescTV.delegate = self
         //self.setViewColor(view: self.view, color: K.Colors.darkGray)
         self.setViewColor(view: horizontalLineV, color: K.Colors.lightRed)
         self.setViewColor(view: self.view, color: K.Colors.darkGray)
@@ -63,6 +61,12 @@ class CategoriesViewController: BaseUIViewController, UITableViewDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    @IBAction func onViewTapped(_ sender: Any) {
+        self.problamDescTV.resignFirstResponder()
+    }
+
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

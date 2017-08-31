@@ -178,7 +178,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Describe your problem:" translatesAutoresizingMaskIntoConstraints="NO" id="bZ7-hr-Kd0">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Describe your problem:" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZ7-hr-Kd0">
                                 <rect key="frame" x="10" y="74" width="339" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="PGc-e0-HZJ"/>
@@ -194,7 +194,7 @@
                                     <constraint firstAttribute="height" constant="120" id="r7b-T7-WOh"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="86B-8e-Rwl">
                                 <rect key="frame" x="10" y="249" width="355" height="1"/>
@@ -214,7 +214,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vk9-xU-uSb">
+                                                <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vk9-xU-uSb">
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="99"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQi-fH-Wr9">
@@ -256,6 +256,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="86B-8e-Rwl" firstAttribute="leading" secondItem="F7G-2H-xRS" secondAttribute="leading" constant="10" id="3Tz-lf-Til"/>
                             <constraint firstItem="dyH-vv-7MF" firstAttribute="centerY" secondItem="F7G-2H-xRS" secondAttribute="centerY" id="8zR-ft-oAX"/>
@@ -276,6 +277,9 @@
                             <constraint firstItem="bZ7-hr-Kd0" firstAttribute="top" secondItem="uEK-0O-FG5" secondAttribute="bottom" constant="10" id="sc6-N9-TTA"/>
                             <constraint firstItem="uEK-0O-FG5" firstAttribute="leading" secondItem="F7G-2H-xRS" secondAttribute="leading" id="x7d-qE-bwa"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cHD-0l-evf" appends="YES" id="drA-Ql-wTa"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="oRb-XV-KUB"/>
                     <connections>
@@ -289,6 +293,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RiB-XB-sgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" id="cHD-0l-evf">
+                    <connections>
+                        <action selector="onViewTapped:" destination="joa-Qg-Iyu" id="m2b-TQ-UFb"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1162" y="-958"/>
         </scene>
